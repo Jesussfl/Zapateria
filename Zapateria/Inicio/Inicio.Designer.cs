@@ -48,13 +48,12 @@ namespace Zapateria
             this.buttonContainer = new System.Windows.Forms.Panel();
             this.btnInicio = new System.Windows.Forms.Button();
             this.Usuario = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.page = new System.Windows.Forms.Panel();
             this.content = new System.Windows.Forms.Panel();
             this.topBar = new System.Windows.Forms.Panel();
+            this.profile = new System.Windows.Forms.PictureBox();
+            this.nombreUsuario = new System.Windows.Forms.Label();
             this.btnOcultar = new System.Windows.Forms.PictureBox();
             this.btnMostrar = new System.Windows.Forms.PictureBox();
             this.sideBar.SuspendLayout();
@@ -67,17 +66,17 @@ namespace Zapateria
             this.panel1.SuspendLayout();
             this.buttonContainer.SuspendLayout();
             this.Usuario.SuspendLayout();
-            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.page.SuspendLayout();
             this.topBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOcultar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMostrar)).BeginInit();
             this.SuspendLayout();
             // 
             // sideBar
             // 
-            this.sideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.sideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.sideBar.Controls.Add(this.panel4);
             this.sideBar.Controls.Add(this.panel8);
             this.sideBar.Controls.Add(this.panel7);
@@ -106,12 +105,13 @@ namespace Zapateria
             // 
             // btnReportes
             // 
+            this.btnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnReportes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReportes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnReportes.Image = global::Zapateria.Properties.Resources.document;
+            this.btnReportes.ForeColor = System.Drawing.Color.White;
+            this.btnReportes.Image = global::Zapateria.Properties.Resources.documentWhite;
             this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.Location = new System.Drawing.Point(16, 8);
             this.btnReportes.Name = "btnReportes";
@@ -121,7 +121,7 @@ namespace Zapateria
             this.btnReportes.Text = "  Reportes";
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.UseVisualStyleBackColor = false;
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // panel8
@@ -136,12 +136,13 @@ namespace Zapateria
             // 
             // btnEmpleados
             // 
+            this.btnEmpleados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnEmpleados.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEmpleados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmpleados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnEmpleados.Image = global::Zapateria.Properties.Resources.user_octagon;
+            this.btnEmpleados.ForeColor = System.Drawing.Color.White;
+            this.btnEmpleados.Image = global::Zapateria.Properties.Resources.user_octagonWhite;
             this.btnEmpleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEmpleados.Location = new System.Drawing.Point(16, 8);
             this.btnEmpleados.Name = "btnEmpleados";
@@ -151,7 +152,7 @@ namespace Zapateria
             this.btnEmpleados.Text = "  Empleados";
             this.btnEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEmpleados.UseVisualStyleBackColor = true;
+            this.btnEmpleados.UseVisualStyleBackColor = false;
             this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
             // 
             // panel7
@@ -166,12 +167,13 @@ namespace Zapateria
             // 
             // btnClientes
             // 
+            this.btnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnClientes.Image = global::Zapateria.Properties.Resources.profile_2user;
+            this.btnClientes.ForeColor = System.Drawing.Color.White;
+            this.btnClientes.Image = global::Zapateria.Properties.Resources.profile_2userWhite;
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.Location = new System.Drawing.Point(16, 8);
             this.btnClientes.Name = "btnClientes";
@@ -181,7 +183,7 @@ namespace Zapateria
             this.btnClientes.Text = "  Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.UseVisualStyleBackColor = false;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // panel5
@@ -200,8 +202,8 @@ namespace Zapateria
             this.btnSalir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnSalir.Image = global::Zapateria.Properties.Resources.logout;
+            this.btnSalir.ForeColor = System.Drawing.Color.White;
+            this.btnSalir.Image = global::Zapateria.Properties.Resources.logoutWhite;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalir.Location = new System.Drawing.Point(16, 8);
             this.btnSalir.Name = "btnSalir";
@@ -226,12 +228,13 @@ namespace Zapateria
             // 
             // btnInventario
             // 
+            this.btnInventario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnInventario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInventario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnInventario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnInventario.Image = global::Zapateria.Properties.Resources.box;
+            this.btnInventario.ForeColor = System.Drawing.Color.White;
+            this.btnInventario.Image = global::Zapateria.Properties.Resources.boxWhite;
             this.btnInventario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventario.Location = new System.Drawing.Point(16, 8);
             this.btnInventario.Name = "btnInventario";
@@ -241,7 +244,7 @@ namespace Zapateria
             this.btnInventario.Text = "  Inventario";
             this.btnInventario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInventario.UseVisualStyleBackColor = true;
+            this.btnInventario.UseVisualStyleBackColor = false;
             this.btnInventario.Click += new System.EventHandler(this.btnInventario_Click);
             // 
             // panel2
@@ -256,12 +259,13 @@ namespace Zapateria
             // 
             // btnVentas
             // 
+            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVentas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnVentas.Image = global::Zapateria.Properties.Resources.chart;
+            this.btnVentas.ForeColor = System.Drawing.Color.White;
+            this.btnVentas.Image = global::Zapateria.Properties.Resources.chartWhite;
             this.btnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentas.Location = new System.Drawing.Point(16, 8);
             this.btnVentas.Name = "btnVentas";
@@ -271,7 +275,7 @@ namespace Zapateria
             this.btnVentas.Text = "  Ventas";
             this.btnVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.UseVisualStyleBackColor = false;
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
             // panel1
@@ -286,12 +290,13 @@ namespace Zapateria
             // 
             // btnCaja
             // 
+            this.btnCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnCaja.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCaja.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCaja.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnCaja.Image = global::Zapateria.Properties.Resources.bag_2;
+            this.btnCaja.ForeColor = System.Drawing.Color.White;
+            this.btnCaja.Image = global::Zapateria.Properties.Resources.bag_2White;
             this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCaja.Location = new System.Drawing.Point(16, 8);
             this.btnCaja.Name = "btnCaja";
@@ -301,7 +306,7 @@ namespace Zapateria
             this.btnCaja.Text = "  Caja";
             this.btnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCaja.UseVisualStyleBackColor = true;
+            this.btnCaja.UseVisualStyleBackColor = false;
             this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
             // 
             // buttonContainer
@@ -316,12 +321,13 @@ namespace Zapateria
             // 
             // btnInicio
             // 
+            this.btnInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInicio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnInicio.Image = global::Zapateria.Properties.Resources.home;
+            this.btnInicio.ForeColor = System.Drawing.Color.White;
+            this.btnInicio.Image = global::Zapateria.Properties.Resources.homeWhite;
             this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInicio.Location = new System.Drawing.Point(16, 8);
             this.btnInicio.Name = "btnInicio";
@@ -331,12 +337,11 @@ namespace Zapateria
             this.btnInicio.Text = "  Inicio";
             this.btnInicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInicio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.UseVisualStyleBackColor = false;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // Usuario
             // 
-            this.Usuario.Controls.Add(this.panel6);
             this.Usuario.Controls.Add(this.pictureBox1);
             this.Usuario.Dock = System.Windows.Forms.DockStyle.Top;
             this.Usuario.Location = new System.Drawing.Point(0, 0);
@@ -345,44 +350,13 @@ namespace Zapateria
             this.Usuario.Size = new System.Drawing.Size(258, 100);
             this.Usuario.TabIndex = 0;
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Controls.Add(this.label1);
-            this.panel6.Location = new System.Drawing.Point(70, 24);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(172, 48);
-            this.panel6.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(3, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "correo@ejemplo.com";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre de usuario";
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Zapateria.Properties.Resources.Profile1;
+            this.pictureBox1.Image = global::Zapateria.Properties.Resources.Logo;
             this.pictureBox1.InitialImage = global::Zapateria.Properties.Resources.Profile;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.Size = new System.Drawing.Size(203, 43);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -398,30 +372,56 @@ namespace Zapateria
             // 
             // content
             // 
-            this.content.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(250)))));
+            this.content.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(24)))), ((int)(((byte)(91)))));
             this.content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.content.Location = new System.Drawing.Point(0, 34);
+            this.content.Location = new System.Drawing.Point(0, 48);
             this.content.Name = "content";
             this.content.Padding = new System.Windows.Forms.Padding(16);
-            this.content.Size = new System.Drawing.Size(1006, 647);
+            this.content.Size = new System.Drawing.Size(1006, 633);
             this.content.TabIndex = 1;
             // 
             // topBar
             // 
-            this.topBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.topBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
+            this.topBar.Controls.Add(this.profile);
+            this.topBar.Controls.Add(this.nombreUsuario);
             this.topBar.Controls.Add(this.btnOcultar);
             this.topBar.Controls.Add(this.btnMostrar);
             this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.topBar.Location = new System.Drawing.Point(0, 0);
             this.topBar.Name = "topBar";
-            this.topBar.Size = new System.Drawing.Size(1006, 34);
+            this.topBar.Size = new System.Drawing.Size(1006, 48);
             this.topBar.TabIndex = 0;
+            // 
+            // profile
+            // 
+            this.profile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.profile.Image = global::Zapateria.Properties.Resources.Profile_32x;
+            this.profile.InitialImage = global::Zapateria.Properties.Resources.Profile;
+            this.profile.Location = new System.Drawing.Point(962, 7);
+            this.profile.Name = "profile";
+            this.profile.Size = new System.Drawing.Size(32, 32);
+            this.profile.TabIndex = 2;
+            this.profile.TabStop = false;
+            // 
+            // nombreUsuario
+            // 
+            this.nombreUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nombreUsuario.AutoSize = true;
+            this.nombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombreUsuario.ForeColor = System.Drawing.Color.White;
+            this.nombreUsuario.Location = new System.Drawing.Point(828, 16);
+            this.nombreUsuario.Name = "nombreUsuario";
+            this.nombreUsuario.Size = new System.Drawing.Size(127, 17);
+            this.nombreUsuario.TabIndex = 0;
+            this.nombreUsuario.Text = "Nombre de usuario";
+            this.nombreUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnOcultar
             // 
             this.btnOcultar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOcultar.Image = global::Zapateria.Properties.Resources.arrow_square_left;
-            this.btnOcultar.Location = new System.Drawing.Point(18, 7);
+            this.btnOcultar.Image = global::Zapateria.Properties.Resources.arrow_square_leftWhite;
+            this.btnOcultar.Location = new System.Drawing.Point(10, 12);
             this.btnOcultar.Name = "btnOcultar";
             this.btnOcultar.Size = new System.Drawing.Size(25, 24);
             this.btnOcultar.TabIndex = 1;
@@ -431,8 +431,8 @@ namespace Zapateria
             // btnMostrar
             // 
             this.btnMostrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMostrar.Image = global::Zapateria.Properties.Resources.arrow_square_right;
-            this.btnMostrar.Location = new System.Drawing.Point(18, 7);
+            this.btnMostrar.Image = global::Zapateria.Properties.Resources.arrow_square_rightWhite;
+            this.btnMostrar.Location = new System.Drawing.Point(10, 12);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(25, 24);
             this.btnMostrar.TabIndex = 0;
@@ -465,11 +465,11 @@ namespace Zapateria
             this.panel1.ResumeLayout(false);
             this.buttonContainer.ResumeLayout(false);
             this.Usuario.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.page.ResumeLayout(false);
             this.topBar.ResumeLayout(false);
+            this.topBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOcultar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMostrar)).EndInit();
             this.ResumeLayout(false);
@@ -485,9 +485,6 @@ namespace Zapateria
         private System.Windows.Forms.Panel Usuario;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnReportes;
@@ -505,6 +502,8 @@ namespace Zapateria
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.PictureBox btnMostrar;
         private System.Windows.Forms.PictureBox btnOcultar;
+        private System.Windows.Forms.PictureBox profile;
+        private System.Windows.Forms.Label nombreUsuario;
     }
 }
 

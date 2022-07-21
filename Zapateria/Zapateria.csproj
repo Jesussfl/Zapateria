@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Colores.cs" />
+    <Compile Include="Clases\Controles.cs" />
     <Compile Include="Clases\Database.cs" />
     <Compile Include="Secciones\Caja\Caja.cs">
       <SubType>Form</SubType>
@@ -61,6 +62,24 @@
     </Compile>
     <Compile Include="Inicio\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Secciones\Caja\AgregarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Secciones\Caja\AgregarCliente.Designer.cs">
+      <DependentUpon>AgregarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Secciones\Caja\CrearFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Secciones\Caja\CrearFactura.Designer.cs">
+      <DependentUpon>CrearFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Secciones\Caja\nuevaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Secciones\Caja\nuevaVenta.Designer.cs">
+      <DependentUpon>nuevaVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Secciones\Clientes\Clientes.cs">
       <SubType>Form</SubType>
@@ -99,6 +118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Secciones\Caja\CrearFactura.resx">
+      <DependentUpon>CrearFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Secciones\Caja\nuevaVenta.resx">
+      <DependentUpon>nuevaVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Secciones\Clientes\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
@@ -224,6 +249,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\arrow-square-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Profile-32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-square-leftWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-square-rightWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-upWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cardWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dollar-squareWhite1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-fill24x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-squareWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus-squareWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

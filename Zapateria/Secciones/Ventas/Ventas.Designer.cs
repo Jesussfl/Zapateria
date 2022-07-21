@@ -105,7 +105,7 @@ namespace Zapateria.Ventas
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -136,6 +136,7 @@ namespace Zapateria.Ventas
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Size = new System.Drawing.Size(1031, 326);
@@ -155,13 +156,13 @@ namespace Zapateria.Ventas
             this.panel7.Location = new System.Drawing.Point(1, 327);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1031, 37);
-            this.panel7.TabIndex = 1;
+            this.panel7.TabIndex = 2;
             // 
             // btnIrFinal
             // 
             this.btnIrFinal.BackColor = System.Drawing.Color.White;
             this.btnIrFinal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIrFinal.ForeColor = System.Drawing.Color.DimGray;
+            this.btnIrFinal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.btnIrFinal.Location = new System.Drawing.Point(948, 6);
             this.btnIrFinal.Name = "btnIrFinal";
             this.btnIrFinal.Size = new System.Drawing.Size(75, 23);
@@ -172,7 +173,7 @@ namespace Zapateria.Ventas
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label5.Location = new System.Drawing.Point(494, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 13);
@@ -182,7 +183,7 @@ namespace Zapateria.Ventas
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label4.Location = new System.Drawing.Point(513, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(13, 13);
@@ -192,7 +193,7 @@ namespace Zapateria.Ventas
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label3.Location = new System.Drawing.Point(475, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 13);
@@ -203,7 +204,7 @@ namespace Zapateria.Ventas
             // 
             this.btnSiguiente.BackColor = System.Drawing.Color.White;
             this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSiguiente.ForeColor = System.Drawing.Color.DimGray;
+            this.btnSiguiente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.btnSiguiente.Location = new System.Drawing.Point(541, 7);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
@@ -215,7 +216,7 @@ namespace Zapateria.Ventas
             // 
             this.btnAnterior.BackColor = System.Drawing.Color.White;
             this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnterior.ForeColor = System.Drawing.Color.DimGray;
+            this.btnAnterior.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.btnAnterior.Location = new System.Drawing.Point(390, 7);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(75, 23);
@@ -226,7 +227,7 @@ namespace Zapateria.Ventas
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label2.Location = new System.Drawing.Point(12, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
@@ -261,10 +262,11 @@ namespace Zapateria.Ventas
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Location = new System.Drawing.Point(752, 21);
+            this.panel2.Location = new System.Drawing.Point(750, 21);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.panel2.Size = new System.Drawing.Size(303, 32);
@@ -383,7 +385,7 @@ namespace Zapateria.Ventas
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label1.Location = new System.Drawing.Point(22, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 30);
@@ -429,14 +431,6 @@ namespace Zapateria.Ventas
         private System.Windows.Forms.Panel dbContenedor;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button btnIrFinal;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnSiguiente;
-        private System.Windows.Forms.Button btnAnterior;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel topContenedor;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Panel panel2;
@@ -451,5 +445,13 @@ namespace Zapateria.Ventas
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btnIrFinal;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Label label2;
     }
 }

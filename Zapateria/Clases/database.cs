@@ -31,6 +31,8 @@ namespace Zapateria
             da.Fill(dt);
 
             grid.DataSource = dt;
+            conexion.Close();
+
         }
 
         private void manipularBD(string consulta)

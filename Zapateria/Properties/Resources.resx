@@ -127,6 +127,9 @@
   <data name="logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="arrow-square-rightWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-square-rightWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Profile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Profile1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,8 +139,14 @@
   <data name="profile-2userWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profile-2userWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Profile-32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Profile-32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="user-octagonWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-octagonWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow-upWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-upWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,17 +157,29 @@
   <data name="search-2-line (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search-2-line (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="close-fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close-fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search-2-line (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search-2-line (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add-squareWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add-squareWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add-square" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add-square.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="user-octagon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-octagon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow-square-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow-square-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-square-leftWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-square-leftWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow-square-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-square-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dollar-squareWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dollar-squareWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,8 +193,14 @@
   <data name="add-square2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add-square2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="arrow-square-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-square-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="menu-fold-fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\menu-fold-fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dollar-squareWhite1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollar-squareWhite1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search-2-line" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search-2-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,6 +210,9 @@
   </data>
   <data name="bag-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bag-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close-fill24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close-fill24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,10 +229,13 @@
   <data name="document" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cardWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cardWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="documentWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\documentWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow-square-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow-square-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="minus-squareWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus-squareWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

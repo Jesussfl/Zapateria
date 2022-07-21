@@ -155,13 +155,13 @@ namespace Zapateria.Inventario
             this.panel7.Location = new System.Drawing.Point(1, 328);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1038, 37);
-            this.panel7.TabIndex = 1;
+            this.panel7.TabIndex = 2;
             // 
             // btnIrFinal
             // 
             this.btnIrFinal.BackColor = System.Drawing.Color.White;
             this.btnIrFinal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIrFinal.ForeColor = System.Drawing.Color.DimGray;
+            this.btnIrFinal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.btnIrFinal.Location = new System.Drawing.Point(948, 6);
             this.btnIrFinal.Name = "btnIrFinal";
             this.btnIrFinal.Size = new System.Drawing.Size(75, 23);
@@ -172,7 +172,7 @@ namespace Zapateria.Inventario
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label5.Location = new System.Drawing.Point(494, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(11, 13);
@@ -182,7 +182,7 @@ namespace Zapateria.Inventario
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label4.Location = new System.Drawing.Point(513, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(13, 13);
@@ -192,7 +192,7 @@ namespace Zapateria.Inventario
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label3.Location = new System.Drawing.Point(475, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 13);
@@ -203,7 +203,7 @@ namespace Zapateria.Inventario
             // 
             this.btnSiguiente.BackColor = System.Drawing.Color.White;
             this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSiguiente.ForeColor = System.Drawing.Color.DimGray;
+            this.btnSiguiente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.btnSiguiente.Location = new System.Drawing.Point(541, 7);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
@@ -215,7 +215,7 @@ namespace Zapateria.Inventario
             // 
             this.btnAnterior.BackColor = System.Drawing.Color.White;
             this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnterior.ForeColor = System.Drawing.Color.DimGray;
+            this.btnAnterior.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.btnAnterior.Location = new System.Drawing.Point(390, 7);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(75, 23);
@@ -226,7 +226,7 @@ namespace Zapateria.Inventario
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
             this.label2.Location = new System.Drawing.Point(12, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
@@ -443,6 +443,7 @@ namespace Zapateria.Inventario
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnIrFinal;
         private System.Windows.Forms.Label label5;
@@ -451,6 +452,5 @@ namespace Zapateria.Inventario
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnAgregar;
     }
 }

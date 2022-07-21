@@ -43,6 +43,7 @@ namespace Zapateria
             frm.Show();
             frm.Dock = DockStyle.Fill;
         }
+
         #region Botones
 
         //Funcion para quitar borde de los botones al cargar el programa
@@ -57,7 +58,7 @@ namespace Zapateria
         }
 
         //Funcion para dar apariencia a los botones al interactuar con ellos en el sidebar
-        private void misBotonesApariencia (object sender, EventArgs e, string img)
+        private void misBotonesApariencia (object sender, EventArgs e)
         {
 
             //Funcion para fines esteticos de los botones del sidebar
@@ -69,28 +70,19 @@ namespace Zapateria
                 {
                     foreach (Button p in c.Controls.OfType<Button>()) {
 
-                        p.BackColor = Clases.Colores.white;
-                        p.ForeColor = Clases.Colores.secondary;
+                        p.BackColor = Clases.Colores.BG;
+                        p.ForeColor = Color.White;
                     }
                   
                 }
               
             }
 
-            btnCaja.Image = Properties.Resources.bag_2;
-            btnInventario.Image = Properties.Resources.box;
-            btnVentas.Image = Properties.Resources.chart;
-            btnSalir.Image = Properties.Resources.logout;
-            btnReportes.Image = Properties.Resources.document;
-            btnInicio.Image = Properties.Resources.home;
-            btnClientes.Image = Properties.Resources.profile_2user;
-            btnEmpleados.Image = Properties.Resources.user_octagon;
 
             Button click = (Button)sender;
             click.BackColor = Clases.Colores.primary;
             click.ForeColor = Color.White;
-            click.Image = Zapateria.Properties.Resources.homeWhite;
-            click.Image = Image.FromFile(Environment.CurrentDirectory.Replace("\\bin\\Debug", "\\Resources\\" + img));
+ 
 
         }
 
@@ -98,14 +90,14 @@ namespace Zapateria
         {
             //Llamado a pagina de inventario
             abrirForms(inv);
-            misBotonesApariencia(btnInventario, null, "boxWhite.png");
+            misBotonesApariencia(btnInventario, null);
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
             //Llamado a pagina de reportes
             abrirForms(rep);
-            misBotonesApariencia(btnReportes, null, "documentWhite.png");
+            misBotonesApariencia(btnReportes, null);
 
         }
 
@@ -114,7 +106,7 @@ namespace Zapateria
             //Llamado a pagina de ventas
             abrirForms(ven);
 
-            misBotonesApariencia(btnVentas, null, "chartWhite.png");
+            misBotonesApariencia(btnVentas, null);
 
         }
 
@@ -123,14 +115,14 @@ namespace Zapateria
             //Llamado a pagina de caja
             abrirForms(caj);
 
-            misBotonesApariencia(btnCaja, null, "bag-2White.png");
+            misBotonesApariencia(btnCaja, null);
 
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
 
-            misBotonesApariencia(btnSalir, null, "logoutWhite.png");
+            misBotonesApariencia(btnSalir, null);
 
             //Cerrar Programa
             this.Close();
@@ -151,7 +143,7 @@ namespace Zapateria
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            misBotonesApariencia(btnInicio, null,"homeWhite.png");
+            misBotonesApariencia(btnInicio, null);
 
         }
 
@@ -164,7 +156,7 @@ namespace Zapateria
         {
             //Llamado a pagina de empleados
             abrirForms(emp);
-            misBotonesApariencia(btnEmpleados, null, "user-octagonWhite.png");
+            misBotonesApariencia(btnEmpleados, null);
 
         }
 
@@ -174,7 +166,7 @@ namespace Zapateria
             //Llamado a pagina de clientes
             abrirForms(cli);
 
-            misBotonesApariencia(btnClientes, null, "profile-2userWhite.png") ;
+            misBotonesApariencia(btnClientes, null) ;
 
         }
 
