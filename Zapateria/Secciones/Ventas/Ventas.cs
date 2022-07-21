@@ -13,7 +13,7 @@ namespace Zapateria.Ventas
 
     public partial class Ventas : Form
     {
-        database ventasDB = new database();
+        Database ventasDB = new Database();
 
         public Ventas()
         {
@@ -25,7 +25,7 @@ namespace Zapateria.Ventas
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-            ventasDB.cargarGrid(dataGridView1, "SELECT * FROM alumnos;");
+            ventasDB.cargarGrid(dataGridView1, "SELECT * FROM ventas;");
 
         }
     }

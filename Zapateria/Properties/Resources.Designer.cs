@@ -93,6 +93,26 @@ namespace Zapateria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_square_left {
+            get {
+                object obj = ResourceManager.GetObject("arrow-square-left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_square_right {
+            get {
+                object obj = ResourceManager.GetObject("arrow-square-right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bag_2 {
             get {
                 object obj = ResourceManager.GetObject("bag-2", resourceCulture);
@@ -253,6 +273,26 @@ namespace Zapateria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap profile_2user {
+            get {
+                object obj = ResourceManager.GetObject("profile-2user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap profile_2userWhite {
+            get {
+                object obj = ResourceManager.GetObject("profile-2userWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Profile1 {
             get {
                 object obj = ResourceManager.GetObject("Profile1", resourceCulture);
@@ -286,6 +326,26 @@ namespace Zapateria.Properties {
         internal static System.Drawing.Bitmap search_2_line__2_ {
             get {
                 object obj = ResourceManager.GetObject("search-2-line (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_octagon {
+            get {
+                object obj = ResourceManager.GetObject("user-octagon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_octagonWhite {
+            get {
+                object obj = ResourceManager.GetObject("user-octagonWhite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

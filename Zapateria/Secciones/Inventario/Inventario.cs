@@ -13,7 +13,7 @@ namespace Zapateria.Inventario
 {
     public partial class Inventario : Form
     {
-        database inventarioDB = new database();
+        Database inventarioDB = new Database();
         public Inventario()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace Zapateria.Inventario
         private void Inventario_Load(object sender, EventArgs e)
         {
             
-            inventarioDB.cargarGrid(dataGridView1, "SELECT * FROM alumnos;");
+            inventarioDB.cargarGrid(dataGridView1, "SELECT * FROM inventario;");
 
         }
 

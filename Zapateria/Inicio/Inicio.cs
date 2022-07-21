@@ -18,7 +18,7 @@ namespace Zapateria
             InitializeComponent();
             quitarBordeBtns();
             //Definición de bordes UI
-
+            
    
 
         }
@@ -28,6 +28,8 @@ namespace Zapateria
         Ventas.Ventas ven = new Ventas.Ventas();
         Inventario.Inventario inv = new Inventario.Inventario();
         Reportes.Reportes rep = new Reportes.Reportes();
+        Secciones.Clientes.Clientes cli = new Secciones.Clientes.Clientes();
+        Secciones.Empleados.Empleados emp = new Secciones.Empleados.Empleados();
 
 
         //Funcion para abrir formularios desde el sidebar
@@ -47,13 +49,11 @@ namespace Zapateria
         private void quitarBordeBtns()
         {
             //Función para fines estéticos de botones
-            btnInicio.FlatAppearance.BorderColor = btnInicio.Parent.BackColor;
-            btnCaja.FlatAppearance.BorderColor = btnInicio.Parent.BackColor;
-            btnInventario.FlatAppearance.BorderColor = btnInicio.Parent.BackColor;
-            btnReportes.FlatAppearance.BorderColor = btnInicio.Parent.BackColor;
-            btnSalir.FlatAppearance.BorderColor = btnInicio.Parent.BackColor;
-            btnVentas.FlatAppearance.BorderColor = btnInicio.Parent.BackColor;
-
+            //Lee los botones del sidebar y quita los bordes de los botones
+            foreach (Control c in sideBar.Controls)
+            {
+                if(c is Panel) { foreach (Button boton in c.Controls.OfType<Button>()) { boton.FlatAppearance.BorderColor = boton.Parent.BackColor; } }
+            }
         }
 
         //Funcion para dar apariencia a los botones al interactuar con ellos en el sidebar
@@ -61,27 +61,30 @@ namespace Zapateria
         {
 
             //Funcion para fines esteticos de los botones del sidebar
-            foreach(Control c in sideBar.Controls.OfType< Panel >())
+            //Lee los botones del sidebar y establece cuando se está en una sección o se ha cambiado a otra
+
+            foreach (Control c in sideBar.Controls)
             {
                 if(c is Panel)
                 {
                     foreach (Button p in c.Controls.OfType<Button>()) {
 
-                        p.BackColor = Color.White;
+                        p.BackColor = Clases.Colores.white;
                         p.ForeColor = Clases.Colores.secondary;
-
-                        btnCaja.Image = Properties.Resources.bag_2;
-                        btnInventario.Image = Properties.Resources.box;
-                        btnVentas.Image = Properties.Resources.chart;
-                        btnSalir.Image = Properties.Resources.logout;
-                        btnReportes.Image = Properties.Resources.document;
-                        btnInicio.Image = Properties.Resources.home;
-
                     }
                   
                 }
               
             }
+
+            btnCaja.Image = Properties.Resources.bag_2;
+            btnInventario.Image = Properties.Resources.box;
+            btnVentas.Image = Properties.Resources.chart;
+            btnSalir.Image = Properties.Resources.logout;
+            btnReportes.Image = Properties.Resources.document;
+            btnInicio.Image = Properties.Resources.home;
+            btnClientes.Image = Properties.Resources.profile_2user;
+            btnEmpleados.Image = Properties.Resources.user_octagon;
 
             Button click = (Button)sender;
             click.BackColor = Clases.Colores.primary;
@@ -152,6 +155,41 @@ namespace Zapateria
 
         }
 
+        private void Inicio_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            //Llamado a pagina de empleados
+            abrirForms(emp);
+            misBotonesApariencia(btnEmpleados, null, "user-octagonWhite.png");
+
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+
+            //Llamado a pagina de clientes
+            abrirForms(cli);
+
+            misBotonesApariencia(btnClientes, null, "profile-2userWhite.png") ;
+
+        }
+
+        private void btnMostrar_Click(object sender, EventArgs e)
+        {
+            sideBar.Show();
+            btnMostrar.Visible = false;
+            btnOcultar.Visible = true;
+        }
+
+        private void btnOcultar_Click(object sender, EventArgs e)
+        {
+            sideBar.Hide();
+            btnMostrar.Visible = true;
+            btnOcultar.Visible = false;
+        }
     }
 }

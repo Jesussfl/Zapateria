@@ -12,19 +12,17 @@ namespace Zapateria.Reportes
 {
     public partial class Reportes : Form
     {
-        database reportesDB = new database();
+        Database reportesDB = new Database();
 
         public Reportes()
         {
             InitializeComponent();
-            btnSiguiente.FlatAppearance.BorderColor = btnSiguiente.Parent.BackColor;
-            btnAnterior.FlatAppearance.BorderColor = btnAnterior.Parent.BackColor;
-            btnIrFinal.FlatAppearance.BorderColor = btnIrFinal.Parent.BackColor;
+         
         }
 
         private void Reportes_Load(object sender, EventArgs e)
         {
-            reportesDB.cargarGrid(dataGridView1, "SELECT * FROM alumnos;");
+           
 
         }
     }

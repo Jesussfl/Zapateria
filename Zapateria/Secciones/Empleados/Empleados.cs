@@ -8,20 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Zapateria.Caja
+namespace Zapateria.Secciones.Empleados
 {
-    public partial class Caja : Form
+    public partial class Empleados : Form
     {
-        Database cajaDB = new Database();
+        Database empleadosDB = new Database();
 
-        public Caja()
+        public Empleados()
         {
             InitializeComponent();
         }
 
-        private void Caja_Load(object sender, EventArgs e)
+        private void Empleados_Load(object sender, EventArgs e)
         {
-            
+            empleadosDB.cargarGrid(dataGridView1, "SELECT * FROM empleados;");
+
         }
     }
 }

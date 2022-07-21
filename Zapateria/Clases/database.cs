@@ -9,12 +9,15 @@ using System.Windows.Forms;
 
 namespace Zapateria
 {
-    public class database
+    public class Database
     {
-        public string consulta { get; set; }
-        public string nombre { get; set; }
+        public string server { get; set; }
+        public string uid { get; set; }
+        public string password { get; set; }
+        public string dbname { get; set; }
+        public string port { get; set; }
 
-        private MySqlConnection conexion = new MySqlConnection("server=localhost; uid=root; password=13122002b; database=bdmysql; port=3306");
+        private MySqlConnection conexion = new MySqlConnection("server=localhost; uid=root; password=13122002b; database=zapateria; port=3306");
 
         public void cargarGrid(DataGridView grid, string consulta)
         {

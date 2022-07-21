@@ -49,19 +49,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Colores.cs" />
-    <Compile Include="Clases\database.cs" />
+    <Compile Include="Clases\Database.cs" />
     <Compile Include="Secciones\Caja\Caja.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Secciones\Caja\Caja.Designer.cs">
       <DependentUpon>Caja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Controles.cs" />
     <Compile Include="Inicio\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inicio\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Secciones\Clientes\Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Secciones\Clientes\Clientes.Designer.cs">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Secciones\Empleados\Empleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Secciones\Empleados\Empleados.Designer.cs">
+      <DependentUpon>Empleados.cs</DependentUpon>
     </Compile>
     <Compile Include="Secciones\Inventario\Inventario.cs">
       <SubType>Form</SubType>
@@ -88,6 +99,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Secciones\Clientes\Clientes.resx">
+      <DependentUpon>Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Secciones\Empleados\Empleados.resx">
+      <DependentUpon>Empleados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Secciones\Inventario\Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>
@@ -189,6 +206,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logoutWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile-2user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-octagon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile-2userWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-octagonWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-square-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-square-right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
