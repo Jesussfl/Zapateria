@@ -26,7 +26,7 @@ namespace Zapateria.Inventario
         private void Inventario_Load(object sender, EventArgs e)
         {
             
-            inventarioDB.cargarGrid(dataGridView1, "SELECT * FROM inventario;");
+            //inventarioDB.cargarGrid(dataGridView1, "SELECT * FROM inventario;");
 
         }
 

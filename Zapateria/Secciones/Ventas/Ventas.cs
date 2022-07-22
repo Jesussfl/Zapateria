@@ -25,7 +25,7 @@ namespace Zapateria.Ventas
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-            ventasDB.cargarGrid(dataGridView1, "SELECT * FROM ventas;");
+            //ventasDB.cargarGrid(dataGridView1, "SELECT * FROM ventas;");
 
         }
     }

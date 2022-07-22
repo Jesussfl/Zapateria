@@ -21,8 +21,11 @@ namespace Zapateria.Caja
         }
         private void Caja_Load(object sender, EventArgs e)
         {
-            productosDB.cargarGrid(dataGridView1, "SELECT idProducto, marca, talla, color, precioVenta FROM inventario;");
-            productosDB.cargarGrid(dataGridView2, "SELECT idFactura, ciCliente, idProducto, montoTotal, ganancia, metodoPago FROM ventas;");
+            string[] nombres = { "Código","Marca","Talla","Color","Precio de Venta" };
+            productosDB.cargarGrid(dataGridView1, "SELECT idProducto, marca, talla, color, precioVenta FROM inventario;", nombres);
+            string[] nombresGrid2 = { "Cliente", "Total", "Ganancia", "Metodo" };
+            productosDB.cargarGrid(dataGridView2, "SELECT ciCliente, montoTotal, ganancia, metodoPago FROM ventas;", nombresGrid2);
+            
         }
 
         private void busCliente_Enter(object sender, EventArgs e)

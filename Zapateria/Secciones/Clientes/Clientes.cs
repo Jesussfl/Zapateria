@@ -21,7 +21,7 @@ namespace Zapateria.Secciones.Clientes
 
         private void Clientes_Load(object sender, EventArgs e)
         {
-            clientesDB.cargarGrid(dataGridView1, "SELECT * FROM clientes;");
+            //clientesDB.cargarGrid(dataGridView1, "SELECT * FROM clientes;");
 
         }
     }

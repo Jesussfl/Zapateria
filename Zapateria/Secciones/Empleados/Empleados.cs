@@ -21,7 +21,7 @@ namespace Zapateria.Secciones.Empleados
 
         private void Empleados_Load(object sender, EventArgs e)
         {
-            empleadosDB.cargarGrid(dataGridView1, "SELECT * FROM empleados;");
+            //empleadosDB.cargarGrid(dataGridView1, "SELECT * FROM empleados;");
 
         }
     }

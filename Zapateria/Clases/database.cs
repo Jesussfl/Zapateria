@@ -19,7 +19,7 @@ namespace Zapateria
 
         private MySqlConnection conexion = new MySqlConnection("server=localhost; uid=root; password=13122002b; database=zapateria; port=3306");
 
-        public void cargarGrid(DataGridView grid, string consulta)
+        public void cargarGrid(DataGridView grid, string consulta, string [] nombres)
         {
             //Este metodo sirve para cargar y buscar en la base de datos
 
@@ -32,9 +32,16 @@ namespace Zapateria
 
             grid.DataSource = dt;
             conexion.Close();
-
+            columnNombres(grid, nombres);
         }
-
+        private void columnNombres(DataGridView grid, string[] nombres)
+        {
+            int i = 0;
+            foreach (string column in nombres) {
+                grid.Columns[i].HeaderText = column;
+                i += 1;
+            }
+        }
         private void manipularBD(string consulta)
         {
             //Este metodo sirve para insertar, actualizar y eliminar en la base de datos
