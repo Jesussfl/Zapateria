@@ -55,7 +55,7 @@ namespace Zapateria.Secciones.Caja
 
         private void busProducto_KeyDown(object sender, KeyEventArgs e)
         {
-            //coleccionCalzado.SqlBuscar = $"Select * from inventario where concat_ws(idProducto,nombreProducto,marca,talla,color,cantidad,precioCompra,precioVenta) like '%{busProducto.Text}%'";
+            coleccionCalzado.Buscar = $"Select * from inventario where concat_ws(idProducto,nombreProducto,marca,talla,color,cantidad,precioCompra,precioVenta) like '%{busProducto.Text}%'";
             if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; }
         }
 

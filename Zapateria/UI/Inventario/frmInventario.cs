@@ -17,20 +17,18 @@ namespace Zapateria.Inventario
     public partial class frmInventario : Form
     {
         #region Instanciaciones
-        //Instanciación de la Clase Inventario
         public Calzado inventarioDB { get; set; }
 
-        //Instanciación de la Clase Controles
         Clases.Controles controles = new Clases.Controles();
         #endregion
 
-        //Constructor
-        public frmInventario()
+
+        public frmInventario() //Constructor
         {
             InitializeComponent();
-            //Definición de atributos para la clase inventario
+
             inventarioDB = new Calzado();
-            inventarioDB.Grid = dataGridView1;
+            inventarioDB.Grid = dataGridView1; //Definición de atributos para la clase inventario
             cargarDatos();
 
             //Asignacion de color de bordes a botones de paginacion
@@ -40,10 +38,10 @@ namespace Zapateria.Inventario
 
         }
 
-        //Métods
-        public void cargarDatos()
+        //Métodos
+        public void cargarDatos() //Función dedicada a rellenar las filas del datagridview
         {
-            //Función dedicada a rellenar las filas del datagridview
+
 
             inventarioDB.CargarBuscar(inventarioDB.Cargar);
             inventarioDB.AsignarNombreColumnas();
@@ -53,35 +51,34 @@ namespace Zapateria.Inventario
 
         #region Eventos
 
-       #region Busqueda
-        private void clearTb_Click(object sender, EventArgs e)
+        #region Busqueda
+        private void clearTb_Click(object sender, EventArgs e) //Botón de limpiar busqueda
         {
-            //Botón de limpiar busqueda
             busProducto.Clear();
             if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == false) { busProducto.Text = "Buscar Producto"; }
         }
-        private void busCliente_TextChanged(object sender, EventArgs e)
+        private void busCliente_TextChanged(object sender, EventArgs e) //Valida que el texto de ayuda esté colocado o no para hacer visible el botón de limpiar
         {
-            
-                //Valida que el texto de ayuda esté colocado o no para hacer visible el botón de limpiar
-                if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == true || busProducto.Text == "Buscar Producto") { clearTb.Visible = false; }
-                else { clearTb.Visible = true; }
-            
+
+
+            if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == true || busProducto.Text == "Buscar Producto") { clearTb.Visible = false; }
+            else { clearTb.Visible = true; }
+
         }
-        private void busCliente_Leave(object sender, EventArgs e)
+        private void busCliente_Leave(object sender, EventArgs e) //Añade o quita el texto de ayuda al buscador
         {
-            //Añade o quita el texto de ayuda al buscador
+
             controles.añadirPlaceholder(busProducto, "Buscar Producto");
         }
-        private void busCliente_Enter(object sender, EventArgs e)
+        private void busCliente_Enter(object sender, EventArgs e) //Añade el texto de ayuda al buscador
         {
-            //Añade el texto de ayuda al buscador
+
             controles.añadirPlaceholder(busProducto, "Buscar Producto");
         }
 
-        private void busProducto_KeyDown(object sender, KeyEventArgs e)
+        private void busProducto_KeyDown(object sender, KeyEventArgs e) //Buscar mediante codigo del producto, id de la categoria, tipo de calzado, la talla, el color, categoria, marca o modelo
         {
- 
+
             inventarioDB.Buscar = $@"Select inv.*, ctg.nombreCategoria, ctg.marca, mdl.nombreModelo
                                         from inventario inv 
                                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
@@ -89,7 +86,7 @@ namespace Zapateria.Inventario
                                         where concat_ws(idProducto,inv.idCategoria,tipoCalzado,talla,color,nombreCategoria,marca,nombreModelo) 
                                         like '%{busProducto.Text}%'";
 
-            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true;  inventarioDB.CargarBuscar(inventarioDB.Buscar); }
+            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; inventarioDB.CargarBuscar(inventarioDB.Buscar); }
         }
 
         #endregion
@@ -99,19 +96,18 @@ namespace Zapateria.Inventario
             dataGridView1.Columns["idCategoria"].Visible = false;
             dataGridView1.Columns["idModelo"].Visible = false;
         }
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
         {
-
-            //Llamado del formulario para agregar productos
             frmAgregarProductos popup = new frmAgregarProductos(this);
             controles.mostrarPopup(popup);
         }
-        private void btnCategoriasModelos_Click(object sender, EventArgs e)
+        private void btnCategoriasModelos_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
         {
-            //Llamado del formulario para agregar productos
+
             frmCategoriasYModelos popup = new frmCategoriasYModelos();
             controles.mostrarPopup(popup);
-        } 
+        }
         #endregion
+
     }
 }
