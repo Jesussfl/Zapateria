@@ -29,21 +29,12 @@ namespace Zapateria.Secciones.Clientes
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dbContenedor = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.btnIrFinal = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSiguiente = new System.Windows.Forms.Button();
-            this.btnAnterior = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.topContenedor = new System.Windows.Forms.Panel();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -58,10 +49,17 @@ namespace Zapateria.Secciones.Clientes
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btnIrFinal = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.dbContenedor.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel7.SuspendLayout();
             this.topContenedor.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -72,6 +70,8 @@ namespace Zapateria.Secciones.Clientes
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbContenedor
@@ -95,143 +95,6 @@ namespace Zapateria.Secciones.Clientes
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
             this.panel1.Size = new System.Drawing.Size(1082, 362);
             this.panel1.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.ColumnHeadersHeight = 48;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.Location = new System.Drawing.Point(1, 1);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView1.Size = new System.Drawing.Size(1080, 323);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
-            this.panel7.Controls.Add(this.btnIrFinal);
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Controls.Add(this.label4);
-            this.panel7.Controls.Add(this.label3);
-            this.panel7.Controls.Add(this.btnSiguiente);
-            this.panel7.Controls.Add(this.btnAnterior);
-            this.panel7.Controls.Add(this.label2);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(1, 324);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1080, 37);
-            this.panel7.TabIndex = 1;
-            // 
-            // btnIrFinal
-            // 
-            this.btnIrFinal.BackColor = System.Drawing.Color.White;
-            this.btnIrFinal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIrFinal.ForeColor = System.Drawing.Color.DimGray;
-            this.btnIrFinal.Location = new System.Drawing.Point(948, 6);
-            this.btnIrFinal.Name = "btnIrFinal";
-            this.btnIrFinal.Size = new System.Drawing.Size(75, 23);
-            this.btnIrFinal.TabIndex = 6;
-            this.btnIrFinal.Text = "Ir al final";
-            this.btnIrFinal.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(494, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(12, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "/";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(513, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(13, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(475, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(13, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "0";
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.BackColor = System.Drawing.Color.White;
-            this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSiguiente.ForeColor = System.Drawing.Color.DimGray;
-            this.btnSiguiente.Location = new System.Drawing.Point(541, 7);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
-            this.btnSiguiente.TabIndex = 2;
-            this.btnSiguiente.Text = "Siguiente";
-            this.btnSiguiente.UseVisualStyleBackColor = false;
-            // 
-            // btnAnterior
-            // 
-            this.btnAnterior.BackColor = System.Drawing.Color.White;
-            this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnterior.ForeColor = System.Drawing.Color.DimGray;
-            this.btnAnterior.Location = new System.Drawing.Point(390, 7);
-            this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(75, 23);
-            this.btnAnterior.TabIndex = 1;
-            this.btnAnterior.Text = "Anterior";
-            this.btnAnterior.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(12, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Filas por página";
             // 
             // topContenedor
             // 
@@ -390,6 +253,145 @@ namespace Zapateria.Secciones.Clientes
             this.label1.TabIndex = 1;
             this.label1.Text = "Clientes";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeight = 48;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView1.Location = new System.Drawing.Point(1, 1);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.Size = new System.Drawing.Size(1080, 323);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
+            this.panel7.Controls.Add(this.btnIrFinal);
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Controls.Add(this.label4);
+            this.panel7.Controls.Add(this.label3);
+            this.panel7.Controls.Add(this.btnSiguiente);
+            this.panel7.Controls.Add(this.btnAnterior);
+            this.panel7.Controls.Add(this.label2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(1, 324);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1080, 37);
+            this.panel7.TabIndex = 3;
+            // 
+            // btnIrFinal
+            // 
+            this.btnIrFinal.BackColor = System.Drawing.Color.White;
+            this.btnIrFinal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIrFinal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.btnIrFinal.Location = new System.Drawing.Point(948, 6);
+            this.btnIrFinal.Name = "btnIrFinal";
+            this.btnIrFinal.Size = new System.Drawing.Size(75, 23);
+            this.btnIrFinal.TabIndex = 6;
+            this.btnIrFinal.Text = "Ir al final";
+            this.btnIrFinal.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.label5.Location = new System.Drawing.Point(494, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(12, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "/";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.label4.Location = new System.Drawing.Point(513, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.label3.Location = new System.Drawing.Point(475, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(13, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "0";
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.BackColor = System.Drawing.Color.White;
+            this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSiguiente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.btnSiguiente.Location = new System.Drawing.Point(541, 7);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnSiguiente.TabIndex = 2;
+            this.btnSiguiente.Text = "Siguiente";
+            this.btnSiguiente.UseVisualStyleBackColor = false;
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.BackColor = System.Drawing.Color.White;
+            this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnterior.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.btnAnterior.Location = new System.Drawing.Point(390, 7);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(75, 23);
+            this.btnAnterior.TabIndex = 1;
+            this.btnAnterior.Text = "Anterior";
+            this.btnAnterior.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.label2.Location = new System.Drawing.Point(12, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Filas por página";
+            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,9 +405,6 @@ namespace Zapateria.Secciones.Clientes
             this.Load += new System.EventHandler(this.Clientes_Load);
             this.dbContenedor.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.topContenedor.ResumeLayout(false);
             this.topContenedor.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -419,6 +418,9 @@ namespace Zapateria.Secciones.Clientes
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -427,15 +429,6 @@ namespace Zapateria.Secciones.Clientes
 
         private System.Windows.Forms.Panel dbContenedor;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button btnIrFinal;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnSiguiente;
-        private System.Windows.Forms.Button btnAnterior;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel topContenedor;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Panel panel2;
@@ -450,5 +443,14 @@ namespace Zapateria.Secciones.Clientes
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btnIrFinal;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -134,6 +134,7 @@ namespace Zapateria.Ventas
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);

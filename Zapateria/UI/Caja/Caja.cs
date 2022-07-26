@@ -13,26 +13,26 @@ namespace Zapateria.Caja
     public partial class Caja : Form
     {
        Clases.Controles misControles = new Clases.Controles();
-        Database productosDB = new Database();
+        Clases.Calzado inventarioCaja = new Clases.Calzado();
         public Caja()
         {
             InitializeComponent();
-
+            //inventarioCaja.SqlCargarGrid = "SELECT idProducto, marca, talla, color, precioVenta FROM inventario;";
+            //inventarioCaja.Grid = dataGridView1;
         }
         private void Caja_Load(object sender, EventArgs e)
         {
-            string[] nombres = { "Código","Marca","Talla","Color","Precio de Venta" };
-            productosDB.cargarGrid(dataGridView1, "SELECT idProducto, marca, talla, color, precioVenta FROM inventario;", nombres);
-            string[] nombresGrid2 = { "Cliente", "Total", "Ganancia", "Metodo" };
-            productosDB.cargarGrid(dataGridView2, "SELECT ciCliente, montoTotal, ganancia, metodoPago FROM ventas;", nombresGrid2);
-            
-        }
 
-        private void busCliente_Enter(object sender, EventArgs e)
-        {
-            misControles.añadirPlaceholder(busCliente, "Buscar Cliente");
-        }
+            //Llamadas de métodos para modificar o agregar contenido de los datagrid
+            //string[] nombres = { "Código","Marca","Talla","Color","Precio de Venta" };
+            //inventarioCaja.cargarGrid(dataGridView1, inventarioCaja.SqlCargarGrid);
+            //cajaDB.columnNombres(dataGridView1, nombres);
 
+            //string[] nombresGrid2 = { "Cliente", "Total", "Ganancia", "Metodo" };
+            //cajaDB.cargarGrid(dataGridView2, "SELECT ciCliente, montoTotal, ganancia, metodoPago FROM ventas;");
+            //cajaDB.columnNombres(dataGridView2, nombresGrid2);
+
+        }
 
         private void busProducto_Enter(object sender, EventArgs e)
         {
@@ -53,28 +53,39 @@ namespace Zapateria.Caja
             //prueba.showForm(popup);
         }
 
+        #region Control para Buscar Cliente
         private void pictureBox3_Click_1(object sender, EventArgs e)
         {
+
+            //Botón de limpiar busqueda
             busCliente.Clear();
             if (string.IsNullOrWhiteSpace(busCliente.Text) && busCliente.Focused == false) { busCliente.Text = "Buscar Cliente";  }
         }
 
         private void busCliente_Leave_1(object sender, EventArgs e)
         {
+            //Añade el texto de ayuda al buscador
+
             misControles.añadirPlaceholder(busCliente, "Buscar Cliente");
 
         }
 
         private void busCliente_Enter_1(object sender, EventArgs e)
         {
+            //Añade o quita el texto de ayuda al buscador
+
             misControles.añadirPlaceholder(busCliente, "Buscar Cliente");
         }
 
         private void busCliente_TextChanged(object sender, EventArgs e)
         {
+            //Valida que el texto de ayuda esté colocado o no para hacer visible el botón de limpiar
+
             if (string.IsNullOrWhiteSpace(busCliente.Text) && busCliente.Focused == true || busCliente.Text == "Buscar Cliente") { clearTb.Visible = false; }
             else { clearTb.Visible = true; }
 
         }
+        #endregion
+
     }
 }

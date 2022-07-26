@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,15 +47,24 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Categoria.cs" />
+    <Compile Include="Clases\Modelo.cs" />
     <Compile Include="Clases\Colores.cs" />
     <Compile Include="Clases\Controles.cs" />
     <Compile Include="Clases\Database.cs" />
-    <Compile Include="Secciones\Caja\Caja.cs">
+    <Compile Include="Controles\InputText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\InputText.Designer.cs">
+      <DependentUpon>InputText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Caja\Caja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Caja\Caja.Designer.cs">
+    <Compile Include="UI\Caja\Caja.Designer.cs">
       <DependentUpon>Caja.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio\Inicio.cs">
@@ -63,76 +73,102 @@
     <Compile Include="Inicio\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Caja\AgregarCliente.cs">
+    <Compile Include="UI\Caja\AgregarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Caja\AgregarCliente.Designer.cs">
+    <Compile Include="UI\Caja\AgregarCliente.Designer.cs">
       <DependentUpon>AgregarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Caja\CrearFactura.cs">
+    <Compile Include="Clases\Clase-Caja.cs" />
+    <Compile Include="UI\Caja\CrearFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Caja\CrearFactura.Designer.cs">
+    <Compile Include="UI\Caja\CrearFactura.Designer.cs">
       <DependentUpon>CrearFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Caja\nuevaVenta.cs">
+    <Compile Include="UI\Caja\nuevaVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Caja\nuevaVenta.Designer.cs">
+    <Compile Include="UI\Caja\nuevaVenta.Designer.cs">
       <DependentUpon>nuevaVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Clientes\Clientes.cs">
+    <Compile Include="Clases\Clase-Clientes.cs" />
+    <Compile Include="UI\Clientes\Clientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Clientes\Clientes.Designer.cs">
+    <Compile Include="UI\Clientes\Clientes.Designer.cs">
       <DependentUpon>Clientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Empleados\Empleados.cs">
+    <Compile Include="Clases\Clase-Empleados.cs" />
+    <Compile Include="UI\Empleados\Empleados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Empleados\Empleados.Designer.cs">
+    <Compile Include="UI\Empleados\Empleados.Designer.cs">
       <DependentUpon>Empleados.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Inventario\Inventario.cs">
+    <Compile Include="UI\Inventario\frmAgregarProductos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Inventario\Inventario.Designer.cs">
-      <DependentUpon>Inventario.cs</DependentUpon>
+    <Compile Include="UI\Inventario\frmAgregarProductos.Designer.cs">
+      <DependentUpon>frmAgregarProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Calzado.cs" />
+    <Compile Include="UI\Inventario\frmCategoriasYModelos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Inventario\frmCategoriasYModelos.Designer.cs">
+      <DependentUpon>frmCategoriasYModelos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Inventario\frmInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Inventario\frmInventario.Designer.cs">
+      <DependentUpon>frmInventario.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Secciones\Reportes\Reportes.cs">
+    <Compile Include="UI\Reportes\Reportes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Reportes\Reportes.Designer.cs">
+    <Compile Include="UI\Reportes\Reportes.Designer.cs">
       <DependentUpon>Reportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Secciones\Ventas\Ventas.cs">
+    <Compile Include="UI\Ventas\Clase-Ventas.cs" />
+    <Compile Include="UI\Ventas\Ventas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Secciones\Ventas\Ventas.Designer.cs">
+    <Compile Include="UI\Ventas\Ventas.Designer.cs">
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Secciones\Caja\Caja.resx">
+    <EmbeddedResource Include="Controles\InputText.resx">
+      <DependentUpon>InputText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Caja\Caja.resx">
       <DependentUpon>Caja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Secciones\Caja\CrearFactura.resx">
+    <EmbeddedResource Include="UI\Caja\CrearFactura.resx">
       <DependentUpon>CrearFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Secciones\Caja\nuevaVenta.resx">
+    <EmbeddedResource Include="UI\Caja\nuevaVenta.resx">
       <DependentUpon>nuevaVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Secciones\Clientes\Clientes.resx">
+    <EmbeddedResource Include="UI\Clientes\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Secciones\Empleados\Empleados.resx">
+    <EmbeddedResource Include="UI\Empleados\Empleados.resx">
       <DependentUpon>Empleados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Secciones\Inventario\Inventario.resx">
-      <DependentUpon>Inventario.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Inventario\frmAgregarProductos.resx">
+      <DependentUpon>frmAgregarProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Inventario\frmCategoriasYModelos.resx">
+      <DependentUpon>frmCategoriasYModelos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Inventario\frmInventario.resx">
+      <DependentUpon>frmInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -144,10 +180,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Secciones\Reportes\Reportes.resx">
+    <EmbeddedResource Include="UI\Reportes\Reportes.resx">
       <DependentUpon>Reportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Secciones\Ventas\Ventas.resx">
+    <EmbeddedResource Include="UI\Ventas\Ventas.resx">
       <DependentUpon>Ventas.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -283,5 +319,6 @@
   <ItemGroup>
     <None Include="Resources\minus-squareWhite.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

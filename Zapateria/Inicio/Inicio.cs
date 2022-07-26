@@ -26,7 +26,7 @@ namespace Zapateria
         //Definicion de variables con formularios indexados en pagina de inicio
         Caja.Caja caj = new Caja.Caja();
         Ventas.Ventas ven = new Ventas.Ventas();
-        Inventario.Inventario inv = new Inventario.Inventario();
+        Inventario.frmInventario inv = new Inventario.frmInventario();
         Reportes.Reportes rep = new Reportes.Reportes();
         Secciones.Clientes.Clientes cli = new Secciones.Clientes.Clientes();
         Secciones.Empleados.Empleados emp = new Secciones.Empleados.Empleados();

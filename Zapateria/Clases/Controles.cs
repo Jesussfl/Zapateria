@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Zapateria.Clases
 {
-    class Controles
+    public class Controles
     {
         
         public void añadirPlaceholder(TextBox tb, string text)
@@ -34,12 +34,13 @@ namespace Zapateria.Clases
             mainform.Opacity = .50d;
             mainform.BackColor = Color.Black;
             mainform.WindowState = FormWindowState.Maximized;
-            mainform.TopMost = true;
+           // mainform.TopMost = true;
             mainform.Location = this.Location;
             mainform.ShowInTaskbar = false;
             mainform.Show();
             frm.Owner = mainform;
             frm.ShowDialog();
+            frm.BringToFront();
             mainform.Dispose();
             }
             catch (Exception ex)
