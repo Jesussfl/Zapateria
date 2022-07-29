@@ -13,19 +13,19 @@ namespace Zapateria.Clases
         #region Atributos
         private int codigo;
         private string marca;
-
+        private string nombreCategoria;
         private string codigoCategoria;
-
+        private string nombreModelo;
         private string codigoModelo;
-
         private string descripcion;
+        private string tipoCalzado;
         private int talla;
         private string color;
         private int cantidad;
         private double precioProducto;
         private double costePorProducto;
 
-        private string[] colores = new string[] { "NEGRO", "GRIS", "BLANCO", "MARRON", "Amarillo", "Verde", "Beige", "Azul", "Rosado", "Morado", "Rojo", "Verde", "Amarillo", "Naranja" };
+        private string[] colores = new string[] { "NEGRO", "GRIS", "BLANCO", "MARRON", "AMARILLO", "VERDE", "BEIGE", "AZUL", "ROSADO", "MORADO", "ROJO", "VERDE", "AMARILLO", "NARANJA" };
 
         #region Encapsulamiento
         //Encapsulamiento
@@ -39,13 +39,18 @@ namespace Zapateria.Clases
         public double CostePorProducto { get => costePorProducto; set => costePorProducto = value; }
         public string CodigoModelo { get => codigoModelo; set => codigoModelo = value; }
         public string CodigoCategoria { get => codigoCategoria; set => codigoCategoria = value; }
-        #endregion 
+        public string TipoCalzado { get => tipoCalzado; set => tipoCalzado = value; }
+        public string NombreModelo { get => nombreModelo; set => nombreModelo = value; }
+        public string NombreCategoria { get => nombreCategoria; set => nombreCategoria = value; }
+        public string[] Colores { get => colores; set => colores = value; }
+        #endregion
         #endregion
 
         //Constructor
         public Calzado()
         {
-            Cargar = @"Select inv.*, ctg.nombreCategoria, ctg.marca, mdl.nombreModelo 
+            CargarSQL = @"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, inv.precioVenta,
+                        inv.costeTotal 
                         from inventario inv 
                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
                         INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer)";
@@ -53,55 +58,55 @@ namespace Zapateria.Clases
             Columnas = new string[] 
             { 
                 "Código", 
-                "Codigo Categoría", 
-                "Código Modelo", 
+                "Producto", 
                 "Descripcion", 
-                "Sexo", "Talla", 
-                "Color", "Cantidad", 
-                "Precio de Venta", 
-                "Coste Mercancía", 
-                "Categoría", 
-                "Marca", 
-                "Modelo" 
+                "Sexo", 
+                "Talla", 
+                "Color", 
+                "Cantidad", 
+                "Precio", 
+                "Coste"
             };
 
-            CargarEditar = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, talla, color, cantidad, precioVenta, costeTotal) 
-                             VALUES (@idProducto, @idCategoria, @idModelo, @descripcion, @talla, @color, @cantidad, @precioVenta, @costeTotal)";
+            CargarEditarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta, costeTotal) 
+                             VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta, @costeTotal)";
+
+            BuscarSQL = $@"{CargarSQL} where concat_ws(idProducto,ctg.nombreCategoria, ctg.marca, mdl.nombreModelo,tipoCalzado,talla,color) like";
         }
 
         #region Métodos
-        public void cargarAtributos()
+        public void CargarAtributos() //Método para generar los parametros de MYSQL e insertarlos en la base de datos
         {
-            //Función dedicada de generar los parametros de MYSQL para poder insertarlos en la base de datos
+            
             Parametros = new MySqlParameter[]
                 {
                 new MySqlParameter("@idProducto", codigo),
                 new MySqlParameter("@idCategoria", codigoCategoria),
                 new MySqlParameter("@idModelo", codigoModelo),
                 new MySqlParameter("@descripcion", descripcion),
+                new MySqlParameter("@tipoCalzado", tipoCalzado),
                 new MySqlParameter("@talla", talla),
                 new MySqlParameter("@color", color),
                 new MySqlParameter("@cantidad", cantidad),
                 new MySqlParameter("@precioVenta", precioProducto),
                 new MySqlParameter("@costeTotal", costePorProducto)
                 };
-            InsertarActualizarEliminar(CargarEditar, true, false);
+
+            InsertarActualizarEliminar(CargarEditarSQL, true, false);
         }
-        public int GenerarCodigo()
+        public void ExtraerDatos() //Metodo para extraer y llenar los atributos desde la base de datos
         {
-            //Funcion para generar un código a cada producto según ciertas características
-            int indexColor;
+            Conexion.Open();
 
-            for (indexColor = 0; indexColor <= colores.Length; indexColor++)
-            {
-                if (color == colores[indexColor]) {
+            Conexion.Close();
+        }
+        public int GenerarCodigo() //Funcion para generar un código a cada producto según ciertas características
+        {
+            
+            int indexColor = Array.IndexOf(Colores, color);
 
-                    return int.Parse(CodigoCategoria + codigoModelo + talla.ToString() + indexColor.ToString());
+            return int.Parse(CodigoCategoria + codigoModelo + talla.ToString() + indexColor.ToString());
 
-                };
-
-            }
-            return 1;
 
         }
         #endregion

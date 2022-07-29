@@ -39,17 +39,32 @@ namespace Zapateria.Inventario
         }
 
         //Métodos
+        bool existeColumna = false;
         public void cargarDatos() //Función dedicada a rellenar las filas del datagridview
         {
 
 
-            inventarioDB.CargarBuscar(inventarioDB.Cargar);
-            inventarioDB.AsignarNombreColumnas();
-            inventarioDB.AsignarBotones("editar", "Editar", "Editar");
+            inventarioDB.Cargar(inventarioDB.CargarSQL);
+            if (existeColumna == false)
+            {
+                inventarioDB.AsignarNombreColumnas();
+                inventarioDB.AsignarBotones("editar", "Editar", "Editar");
+                existeColumna = true;
+            }
+           
+            dataGridView1.Columns["idProducto"].FillWeight = 35;
+            dataGridView1.Columns["talla"].FillWeight = 20;
+            dataGridView1.Columns["color"].FillWeight = 50;
+            dataGridView1.Columns["precioVenta"].FillWeight = 30;
+            dataGridView1.Columns["cantidad"].FillWeight = 30;
+            dataGridView1.Columns["tipoCalzado"].FillWeight = 45;
+            dataGridView1.Columns["costeTotal"].FillWeight = 30;
+            dataGridView1.Columns["editar"].FillWeight = 30;
+
+
+
         }
 
-
-        #region Eventos
 
         #region Busqueda
         private void clearTb_Click(object sender, EventArgs e) //Botón de limpiar busqueda
@@ -61,8 +76,16 @@ namespace Zapateria.Inventario
         {
 
 
-            if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == true || busProducto.Text == "Buscar Producto") { clearTb.Visible = false; }
-            else { clearTb.Visible = true; }
+            if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == true || busProducto.Text == "Buscar Producto") 
+            { 
+                clearTb.Visible = false;
+                inventarioDB.Cargar(inventarioDB.CargarSQL);
+            }
+            else 
+            { 
+                clearTb.Visible = true; 
+                inventarioDB.Cargar($"{inventarioDB.BuscarSQL} '%{busProducto.Text}%'"); 
+            }
 
         }
         private void busCliente_Leave(object sender, EventArgs e) //Añade o quita el texto de ayuda al buscador
@@ -79,22 +102,21 @@ namespace Zapateria.Inventario
         private void busProducto_KeyDown(object sender, KeyEventArgs e) //Buscar mediante codigo del producto, id de la categoria, tipo de calzado, la talla, el color, categoria, marca o modelo
         {
 
-            inventarioDB.Buscar = $@"Select inv.*, ctg.nombreCategoria, ctg.marca, mdl.nombreModelo
-                                        from inventario inv 
-                                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
-                                        INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer) 
-                                        where concat_ws(idProducto,inv.idCategoria,tipoCalzado,talla,color,nombreCategoria,marca,nombreModelo) 
-                                        like '%{busProducto.Text}%'";
-
-            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; inventarioDB.CargarBuscar(inventarioDB.Buscar); }
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                inventarioDB.Cargar($"{inventarioDB.BuscarSQL} '%{busProducto.Text}%'"); //Se llama el atributo con el query y se le asigna el valor del buscador}
+            }
         }
 
         #endregion
 
+        #region Eventos
+
+
         public void Inventario_Load(object sender, EventArgs e)
         {
-            dataGridView1.Columns["idCategoria"].Visible = false;
-            dataGridView1.Columns["idModelo"].Visible = false;
+          
         }
         private void btnAgregar_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
         {
@@ -106,6 +128,15 @@ namespace Zapateria.Inventario
 
             frmCategoriasYModelos popup = new frmCategoriasYModelos();
             controles.mostrarPopup(popup);
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+ 
         }
         #endregion
 

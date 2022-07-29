@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -51,21 +52,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Categoria.cs" />
+    <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\Empleado.cs" />
     <Compile Include="Clases\Modelo.cs" />
     <Compile Include="Clases\Colores.cs" />
     <Compile Include="Clases\Controles.cs" />
     <Compile Include="Clases\Database.cs" />
+    <Compile Include="Clases\Venta.cs" />
     <Compile Include="Controles\InputText.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controles\InputText.Designer.cs">
       <DependentUpon>InputText.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Caja\Caja.cs">
+    <Compile Include="UI\Caja\formCaja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Caja\Caja.Designer.cs">
-      <DependentUpon>Caja.cs</DependentUpon>
+    <Compile Include="UI\Caja\formCaja.Designer.cs">
+      <DependentUpon>formCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio\Inicio.cs">
       <SubType>Form</SubType>
@@ -73,38 +77,59 @@
     <Compile Include="Inicio\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Caja\AgregarCliente.cs">
+    <Compile Include="UI\Caja\frmCrearFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Caja\AgregarCliente.Designer.cs">
-      <DependentUpon>AgregarCliente.cs</DependentUpon>
+    <Compile Include="UI\Caja\frmCrearFactura.Designer.cs">
+      <DependentUpon>frmCrearFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Clase-Caja.cs" />
-    <Compile Include="UI\Caja\CrearFactura.cs">
+    <Compile Include="UI\Caja\frmEfectivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Caja\CrearFactura.Designer.cs">
-      <DependentUpon>CrearFactura.cs</DependentUpon>
+    <Compile Include="UI\Caja\frmEfectivo.Designer.cs">
+      <DependentUpon>frmEfectivo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Caja\nuevaVenta.cs">
+    <Compile Include="UI\Caja\frmIngresarCantidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Caja\nuevaVenta.Designer.cs">
-      <DependentUpon>nuevaVenta.cs</DependentUpon>
+    <Compile Include="UI\Caja\frmIngresarCantidad.Designer.cs">
+      <DependentUpon>frmIngresarCantidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Clase-Clientes.cs" />
-    <Compile Include="UI\Clientes\Clientes.cs">
+    <Compile Include="UI\Caja\frmPagoMovil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Clientes\Clientes.Designer.cs">
-      <DependentUpon>Clientes.cs</DependentUpon>
+    <Compile Include="UI\Caja\frmPagoMovil.Designer.cs">
+      <DependentUpon>frmPagoMovil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Clase-Empleados.cs" />
-    <Compile Include="UI\Empleados\Empleados.cs">
+    <Compile Include="UI\Caja\frmTarjeta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Empleados\Empleados.Designer.cs">
-      <DependentUpon>Empleados.cs</DependentUpon>
+    <Compile Include="UI\Caja\frmTarjeta.Designer.cs">
+      <DependentUpon>frmTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clientes\frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Clientes\frmClientes.Designer.cs">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clientes\frmAgregarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Clientes\frmAgregarCliente.Designer.cs">
+      <DependentUpon>frmAgregarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Empleados\frmAgregarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Empleados\frmAgregarEmpleado.Designer.cs">
+      <DependentUpon>frmAgregarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Empleados\frmEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Empleados\frmEmpleados.Designer.cs">
+      <DependentUpon>frmEmpleados.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Inventario\frmAgregarProductos.cs">
       <SubType>Form</SubType>
@@ -133,7 +158,6 @@
     <Compile Include="UI\Reportes\Reportes.Designer.cs">
       <DependentUpon>Reportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Ventas\Clase-Ventas.cs" />
     <Compile Include="UI\Ventas\Ventas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,23 +167,38 @@
     <EmbeddedResource Include="Controles\InputText.resx">
       <DependentUpon>InputText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Caja\Caja.resx">
-      <DependentUpon>Caja.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Caja\formCaja.resx">
+      <DependentUpon>formCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Caja\CrearFactura.resx">
-      <DependentUpon>CrearFactura.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Caja\frmCrearFactura.resx">
+      <DependentUpon>frmCrearFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Caja\nuevaVenta.resx">
-      <DependentUpon>nuevaVenta.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Caja\frmEfectivo.resx">
+      <DependentUpon>frmEfectivo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Clientes\Clientes.resx">
-      <DependentUpon>Clientes.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Caja\frmIngresarCantidad.resx">
+      <DependentUpon>frmIngresarCantidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Empleados\Empleados.resx">
-      <DependentUpon>Empleados.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Caja\frmPagoMovil.resx">
+      <DependentUpon>frmPagoMovil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Caja\frmTarjeta.resx">
+      <DependentUpon>frmTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Clientes\frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Clientes\frmAgregarCliente.resx">
+      <DependentUpon>frmAgregarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Empleados\frmAgregarEmpleado.resx">
+      <DependentUpon>frmAgregarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Empleados\frmEmpleados.resx">
+      <DependentUpon>frmEmpleados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Inventario\frmAgregarProductos.resx">
       <DependentUpon>frmAgregarProductos.cs</DependentUpon>

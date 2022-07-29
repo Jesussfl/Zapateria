@@ -1,7 +1,7 @@
 ﻿
-namespace Zapateria.Caja
+namespace Zapateria.UI.Caja
 {
-    partial class Caja
+    partial class formCaja
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace Zapateria.Caja
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Caja));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formCaja));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,14 +43,18 @@ namespace Zapateria.Caja
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSubTotal = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.btnRegistrarCliente = new System.Windows.Forms.Button();
+            this.clienteContenedor = new System.Windows.Forms.Panel();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.profile = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnAgregarPro = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -65,9 +69,10 @@ namespace Zapateria.Caja
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPunto = new System.Windows.Forms.Button();
+            this.btnEfectivo = new System.Windows.Forms.Button();
+            this.btnPagoMovil = new System.Windows.Forms.Button();
+            this.btnReiniciar = new System.Windows.Forms.Button();
             this.panel19 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -78,6 +83,8 @@ namespace Zapateria.Caja
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel13.SuspendLayout();
             this.panel16.SuspendLayout();
+            this.clienteContenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -112,10 +119,10 @@ namespace Zapateria.Caja
             this.dbProductosContenedor.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dbProductosContenedor.Controls.Add(this.dataGridView1);
             this.dbProductosContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dbProductosContenedor.Location = new System.Drawing.Point(24, 177);
+            this.dbProductosContenedor.Location = new System.Drawing.Point(24, 133);
             this.dbProductosContenedor.Name = "dbProductosContenedor";
             this.dbProductosContenedor.Padding = new System.Windows.Forms.Padding(1);
-            this.dbProductosContenedor.Size = new System.Drawing.Size(660, 138);
+            this.dbProductosContenedor.Size = new System.Drawing.Size(660, 182);
             this.dbProductosContenedor.TabIndex = 26;
             // 
             // dataGridView1
@@ -142,8 +149,8 @@ namespace Zapateria.Caja
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.GrayText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -151,6 +158,7 @@ namespace Zapateria.Caja
             this.dataGridView1.GridColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView1.Location = new System.Drawing.Point(1, 1);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
@@ -163,22 +171,22 @@ namespace Zapateria.Caja
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.RowTemplate.Height = 50;
-            this.dataGridView1.RowTemplate.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Height = 42;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(658, 136);
-            this.dataGridView1.TabIndex = 14;
-            this.dataGridView1.TabStop = false;
+            this.dataGridView1.Size = new System.Drawing.Size(658, 180);
+            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel13
             // 
             this.panel13.Controls.Add(this.label2);
-            this.panel13.Controls.Add(this.label1);
+            this.panel13.Controls.Add(this.lblSubTotal);
             this.panel13.Controls.Add(this.label3);
-            this.panel13.Controls.Add(this.label7);
+            this.panel13.Controls.Add(this.lblTotal);
             this.panel13.Controls.Add(this.label6);
             this.panel13.Controls.Add(this.label4);
             this.panel13.Controls.Add(this.panel1);
@@ -200,18 +208,17 @@ namespace Zapateria.Caja
             this.label2.TabIndex = 16;
             this.label2.Text = "Seleccione el Método de Pago";
             // 
-            // label1
+            // lblSubTotal
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label1.Location = new System.Drawing.Point(604, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 15);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Subtotal";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
+            this.lblSubTotal.Location = new System.Drawing.Point(554, 8);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(102, 15);
+            this.lblSubTotal.TabIndex = 19;
+            this.lblSubTotal.Text = "Subtotal";
+            this.lblSubTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -224,30 +231,28 @@ namespace Zapateria.Caja
             this.label3.TabIndex = 15;
             this.label3.Text = "Subtotal";
             // 
-            // label7
+            // lblTotal
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
-            this.label7.Location = new System.Drawing.Point(599, 69);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 30);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Total";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            this.lblTotal.Location = new System.Drawing.Point(516, 72);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(141, 30);
+            this.lblTotal.TabIndex = 21;
+            this.lblTotal.Text = "Total";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label6.Location = new System.Drawing.Point(627, 32);
+            this.label6.Location = new System.Drawing.Point(611, 32);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 15);
+            this.label6.Size = new System.Drawing.Size(43, 15);
             this.label6.TabIndex = 20;
-            this.label6.Text = "Iva";
+            this.label6.Text = "16%";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
@@ -282,21 +287,71 @@ namespace Zapateria.Caja
             // 
             // panel16
             // 
+            this.panel16.Controls.Add(this.btnRegistrarCliente);
+            this.panel16.Controls.Add(this.clienteContenedor);
             this.panel16.Controls.Add(this.label9);
             this.panel16.Controls.Add(this.btnAgregarPro);
             this.panel16.Controls.Add(this.panel2);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel16.Location = new System.Drawing.Point(24, 8);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(660, 169);
+            this.panel16.Size = new System.Drawing.Size(660, 125);
             this.panel16.TabIndex = 27;
+            // 
+            // btnRegistrarCliente
+            // 
+            this.btnRegistrarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegistrarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
+            this.btnRegistrarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarCliente.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrarCliente.Location = new System.Drawing.Point(535, 6);
+            this.btnRegistrarCliente.Name = "btnRegistrarCliente";
+            this.btnRegistrarCliente.Size = new System.Drawing.Size(115, 42);
+            this.btnRegistrarCliente.TabIndex = 28;
+            this.btnRegistrarCliente.Text = "Nuevo Cliente";
+            this.btnRegistrarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegistrarCliente.UseVisualStyleBackColor = false;
+            this.btnRegistrarCliente.Click += new System.EventHandler(this.btnRegistrarCliente_Click);
+            // 
+            // clienteContenedor
+            // 
+            this.clienteContenedor.BackColor = System.Drawing.Color.White;
+            this.clienteContenedor.Controls.Add(this.lblCliente);
+            this.clienteContenedor.Controls.Add(this.profile);
+            this.clienteContenedor.Location = new System.Drawing.Point(307, 9);
+            this.clienteContenedor.Name = "clienteContenedor";
+            this.clienteContenedor.Size = new System.Drawing.Size(222, 39);
+            this.clienteContenedor.TabIndex = 27;
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
+            this.lblCliente.Location = new System.Drawing.Point(3, 8);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(177, 21);
+            this.lblCliente.TabIndex = 27;
+            this.lblCliente.Text = "Cliente de la Factura";
+            this.lblCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // profile
+            // 
+            this.profile.Image = global::Zapateria.Properties.Resources.Profile_32x;
+            this.profile.InitialImage = global::Zapateria.Properties.Resources.Profile;
+            this.profile.Location = new System.Drawing.Point(183, 4);
+            this.profile.Name = "profile";
+            this.profile.Size = new System.Drawing.Size(32, 32);
+            this.profile.TabIndex = 26;
+            this.profile.TabStop = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label9.Location = new System.Drawing.Point(8, 139);
+            this.label9.Location = new System.Drawing.Point(8, 102);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(112, 15);
             this.label9.TabIndex = 25;
@@ -310,11 +365,11 @@ namespace Zapateria.Caja
             this.btnAgregarPro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarPro.ForeColor = System.Drawing.Color.White;
             this.btnAgregarPro.Image = global::Zapateria.Properties.Resources.add_squareWhite;
-            this.btnAgregarPro.Location = new System.Drawing.Point(472, 6);
+            this.btnAgregarPro.Location = new System.Drawing.Point(472, 74);
             this.btnAgregarPro.Name = "btnAgregarPro";
             this.btnAgregarPro.Size = new System.Drawing.Size(178, 42);
             this.btnAgregarPro.TabIndex = 24;
-            this.btnAgregarPro.Text = "  Agregar Producto";
+            this.btnAgregarPro.Text = "  Agregar Productos";
             this.btnAgregarPro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAgregarPro.UseVisualStyleBackColor = false;
             this.btnAgregarPro.Click += new System.EventHandler(this.btnAgregarPro_Click);
@@ -367,6 +422,7 @@ namespace Zapateria.Caja
             this.busCliente.Text = "Buscar Cliente";
             this.busCliente.TextChanged += new System.EventHandler(this.busCliente_TextChanged);
             this.busCliente.Enter += new System.EventHandler(this.busCliente_Enter_1);
+            this.busCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.busCliente_KeyDown);
             this.busCliente.Leave += new System.EventHandler(this.busCliente_Leave_1);
             // 
             // clearTb
@@ -448,9 +504,10 @@ namespace Zapateria.Caja
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.button3);
-            this.panel7.Controls.Add(this.button2);
-            this.panel7.Controls.Add(this.button4);
+            this.panel7.Controls.Add(this.btnPunto);
+            this.panel7.Controls.Add(this.btnEfectivo);
+            this.panel7.Controls.Add(this.btnPagoMovil);
+            this.panel7.Controls.Add(this.btnReiniciar);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(24, 527);
             this.panel7.Name = "panel7";
@@ -458,56 +515,76 @@ namespace Zapateria.Caja
             this.panel7.Size = new System.Drawing.Size(660, 88);
             this.panel7.TabIndex = 28;
             // 
-            // button3
+            // btnPunto
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Image = global::Zapateria.Properties.Resources.cardWhite;
-            this.button3.Location = new System.Drawing.Point(246, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(190, 64);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "  Punto";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnPunto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnPunto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPunto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPunto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPunto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPunto.ForeColor = System.Drawing.Color.White;
+            this.btnPunto.Image = global::Zapateria.Properties.Resources.cardWhite;
+            this.btnPunto.Location = new System.Drawing.Point(300, 12);
+            this.btnPunto.Name = "btnPunto";
+            this.btnPunto.Size = new System.Drawing.Size(159, 64);
+            this.btnPunto.TabIndex = 14;
+            this.btnPunto.Text = "  Tarjeta";
+            this.btnPunto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPunto.UseVisualStyleBackColor = false;
+            this.btnPunto.Click += new System.EventHandler(this.btnPunto_Click);
             // 
-            // button2
+            // btnEfectivo
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = global::Zapateria.Properties.Resources.dollar_squareWhite1;
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(234, 64);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "  Efectivo";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnEfectivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnEfectivo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEfectivo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnEfectivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEfectivo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEfectivo.ForeColor = System.Drawing.Color.White;
+            this.btnEfectivo.Image = global::Zapateria.Properties.Resources.dollar_squareWhite1;
+            this.btnEfectivo.Location = new System.Drawing.Point(129, 12);
+            this.btnEfectivo.Name = "btnEfectivo";
+            this.btnEfectivo.Size = new System.Drawing.Size(171, 64);
+            this.btnEfectivo.TabIndex = 13;
+            this.btnEfectivo.Text = "  Efectivo";
+            this.btnEfectivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEfectivo.UseVisualStyleBackColor = false;
+            this.btnEfectivo.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button4
+            // btnPagoMovil
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Image = global::Zapateria.Properties.Resources.arrow_upWhite;
-            this.button4.Location = new System.Drawing.Point(436, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(212, 64);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "  Pago Movil";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnPagoMovil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnPagoMovil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPagoMovil.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnPagoMovil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPagoMovil.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagoMovil.ForeColor = System.Drawing.Color.White;
+            this.btnPagoMovil.Image = global::Zapateria.Properties.Resources.arrow_upWhite;
+            this.btnPagoMovil.Location = new System.Drawing.Point(459, 12);
+            this.btnPagoMovil.Name = "btnPagoMovil";
+            this.btnPagoMovil.Size = new System.Drawing.Size(189, 64);
+            this.btnPagoMovil.TabIndex = 15;
+            this.btnPagoMovil.Text = "  Pago Movil";
+            this.btnPagoMovil.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPagoMovil.UseVisualStyleBackColor = false;
+            this.btnPagoMovil.Click += new System.EventHandler(this.btnPagoMovil_Click);
+            // 
+            // btnReiniciar
+            // 
+            this.btnReiniciar.BackColor = System.Drawing.Color.Transparent;
+            this.btnReiniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReiniciar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReiniciar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReiniciar.ForeColor = System.Drawing.Color.DimGray;
+            this.btnReiniciar.Location = new System.Drawing.Point(12, 12);
+            this.btnReiniciar.Name = "btnReiniciar";
+            this.btnReiniciar.Size = new System.Drawing.Size(117, 64);
+            this.btnReiniciar.TabIndex = 141;
+            this.btnReiniciar.Text = "Reiniciar Factura";
+            this.btnReiniciar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReiniciar.UseVisualStyleBackColor = false;
+            this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click_1);
             // 
             // panel19
             // 
@@ -608,7 +685,7 @@ namespace Zapateria.Caja
             this.panel15.Size = new System.Drawing.Size(403, 623);
             this.panel15.TabIndex = 26;
             // 
-            // Caja
+            // formCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -617,7 +694,7 @@ namespace Zapateria.Caja
             this.Controls.Add(this.panel15);
             this.Controls.Add(this.panel14);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "Caja";
+            this.Name = "formCaja";
             this.Text = "Caja";
             this.Load += new System.EventHandler(this.Caja_Load);
             this.panel14.ResumeLayout(false);
@@ -627,6 +704,8 @@ namespace Zapateria.Caja
             this.panel13.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            this.clienteContenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -653,10 +732,7 @@ namespace Zapateria.Caja
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel dbProductosContenedor;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
@@ -664,7 +740,6 @@ namespace Zapateria.Caja
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox busCliente;
         private System.Windows.Forms.PictureBox clearTb;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel3;
@@ -672,18 +747,27 @@ namespace Zapateria.Caja
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnAgregarPro;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPunto;
+        private System.Windows.Forms.Button btnEfectivo;
+        private System.Windows.Forms.Button btnPagoMovil;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel clienteContenedor;
+        private System.Windows.Forms.PictureBox profile;
+        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.Button btnRegistrarCliente;
+        public System.Windows.Forms.Button btnAgregarPro;
+        public System.Windows.Forms.Label lblSubTotal;
+        public System.Windows.Forms.Label lblTotal;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox busCliente;
+        public System.Windows.Forms.Label lblCliente;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zapateria.UI.Caja;
 
 namespace Zapateria
 {
@@ -24,7 +25,7 @@ namespace Zapateria
         }
 
         //Definicion de variables con formularios indexados en pagina de inicio
-        Caja.Caja caj = new Caja.Caja();
+        formCaja caj = new formCaja();
         Ventas.Ventas ven = new Ventas.Ventas();
         Inventario.frmInventario inv = new Inventario.frmInventario();
         Reportes.Reportes rep = new Reportes.Reportes();

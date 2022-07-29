@@ -21,9 +21,9 @@ namespace Zapateria.Clases
 
         public Modelo()
         {
-            Cargar = "Select m.*, c.nombreCategoria as categoria from modelos m LEFT JOIN categorias c ON (m.idCategoria = c.id)";
-            Columnas = new string[] {"Modelo", "Codigo", "Categoria" };
-            CargarEditar = "INSERT INTO modelos (idCategoria, nombreModelo) VALUES (@idCategoria, @nombreModelo)";
+            CargarSQL = "Select concat_ws('-',m.idCategoria,c.nombreCategoria) as categoria, concat_ws(m.id, m.nombreModelo) as modelo from modelos m LEFT JOIN categorias c ON (m.idCategoria = c.id)";
+            Columnas = new string[] {"Categoria", "Modelo" };
+            CargarEditarSQL = "INSERT INTO modelos (idCategoria, nombreModelo) VALUES (@idCategoria, @nombreModelo)";
 
         }
 
@@ -39,7 +39,7 @@ namespace Zapateria.Clases
                 new MySqlParameter("@nombreModelo", nombreModelo)
              };
 
-            InsertarActualizarEliminar(CargarEditar, false);
+            InsertarActualizarEliminar(CargarEditarSQL, false);
             InsertarActualizarEliminar("idgrupal", false, true);
 
         }

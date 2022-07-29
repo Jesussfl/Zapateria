@@ -18,6 +18,7 @@ namespace Zapateria.Secciones.Inventario
 
         #region Instanciaciones
         Clases.Calzado objCalzado;
+        Clases.Calzado coleccionCalzados = new Clases.Calzado();
         //Clases.Calzado coleccionCalzados = new Clases.Calzado();
         Clases.Categoria coleccionCategorias = new Clases.Categoria();
         Clases.Modelo coleccionModelo = new Clases.Modelo();
@@ -33,6 +34,23 @@ namespace Zapateria.Secciones.Inventario
             InitializeComponent();
             this.frm = frm;   //Asignación a la variable con el formulario padre
         }
+        private string obtenerCategoria()
+        {
+            string[] extractor = cbCategoria.Text.Split('-');
+
+            return extractor[0];
+        }
+
+        private void cargarDatos()
+        {
+            
+            cbColor.DataSource = coleccionCalzados.Colores;
+            coleccionCategorias.LlenarComboBox(cbCategoria, "Select id, concat_ws('-',idCategoria,nombreCategoria, marca) as categoria, nombreCategoria from categorias order by(idCategoria)", "id", "categoria");
+            //coleccionCategorias.LlenarComboBox(cbMarca, $"Select idCategoria, marca from categorias where idCategoria like '%{cbCategoria.SelectedValue}%'", "idCategoria", "marca");
+            coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria like '%{obtenerCategoria()}%'", "id", "nombreModelo");
+        }
+
+
 
         #region Eventos
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -45,23 +63,29 @@ namespace Zapateria.Secciones.Inventario
             this.Close();
         }
 
+        private void frmAgregarProductos_Load(object sender, EventArgs e)
+        {
+            cargarDatos();
+
+        }
         private void btnAñadir_Click(object sender, EventArgs e)
         {
-            objCalzado = new Clases.Calzado()
-            {
-                Marca = cbMarca.Text,
-                CodigoCategoria = cbCategoria.SelectedValue.ToString(),
-                CodigoModelo = cbModelo.SelectedValue.ToString(),
-                Descripcion = txtDescripcion.Texts,
-                Talla = int.Parse(cbTalla.Text),
-                Color = cbColor.Text,
-                Cantidad = int.Parse(txtStock.Texts),
-                PrecioProducto = double.Parse(txtPrecioVenta.Texts),
-                CostePorProducto = double.Parse(txtCosteMercancia.Texts),
-                Codigo = 324
-            };
-            objCalzado.cargarAtributos();
-           frm.cargarDatos();
+
+            objCalzado = new Clases.Calzado();
+            //Marca = cbMarca.Text,
+            objCalzado.CodigoCategoria = cbCategoria.SelectedValue.ToString();
+            objCalzado.CodigoModelo = cbModelo.SelectedValue.ToString();
+            objCalzado.Descripcion = txtDescripcion.Texts;
+            objCalzado.TipoCalzado = cbSexo.Text;
+            objCalzado.Talla = int.Parse(cbTalla.Text);
+            objCalzado.Color = cbColor.Text;
+            objCalzado.Cantidad = int.Parse(txtStock.Texts);
+            objCalzado.PrecioProducto = double.Parse(txtPrecioVenta.Texts);
+            objCalzado.CostePorProducto = double.Parse(txtCosteMercancia.Texts);
+            objCalzado.Codigo = objCalzado.GenerarCodigo();
+
+            objCalzado.CargarAtributos();
+            frm.cargarDatos();
 
            this.Close();
         }
@@ -80,17 +104,21 @@ namespace Zapateria.Secciones.Inventario
             Close();
 
         }
-        private void frmAgregarProductos_Load(object sender, EventArgs e)
+        private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            coleccionCategorias.LlenarComboBox(cbCategoria, "Select distinct idCategoria, nombreCategoria from categorias group by(nombreCategoria)", "idCategoria", "nombreCategoria");
-            coleccionCategorias.LlenarComboBox(cbMarca, $"Select distinct idCategoria, marca from categorias where idCategoria like '%{cbCategoria.SelectedValue}%'", "idCategoria", "marca");
-            coleccionModelo.LlenarComboBox(cbModelo, $"Select distinct id, nombreModelo from modelos where idCategoria like '%{cbCategoria.SelectedValue}%'", "id", "nombreModelo");
+            string[] extractor = cbCategoria.Text.Split('-');
+            coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria like '%{extractor[0]}%'", "id", "nombreModelo");
 
+        }
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 
 
         #endregion
+
 
     }
 }

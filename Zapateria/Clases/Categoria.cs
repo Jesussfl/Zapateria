@@ -25,16 +25,15 @@ namespace Zapateria.Clases
         //Constructor
         public Categoria()
         {
-            Cargar = "Select * from categorias";
-            CargarEditar = "insertar_categorias";
+            CargarSQL = "Select * from categorias";
+            CargarEditarSQL = "insertar_categorias";
             SqlCombo = "Select idCategoria, nombreCategoria from categorias";
 
         }
 
         #region Métodos
-        public void cargarAtributos()
-
             //Método para parametrizar los atributos y cargarlos en mysql
+        public void cargarAtributos()
         {
             Parametros = new MySqlParameter[]
             {
@@ -42,7 +41,7 @@ namespace Zapateria.Clases
                 new MySqlParameter("@marca", marca)
             };
 
-            InsertarActualizarEliminar(CargarEditar, true, true);
+            InsertarActualizarEliminar(CargarEditarSQL, true, true);
         }
 
         #endregion

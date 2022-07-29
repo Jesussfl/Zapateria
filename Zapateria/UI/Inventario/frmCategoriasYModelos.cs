@@ -33,32 +33,47 @@ namespace Zapateria.UI.Inventario
         private void cargarDatosCategorias()
         {
             //Cargar ComboBoxes
-            //Categorias
-            coleccionCategorias.LlenarComboBox(cbCategoria, "Select distinct idCategoria, nombreCategoria from categorias group by(nombreCategoria)", "idCategoria", "nombreCategoria");
-            coleccionCategorias.LlenarComboBox(cbMarca, "Select distinct marca, idcategoria from categorias group by(marca)", "idCategoria", "marca");
+            coleccionCategorias.LlenarComboBox(cbCategoria, "Select id, nombreCategoria from categorias group by(nombreCategoria)", "id", "nombreCategoria");
+            coleccionCategorias.LlenarComboBox(cbMarca, "Select marca, idcategoria from categorias group by marca", "idCategoria", "marca");
+
             cbCategoria.ResetText();
             cbMarca.ResetText();
 
-            //Cargar ComboBoxes
-            //Modelos
-            coleccionModelos.Buscar = $"Select * from modelos where idCategoria like '%{cbCategoriaModelo.SelectedValue}%'";
 
         }
+        bool existeColumna = false;
         private void cargarDatosModelos()
         {
-            coleccionModelos.CargarBuscar(coleccionModelos.Cargar);
-           // coleccionModelos.nombreColumnas();
-            coleccionModelos.AsignarBotones("Editar", "Editar", "Editar");
+            coleccionCategorias.LlenarComboBox(cbCategoriaModelo, "Select id, idCategoria,nombreCategoria, concat_ws('-',idCategoria, nombreCategoria, marca) as categoria from categorias order by idCategoria", "idCategoria", "categoria");
+            coleccionModelos.BuscarSQL = $"{coleccionModelos.CargarSQL} where c.idCategoria = {cbCategoriaModelo.SelectedValue}";
+            coleccionModelos.Cargar(coleccionModelos.CargarSQL);
 
-            //Ocultar columnas
-            dataGridView1.Columns["indexer"].Visible = false;
-            dataGridView1.Columns["idCategoria"].Visible = false;
+
+            if(existeColumna == false)
+            {
+                coleccionModelos.AsignarNombreColumnas();
+                coleccionModelos.AsignarBotones("Editar", "Editar", "Editar");
+                existeColumna = true;
+            }
+            ModificarColumnas();
 
         } 
+
+        private void ModificarColumnas()
+        {
+            dataGridView1.Columns["Editar"].FillWeight = 30;
+            dataGridView1.Columns["categoria"].FillWeight = 40;
+        }
         #endregion
 
 
         #region Eventos
+        private void frmCategoriasYModelos_Load(object sender, EventArgs e)
+        {
+            cargarDatosCategorias();
+            cargarDatosModelos();
+
+        }
         private void btnRegistrarModelo_Click(object sender, EventArgs e)
         {
             //Inserción de valores a los atributos de la nueva clase modelo
@@ -70,8 +85,10 @@ namespace Zapateria.UI.Inventario
             nuevoModelo.cargarAtributos();
 
             //Limpiar y Actualizar Campos
+            cargarDatosCategorias();
+            cargarDatosModelos();
             cbCategoriaModelo.ResetText();
-            coleccionModelos.CargarBuscar(coleccionModelos.Cargar);
+            coleccionModelos.Cargar(coleccionModelos.CargarSQL);
         }
         private void btnRegistrarCategoria_Click(object sender, EventArgs e)
         {
@@ -87,6 +104,8 @@ namespace Zapateria.UI.Inventario
 
             //Actualización de campos
             cargarDatosCategorias();
+            cargarDatosModelos();
+
             cbCategoria.ResetText();
             cbMarca.ResetText();
         }
@@ -100,15 +119,9 @@ namespace Zapateria.UI.Inventario
         }
         private void cbCategoriaModelo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            coleccionModelos.Buscar = $"Select * from modelos where idCategoria like '%{cbCategoriaModelo.SelectedValue}%'";
-            coleccionModelos.CargarBuscar(coleccionModelos.Buscar);
-        }
-        private void frmCategoriasYModelos_Load(object sender, EventArgs e)
-        {
-            cargarDatosCategorias();
-            cargarDatosModelos();
-            coleccionCategorias.LlenarComboBox(cbCategoriaModelo, "Select distinct idCategoria, nombreCategoria from categorias group by(nombreCategoria)", "idCategoria", "nombreCategoria");
-
+            
+            coleccionModelos.BuscarSQL = $"{coleccionModelos.CargarSQL} where c.idCategoria = {cbCategoriaModelo.SelectedValue}";
+            coleccionModelos.Cargar(coleccionModelos.BuscarSQL);
         }
         #endregion
 

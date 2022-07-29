@@ -13,7 +13,7 @@ namespace Zapateria.Ventas
 
     public partial class Ventas : Form
     {
-        Secciones.Ventas.Clase_Ventas ventas = new Secciones.Ventas.Clase_Ventas();
+        Clases.Venta ventas = new Clases.Venta();
 
         public Ventas()
         {
@@ -21,7 +21,7 @@ namespace Zapateria.Ventas
 
             //Asignacion del grid a clase inventario
             ventas.Grid = dataGridView1;
-            ventas.Cargar = "Select * From ventas";
+            ventas.CargarSQL = "Select * From ventas";
             ventas.Columnas = new string[] { "ID Factura", "Fecha de Venta", "Cédula Cliente", "Producto", "Cantidad", "Empleado", "Total Pagado", "Ganancia", "Método de Pago" };
 
             //Asignacion de color de bordes a botones de paginacion
@@ -33,7 +33,7 @@ namespace Zapateria.Ventas
         private void Ventas_Load(object sender, EventArgs e)
         {
             //Llamados para cargar el grid y sus columnas
-            ventas.CargarBuscar(ventas.Cargar);
+            ventas.Cargar(ventas.CargarSQL);
             ventas.AsignarNombreColumnas();
 
         }

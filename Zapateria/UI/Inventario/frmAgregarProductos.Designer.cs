@@ -33,16 +33,8 @@ namespace Zapateria.Secciones.Inventario
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAñadir = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtStock = new Zapateria.Controles.InputText();
-            this.txtPrecioVenta = new Zapateria.Controles.InputText();
-            this.txtCosteMercancia = new Zapateria.Controles.InputText();
-            this.txtDescripcion = new Zapateria.Controles.InputText();
             this.cbSexo = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cbMarca = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnNuevaCategoria = new System.Windows.Forms.Label();
             this.btnNuevoModelo = new System.Windows.Forms.Label();
             this.cbModelo = new System.Windows.Forms.ComboBox();
@@ -60,6 +52,12 @@ namespace Zapateria.Secciones.Inventario
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtStock = new Zapateria.Controles.InputText();
+            this.txtPrecioVenta = new Zapateria.Controles.InputText();
+            this.txtCosteMercancia = new Zapateria.Controles.InputText();
+            this.txtDescripcion = new Zapateria.Controles.InputText();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -119,8 +117,6 @@ namespace Zapateria.Secciones.Inventario
             this.panel2.Controls.Add(this.txtDescripcion);
             this.panel2.Controls.Add(this.cbSexo);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.cbMarca);
-            this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.btnNuevaCategoria);
             this.panel2.Controls.Add(this.btnNuevoModelo);
             this.panel2.Controls.Add(this.cbModelo);
@@ -147,111 +143,10 @@ namespace Zapateria.Secciones.Inventario
             this.panel2.Size = new System.Drawing.Size(1071, 447);
             this.panel2.TabIndex = 44;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.label4.Location = new System.Drawing.Point(19, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(198, 30);
-            this.label4.TabIndex = 45;
-            this.label4.Text = "Agregar Productos";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::Zapateria.Properties.Resources.close_fill24x;
-            this.pictureBox1.Location = new System.Drawing.Point(1024, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox1.TabIndex = 52;
-            this.pictureBox1.TabStop = false;
-            // 
-            // txtStock
-            // 
-            this.txtStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtStock.BackColor = System.Drawing.Color.White;
-            this.txtStock.BorderColor = System.Drawing.Color.Gainsboro;
-            this.txtStock.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
-            this.txtStock.BorderSize = 2;
-            this.txtStock.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStock.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtStock.Location = new System.Drawing.Point(479, 311);
-            this.txtStock.Margin = new System.Windows.Forms.Padding(4);
-            this.txtStock.Multiline = false;
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Padding = new System.Windows.Forms.Padding(8);
-            this.txtStock.PasswordChar = false;
-            this.txtStock.Size = new System.Drawing.Size(135, 34);
-            this.txtStock.TabIndex = 107;
-            this.txtStock.Texts = "";
-            this.txtStock.UnderlinedStyle = false;
-            // 
-            // txtPrecioVenta
-            // 
-            this.txtPrecioVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPrecioVenta.BackColor = System.Drawing.Color.White;
-            this.txtPrecioVenta.BorderColor = System.Drawing.Color.Gainsboro;
-            this.txtPrecioVenta.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
-            this.txtPrecioVenta.BorderSize = 2;
-            this.txtPrecioVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioVenta.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtPrecioVenta.Location = new System.Drawing.Point(699, 311);
-            this.txtPrecioVenta.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPrecioVenta.Multiline = false;
-            this.txtPrecioVenta.Name = "txtPrecioVenta";
-            this.txtPrecioVenta.Padding = new System.Windows.Forms.Padding(8);
-            this.txtPrecioVenta.PasswordChar = false;
-            this.txtPrecioVenta.Size = new System.Drawing.Size(165, 34);
-            this.txtPrecioVenta.TabIndex = 106;
-            this.txtPrecioVenta.Texts = "";
-            this.txtPrecioVenta.UnderlinedStyle = false;
-            // 
-            // txtCosteMercancia
-            // 
-            this.txtCosteMercancia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCosteMercancia.BackColor = System.Drawing.Color.White;
-            this.txtCosteMercancia.BorderColor = System.Drawing.Color.Gainsboro;
-            this.txtCosteMercancia.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
-            this.txtCosteMercancia.BorderSize = 2;
-            this.txtCosteMercancia.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCosteMercancia.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtCosteMercancia.Location = new System.Drawing.Point(885, 311);
-            this.txtCosteMercancia.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCosteMercancia.Multiline = false;
-            this.txtCosteMercancia.Name = "txtCosteMercancia";
-            this.txtCosteMercancia.Padding = new System.Windows.Forms.Padding(8);
-            this.txtCosteMercancia.PasswordChar = false;
-            this.txtCosteMercancia.Size = new System.Drawing.Size(137, 34);
-            this.txtCosteMercancia.TabIndex = 105;
-            this.txtCosteMercancia.Texts = "";
-            this.txtCosteMercancia.UnderlinedStyle = false;
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDescripcion.BackColor = System.Drawing.Color.White;
-            this.txtDescripcion.BorderColor = System.Drawing.Color.Gainsboro;
-            this.txtDescripcion.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
-            this.txtDescripcion.BorderSize = 2;
-            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDescripcion.Location = new System.Drawing.Point(51, 311);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescripcion.Multiline = false;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Padding = new System.Windows.Forms.Padding(8);
-            this.txtDescripcion.PasswordChar = false;
-            this.txtDescripcion.Size = new System.Drawing.Size(357, 34);
-            this.txtDescripcion.TabIndex = 104;
-            this.txtDescripcion.Texts = "";
-            this.txtDescripcion.UnderlinedStyle = false;
-            // 
             // cbSexo
             // 
             this.cbSexo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSexo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbSexo.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cbSexo.FormattingEnabled = true;
@@ -279,30 +174,6 @@ namespace Zapateria.Secciones.Inventario
             this.label12.TabIndex = 102;
             this.label12.Text = "Tipo de calzado";
             // 
-            // cbMarca
-            // 
-            this.cbMarca.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMarca.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.cbMarca.FormattingEnabled = true;
-            this.cbMarca.IntegralHeight = false;
-            this.cbMarca.Items.AddRange(new object[] {
-            "prueba"});
-            this.cbMarca.Location = new System.Drawing.Point(438, 120);
-            this.cbMarca.Name = "cbMarca";
-            this.cbMarca.Size = new System.Drawing.Size(357, 25);
-            this.cbMarca.TabIndex = 101;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label11.Location = new System.Drawing.Point(437, 99);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(117, 17);
-            this.label11.TabIndex = 100;
-            this.label11.Text = "Marca relacionada";
-            // 
             // btnNuevaCategoria
             // 
             this.btnNuevaCategoria.AutoSize = true;
@@ -322,7 +193,7 @@ namespace Zapateria.Secciones.Inventario
             this.btnNuevoModelo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNuevoModelo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevoModelo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
-            this.btnNuevoModelo.Location = new System.Drawing.Point(312, 198);
+            this.btnNuevoModelo.Location = new System.Drawing.Point(695, 100);
             this.btnNuevoModelo.Name = "btnNuevoModelo";
             this.btnNuevoModelo.Size = new System.Drawing.Size(99, 17);
             this.btnNuevoModelo.TabIndex = 98;
@@ -331,19 +202,21 @@ namespace Zapateria.Secciones.Inventario
             // 
             // cbModelo
             // 
+            this.cbModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModelo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbModelo.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cbModelo.FormattingEnabled = true;
             this.cbModelo.IntegralHeight = false;
             this.cbModelo.Items.AddRange(new object[] {
             "prueba"});
-            this.cbModelo.Location = new System.Drawing.Point(51, 218);
+            this.cbModelo.Location = new System.Drawing.Point(434, 120);
             this.cbModelo.Name = "cbModelo";
             this.cbModelo.Size = new System.Drawing.Size(357, 25);
             this.cbModelo.TabIndex = 97;
             // 
             // cbCategoria
             // 
+            this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategoria.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cbCategoria.FormattingEnabled = true;
@@ -354,6 +227,7 @@ namespace Zapateria.Secciones.Inventario
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(357, 25);
             this.cbCategoria.TabIndex = 96;
+            this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -371,7 +245,7 @@ namespace Zapateria.Secciones.Inventario
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label9.Location = new System.Drawing.Point(50, 197);
+            this.label9.Location = new System.Drawing.Point(433, 99);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 17);
             this.label9.TabIndex = 94;
@@ -383,7 +257,7 @@ namespace Zapateria.Secciones.Inventario
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label8.Location = new System.Drawing.Point(48, 290);
+            this.label8.Location = new System.Drawing.Point(48, 188);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 17);
             this.label8.TabIndex = 93;
@@ -395,7 +269,7 @@ namespace Zapateria.Secciones.Inventario
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label7.Location = new System.Drawing.Point(696, 286);
+            this.label7.Location = new System.Drawing.Point(300, 288);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 17);
             this.label7.TabIndex = 92;
@@ -407,7 +281,7 @@ namespace Zapateria.Secciones.Inventario
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label6.Location = new System.Drawing.Point(882, 286);
+            this.label6.Location = new System.Drawing.Point(486, 288);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 17);
             this.label6.TabIndex = 91;
@@ -416,6 +290,7 @@ namespace Zapateria.Secciones.Inventario
             // cbColor
             // 
             this.cbColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbColor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbColor.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cbColor.FormattingEnabled = true;
@@ -432,6 +307,7 @@ namespace Zapateria.Secciones.Inventario
             // cbTalla
             // 
             this.cbTalla.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbTalla.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTalla.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTalla.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.cbTalla.FormattingEnabled = true;
@@ -462,7 +338,7 @@ namespace Zapateria.Secciones.Inventario
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
-            this.label5.Location = new System.Drawing.Point(433, 286);
+            this.label5.Location = new System.Drawing.Point(51, 286);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 17);
             this.label5.TabIndex = 88;
@@ -477,7 +353,7 @@ namespace Zapateria.Secciones.Inventario
             this.btnMenos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenos.ForeColor = System.Drawing.Color.White;
             this.btnMenos.Image = global::Zapateria.Properties.Resources.minus_squareWhite;
-            this.btnMenos.Location = new System.Drawing.Point(437, 311);
+            this.btnMenos.Location = new System.Drawing.Point(55, 311);
             this.btnMenos.Name = "btnMenos";
             this.btnMenos.Size = new System.Drawing.Size(36, 36);
             this.btnMenos.TabIndex = 87;
@@ -494,7 +370,7 @@ namespace Zapateria.Secciones.Inventario
             this.btnMas.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMas.ForeColor = System.Drawing.Color.White;
             this.btnMas.Image = global::Zapateria.Properties.Resources.add_squareWhite;
-            this.btnMas.Location = new System.Drawing.Point(622, 311);
+            this.btnMas.Location = new System.Drawing.Point(239, 311);
             this.btnMas.Name = "btnMas";
             this.btnMas.Size = new System.Drawing.Size(36, 36);
             this.btnMas.TabIndex = 86;
@@ -536,6 +412,109 @@ namespace Zapateria.Secciones.Inventario
             this.label2.TabIndex = 83;
             this.label2.Text = "Talla";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
+            this.label4.Location = new System.Drawing.Point(19, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(198, 30);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "Agregar Productos";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::Zapateria.Properties.Resources.close_fill24x;
+            this.pictureBox1.Location = new System.Drawing.Point(1024, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.TabIndex = 52;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // txtStock
+            // 
+            this.txtStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtStock.BackColor = System.Drawing.Color.White;
+            this.txtStock.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtStock.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
+            this.txtStock.BorderSize = 2;
+            this.txtStock.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStock.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtStock.Location = new System.Drawing.Point(97, 311);
+            this.txtStock.Margin = new System.Windows.Forms.Padding(4);
+            this.txtStock.Multiline = false;
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Padding = new System.Windows.Forms.Padding(8);
+            this.txtStock.PasswordChar = false;
+            this.txtStock.Size = new System.Drawing.Size(135, 34);
+            this.txtStock.TabIndex = 107;
+            this.txtStock.Texts = "";
+            this.txtStock.UnderlinedStyle = false;
+            // 
+            // txtPrecioVenta
+            // 
+            this.txtPrecioVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPrecioVenta.BackColor = System.Drawing.Color.White;
+            this.txtPrecioVenta.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtPrecioVenta.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
+            this.txtPrecioVenta.BorderSize = 2;
+            this.txtPrecioVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioVenta.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtPrecioVenta.Location = new System.Drawing.Point(303, 313);
+            this.txtPrecioVenta.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrecioVenta.Multiline = false;
+            this.txtPrecioVenta.Name = "txtPrecioVenta";
+            this.txtPrecioVenta.Padding = new System.Windows.Forms.Padding(8);
+            this.txtPrecioVenta.PasswordChar = false;
+            this.txtPrecioVenta.Size = new System.Drawing.Size(165, 34);
+            this.txtPrecioVenta.TabIndex = 106;
+            this.txtPrecioVenta.Texts = "";
+            this.txtPrecioVenta.UnderlinedStyle = false;
+            // 
+            // txtCosteMercancia
+            // 
+            this.txtCosteMercancia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtCosteMercancia.BackColor = System.Drawing.Color.White;
+            this.txtCosteMercancia.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtCosteMercancia.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
+            this.txtCosteMercancia.BorderSize = 2;
+            this.txtCosteMercancia.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCosteMercancia.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtCosteMercancia.Location = new System.Drawing.Point(489, 313);
+            this.txtCosteMercancia.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCosteMercancia.Multiline = false;
+            this.txtCosteMercancia.Name = "txtCosteMercancia";
+            this.txtCosteMercancia.Padding = new System.Windows.Forms.Padding(8);
+            this.txtCosteMercancia.PasswordChar = false;
+            this.txtCosteMercancia.Size = new System.Drawing.Size(137, 34);
+            this.txtCosteMercancia.TabIndex = 105;
+            this.txtCosteMercancia.Texts = "";
+            this.txtCosteMercancia.UnderlinedStyle = false;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtDescripcion.BackColor = System.Drawing.Color.White;
+            this.txtDescripcion.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtDescripcion.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
+            this.txtDescripcion.BorderSize = 2;
+            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDescripcion.Location = new System.Drawing.Point(51, 209);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcion.Multiline = false;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Padding = new System.Windows.Forms.Padding(8);
+            this.txtDescripcion.PasswordChar = false;
+            this.txtDescripcion.Size = new System.Drawing.Size(357, 34);
+            this.txtDescripcion.TabIndex = 104;
+            this.txtDescripcion.Texts = "";
+            this.txtDescripcion.UnderlinedStyle = false;
+            // 
             // frmAgregarProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -572,8 +551,6 @@ namespace Zapateria.Secciones.Inventario
         private Controles.InputText txtDescripcion;
         private System.Windows.Forms.ComboBox cbSexo;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cbMarca;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label btnNuevaCategoria;
         private System.Windows.Forms.Label btnNuevoModelo;
         private System.Windows.Forms.ComboBox cbModelo;
