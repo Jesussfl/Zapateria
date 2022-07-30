@@ -9,6 +9,7 @@ namespace Zapateria.Clases
 {
     public class Venta : Database
     {
+        #region Atributos
         private string cedulaCliente;
         private string idProductos;
         private string detalle;
@@ -21,7 +22,10 @@ namespace Zapateria.Clases
 
         private int[] productos;
         private string cantidad;
-        private double precioCalculado;
+        private double precioCalculado; 
+        #endregion
+
+        #region Encapsulamiento
         public int[] Productos { get => productos; set => productos = value; }
         public string Cantidad { get => cantidad; set => cantidad = value; }
         public double PrecioCalculado { get => precioCalculado; set => precioCalculado = value; }
@@ -33,11 +37,15 @@ namespace Zapateria.Clases
         public string CedulaEmpleado { get => cedulaEmpleado; set => cedulaEmpleado = value; }
         public double Ganancia { get => ganancia; set => ganancia = value; }
         public DateTime FechaVenta { get => fechaVenta; set => fechaVenta = value; }
-        public string Referencia { get => referencia; set => referencia = value; }
+        public string Referencia { get => referencia; set => referencia = value; } 
+        #endregion
 
+
+        //Constructor
         public Venta()
         {
-            CargarSQL = "select * from ventas";
+            CargarSQL = "select idFactura, ciCliente, idProductos, detalle, concat('$', FORMAT(montoTotal, 2, 'de_DE')) as montoTotal, metodoPago, concat('$', FORMAT(ganancia, 2, 'de_DE')) as ganancia, fechaVenta, referencias from ventas";
+
             Columnas = new string[] 
             {
                 "N° Factura",
@@ -46,17 +54,17 @@ namespace Zapateria.Clases
                 "Detalle",
                 "Monto Total",
                 "Método de Pago",
-                "Empleado",
                 "Ganancia",
                 "Fecha de venta",
                 "Referencia"
             };
-            CargarEditarSQL = "Insert into ventas (ciCliente, idProductos,detalle,montoTotal,metodoPago,ganancia,fechaVenta,referencias) values (@ciCliente, @idProductos,@detalle,@montoTotal,@metodoPago,@ganancia,@fechaVenta,@referencias)";
 
+            InsertarSQL = "Insert into ventas (ciCliente, idProductos,detalle,montoTotal,metodoPago,ganancia,fechaVenta,referencias) values (@ciCliente, @idProductos,@detalle,@montoTotal,@metodoPago,@ganancia,@fechaVenta,@referencias)";
+            BuscarSQL = "select * from ventas where concat_ws(ciCliente, idProductos, metodoPago, referencias) like";
         }
-        public void cargarAtributosAUXILIAR()
 
-        //Método para parametrizar los atributos y cargarlos en mysql
+        #region Métodos
+        public void CargarAtributosAuxiliar() //Método para parametrizar los atributos y cargarlos en mysql en la tabla auxiliar de ventas
         {
             Parametros = new MySqlParameter[]
             {
@@ -67,9 +75,10 @@ namespace Zapateria.Clases
 
             };
 
-            InsertarActualizarEliminar(CargarEditarSQL, false);
+            InsertarActualizarEliminar(InsertarSQL, false);
+
         }
-        public void cargarAtributos()
+        public void CargarAtributosVentas()//Método para parametrizar los atributos y cargarlos en mysql en la tabla de ventas
         {
             Parametros = new MySqlParameter[]
        {
@@ -84,11 +93,39 @@ namespace Zapateria.Clases
 
        };
 
-            InsertarActualizarEliminar(CargarEditarSQL, true);
+            InsertarActualizarEliminar(InsertarSQL, false);
         }
-        public void generarCodigoFactura(string producto)
+        public int ExtraerCantidadProducto(int idProducto) //Método para extraer el nombre del cliente
         {
+            Conexion.Open();
+
+            MySqlCommand cm = new MySqlCommand($"select cantidad from inventario where idProducto = {idProducto}", Conexion);
+            MySqlDataReader sdr = cm.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                return sdr.GetInt32("cantidad");
+            }
+            else
+            {
+                return 0;
+            }
+
 
         }
+        public void ContarInventario(int idProducto, int cantidad) //Metodo para descontar productos del inventario al realizar una venta
+        {
+            Calzado objInventario = new Calzado();
+            objInventario.InsertarSQL = $"update inventario set cantidad = @cantidad where idProducto = {idProducto}";
+
+            int nuevaCantidad = ExtraerCantidadProducto(idProducto) - cantidad; Conexion.Close();
+
+            objInventario.Parametros = new MySqlParameter[] { new MySqlParameter("@cantidad", nuevaCantidad) };
+
+            objInventario.InsertarActualizarEliminar(objInventario.InsertarSQL, false);
+            
+        }
+        #endregion
+
     }
 }

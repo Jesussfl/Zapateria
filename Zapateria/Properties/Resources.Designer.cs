@@ -63,6 +63,16 @@ namespace Zapateria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap abhishek_chadha_NOaRlXMJaJw_unsplash {
+            get {
+                object obj = ResourceManager.GetObject("abhishek-chadha-NOaRlXMJaJw-unsplash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_squa2re {
             get {
                 object obj = ResourceManager.GetObject("add-squa2re", resourceCulture);
@@ -223,6 +233,16 @@ namespace Zapateria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close_fill32xx {
+            get {
+                object obj = ResourceManager.GetObject("close-fill32xx", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close_square {
             get {
                 object obj = ResourceManager.GetObject("close-square", resourceCulture);
@@ -283,9 +303,39 @@ namespace Zapateria.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IniciarSesion {
+            get {
+                object obj = ResourceManager.GetObject("IniciarSesion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IniciarSesion_deshabilitado {
+            get {
+                object obj = ResourceManager.GetObject("IniciarSesion-deshabilitado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoMorado {
+            get {
+                object obj = ResourceManager.GetObject("LogoMorado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

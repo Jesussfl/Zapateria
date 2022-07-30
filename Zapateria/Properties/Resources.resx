@@ -121,8 +121,8 @@
   <data name="home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bag-2White" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bag-2White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logoutWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoutWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-square-rightWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow-square-rightWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,8 +130,8 @@
   <data name="Profile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Profile1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logoutWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logoutWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LogoMorado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoMorado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="profile-2userWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\profile-2userWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,9 +172,6 @@
   <data name="user-octagon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-octagon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow-square-leftWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow-square-leftWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="arrow-square-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow-square-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -190,6 +187,12 @@
   <data name="add-square2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add-square2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IniciarSesion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IniciarSesion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close-fill32xx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close-fill32xx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dollar-squareWhite1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dollar-squareWhite1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,6 +201,9 @@
   </data>
   <data name="close-square" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close-square.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="abhishek-chadha-NOaRlXMJaJw-unsplash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\abhishek-chadha-NOaRlXMJaJw-unsplash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close-fill24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close-fill24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,11 +214,20 @@
   <data name="boxWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\boxWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="minus-squareWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus-squareWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bag-2White" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bag-2White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="homeWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\homeWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chartWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chartWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow-square-leftWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-square-leftWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cardWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cardWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,7 +235,7 @@
   <data name="documentWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\documentWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="minus-squareWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus-squareWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IniciarSesion-deshabilitado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IniciarSesion-deshabilitado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

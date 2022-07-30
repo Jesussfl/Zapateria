@@ -43,7 +43,7 @@ namespace Zapateria.Clases
         {
             CargarSQL = "Select concat_ws('. ',tipoCedula,ciCliente) as cedula,  concat_ws(' ',nombre, apellido) as cliente, telefono, direccion, fechaRegistro, cantidadCompras From clientes";
             Columnas = new string[] { "Cédula", "Cliente", "Teléfono", "Dirección", "Fecha de Registro", "Compras Realizadas" };
-            CargarEditarSQL = @"insert into clientes (ciCliente, tipoCedula, nombre, apellido, telefono, direccion, fechaRegistro) 
+            InsertarSQL = @"insert into clientes (ciCliente, tipoCedula, nombre, apellido, telefono, direccion, fechaRegistro) 
                                 values (@ciCliente, @tipoCedula, @nombre, @apellido, @telefono, @direccion, @fechaRegistro)";
             BuscarSQL = $"{CargarSQL} where concat(ciCliente, tipoCedula, nombre, apellido) like";
 
@@ -83,7 +83,6 @@ namespace Zapateria.Clases
             return "No existe";
 
         }
-
         public void CargarAtributos() //Metodo encargado de parametrizar los atributos y cargarlos en el mysql
         {
 
@@ -98,7 +97,7 @@ namespace Zapateria.Clases
                 new MySqlParameter("@fechaRegistro", fechaRegistro)
                 };
 
-            InsertarActualizarEliminar(CargarEditarSQL, true, false);
+            InsertarActualizarEliminar(InsertarSQL, true, false);
         } 
         #endregion
     }

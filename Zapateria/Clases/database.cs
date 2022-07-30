@@ -1,13 +1,17 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DocumentFormat.OpenXml.Packaging;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Zapateria
 {
@@ -17,7 +21,7 @@ namespace Zapateria
         //Atributos
         private string[] columnas;
         private string cargarSQL;
-        private string cargarEditarSQL;
+        private string insertarSQL;
         private string eliminarSQL;
         private string buscarSQL;
         private string sqlCombo;
@@ -29,7 +33,7 @@ namespace Zapateria
         #region Encapsulamiento
         public string[] Columnas { get => columnas; set => columnas = value; }
         public string CargarSQL { get => cargarSQL; set => cargarSQL = value; }
-        public string CargarEditarSQL { get => cargarEditarSQL; set => cargarEditarSQL = value; }
+        public string InsertarSQL { get => insertarSQL; set => insertarSQL = value; }
         public string EliminarSQL { get => eliminarSQL; set => eliminarSQL = value; }
         public string BuscarSQL { get => buscarSQL; set => buscarSQL = value; }
         public string SqlCombo { get => sqlCombo; set => sqlCombo = value; }
@@ -144,7 +148,60 @@ namespace Zapateria
 
 
         }
+        public void GenerarReporteSencillo(string document, string[,] datos)
+        {
+            // To search and replace content in a document part.
+            using (SaveFileDialog sfd = new SaveFileDialog() {Filter = "Word |*.docx"})
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
 
+                    using (WordprocessingDocument wordDoc = WordprocessingDocument.CreateFromTemplate(document, false))
+                    {
+                        string docText = null;
+                        string buscar, reemplazar;
+                        int j = 0;
+                        for (int i = 0; i <= datos.GetUpperBound(1) + 1; i++)
+                        {
+                            while(j == 0)
+                            {
+                                buscar = datos[i, j + 1];
+                                reemplazar = datos[i, j];
+
+                                using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+                                {
+                                    docText = sr.ReadToEnd();
+                                }
+
+                                Regex regexText = new Regex(buscar);
+                                docText = regexText.Replace(docText, reemplazar);
+
+                                using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
+                                {
+                                    sw.Write(docText);
+                                }
+                                j = 1;
+                            }
+                            j = 0;
+
+                        }
+                        WordprocessingDocument word = (WordprocessingDocument)wordDoc.SaveAs(sfd.FileName);
+                        word.Close();
+                        wordDoc.Close();
+
+                    }
+                    if (System.IO.File.Exists(sfd.FileName) == true)
+                    {
+                        Process.Start(sfd.FileName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El archivo no existe");
+                    }
+                }
+            }
+            
+        }
 
         #endregion
 

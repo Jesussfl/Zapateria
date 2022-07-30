@@ -29,7 +29,8 @@ namespace Zapateria.UI.Caja
         private const double iva = 16;
         private double subTotal;
         private double total;
-        private bool columnaExiste = false; 
+        private bool columnaExiste = false;
+        private string referencia;
         #endregion
 
         public formCaja() //Constructor
@@ -55,7 +56,7 @@ namespace Zapateria.UI.Caja
 
             };
 
-            auxiliarVentas.CargarEditarSQL = "Insert into aux_ventas (idProducto) values (@idProducto)";
+            auxiliarVentas.InsertarSQL = "Insert into aux_ventas (idProducto) values (@idProducto)";
 
             auxiliarVentas.EliminarSQL = "delete from aux_ventas";
             auxiliarVentas.InsertarActualizarEliminar(auxiliarVentas.EliminarSQL, false, false, false);
@@ -64,7 +65,7 @@ namespace Zapateria.UI.Caja
 
             #region Constructor historial de ventas
             historialVentas.Grid = dataGridView2;
-            historialVentas.CargarSQL = "select vnt.idFactura, ciCliente, idProductos, montoTotal, ganancia from ventas vnt";
+            historialVentas.CargarSQL = "select vnt.idFactura, ciCliente, idProductos, montoTotal, ganancia from ventas vnt WHERE DATE(`fechaVenta`) = CURDATE()";
             historialVentas.Columnas = new string[] { "Factura", "Cliente", "Productos", "Monto", "Ganancia" }; 
             #endregion
 
@@ -111,8 +112,8 @@ namespace Zapateria.UI.Caja
             .Sum(t => Convert.ToInt32(t.Cells["precioCalculado"].Value));
 
             total = ((subTotal * iva) / 100) + subTotal;
-            lblSubTotal.Text = subTotal.ToString();
-            lblTotal.Text = total.ToString();
+            lblSubTotal.Text = "$" + subTotal.ToString();
+            lblTotal.Text = "$"+total.ToString();
 
         } 
         private string JuntarFilas(string columna) //Metodo para juntar las filas de una columna de un datagrid;
@@ -128,6 +129,7 @@ namespace Zapateria.UI.Caja
             
             return string.Join(", ", lista);
         }
+        
         private void CargarValores(string metodoPago) //Metodo para cargar los atributos de la nueva clase
         {
             nuevaVenta = new Clases.Venta();
@@ -139,8 +141,26 @@ namespace Zapateria.UI.Caja
             nuevaVenta.CedulaEmpleado = "123";
             nuevaVenta.Ganancia = Convert.ToDouble(lblTotal.Text);
             nuevaVenta.FechaVenta = DateTime.Now;
+            nuevaVenta.Referencia = referencia;
 
-            nuevaVenta.cargarAtributos();
+            nuevaVenta.CargarAtributosVentas();
+            cargarDatos();
+        }
+        private bool Validacion() //Método para validar si se han añadido elementos a la factura
+        {
+            if (lblCliente.Text == "Cliente de la Factura" || string.IsNullOrEmpty(JuntarFilas("idProducto")))
+            {
+                return false;
+
+            }
+            else { return true; }
+
+        }
+        private void LimpiarFactura()
+        {
+            auxiliarVentas.InsertarActualizarEliminar(auxiliarVentas.EliminarSQL, false, false, false);
+            lblCliente.Text = "Cliente de la Factura";
+            busCliente.Text = "Buscar Cliente";
             cargarDatos();
         }
         #endregion
@@ -210,9 +230,7 @@ namespace Zapateria.UI.Caja
         #region Eventos
         private void Caja_Load(object sender, EventArgs e)
         {
-
             cargarDatos();
-
         }
 
         private void btnAgregarPro_Click(object sender, EventArgs e) //Llamada a formulario de agregar Productos
@@ -257,40 +275,97 @@ namespace Zapateria.UI.Caja
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmEfectivo popup = new frmEfectivo();
-            popup.FormClosed += new FormClosedEventHandler(popup_FormClosed1);
-            controles.mostrarPopup(popup);
-        }
-        private void popup_FormClosed1(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
-        {
-            cargarDatos();
+            if (Validacion() == false)
+            {
+                MessageBox.Show("No hay un cliente o producto asociado a la factura", "Asocie un cliente o producto");
+
+            }
+            else
+            {
+                using (frmEfectivo frm = new frmEfectivo(this))
+                {
+                    controles.mostrarPopup(frm);
+
+                    if (frm.resultado == true)
+                    {
+                        CargarValores(frm.metodoPago);
+                        LimpiarFactura();
+                    }
+                }
+
+            }
+      
         }
 
+        private void ActualizarInventario()
+        {
+            DataTable dt = (DataTable)dataGridView1.DataSource;
+            List<int> ids = new List<int>(dt.Rows.Count);
+            List<int> cantidades = new List<int>(dt.Rows.Count);
+
+            foreach (DataRow row in dt.Rows) //Añadir ids de los productos
+            {
+                ids.Add((int)row["idProducto"]);
+                cantidades.Add((int)row["cantidad"]);
+            }
+
+            for (int i = 0; i < ids.Count; i++)
+            {
+                historialVentas.ContarInventario(ids[i], cantidades[i]);
+            }
+        }
         private void btnPunto_Click(object sender, EventArgs e)
         {
-            using (frmTarjeta frm = new frmTarjeta(this))
+            if(Validacion() == false)
             {
-                controles.mostrarPopup(frm);
+                MessageBox.Show("No hay un cliente o producto asociado a la factura", "Asocie un cliente o producto");
 
-                if(frm.resultado == true)
-                {
-                    CargarValores("TARJETA");
-                }
             }
-   
+            else
+            {
+                using (frmTarjeta frm = new frmTarjeta(this))
+                {
+                    controles.mostrarPopup(frm);
+
+                    if (frm.resultado == true)
+                    {
+                        ActualizarInventario();
+                        CargarValores(frm.metodoPago);
+                        LimpiarFactura();
+
+                    }
+                }
+
+            }
+
 
         }
         private void btnPagoMovil_Click(object sender, EventArgs e)
         {
-            frmPagoMovil popup = new frmPagoMovil();
-            popup.FormClosed += new FormClosedEventHandler(popup_FormClosed3);
-            controles.mostrarPopup(popup);
-        }
-        private void popup_FormClosed3(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
-        {
+            if (Validacion() == false)
+            {
+                MessageBox.Show("No hay un cliente o producto asociado a la factura", "Asocie un cliente o producto");
 
-            cargarDatos();
+            }
+            else
+            {
+                using (frmPagoMovil frm = new frmPagoMovil(this))
+                {
+                    controles.mostrarPopup(frm);
+
+                    if (frm.resultado == true)
+                    {
+                        referencia = frm.txtReferencia.Texts;
+                        CargarValores(frm.metodoPago);
+                        LimpiarFactura();
+
+                    }
+                }
+
+            }
+
         }
+
         #endregion
 
     }

@@ -30,8 +30,8 @@ namespace Zapateria.UI.Caja
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
@@ -41,9 +41,14 @@ namespace Zapateria.UI.Caja
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.clienteContenedor = new System.Windows.Forms.Panel();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.profile = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             this.panel1.SuspendLayout();
+            this.clienteContenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -56,17 +61,6 @@ namespace Zapateria.UI.Caja
             this.panel3.Size = new System.Drawing.Size(445, 76);
             this.panel3.TabIndex = 137;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.label4.Location = new System.Drawing.Point(26, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(194, 30);
-            this.label4.TabIndex = 186;
-            this.label4.Text = "Pagar con Efectivo";
-            // 
             // btnCerrar
             // 
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -78,6 +72,17 @@ namespace Zapateria.UI.Caja
             this.btnCerrar.TabIndex = 187;
             this.btnCerrar.TabStop = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
+            this.label4.Location = new System.Drawing.Point(26, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(194, 30);
+            this.label4.TabIndex = 186;
+            this.label4.Text = "Pagar con Efectivo";
             // 
             // panel1
             // 
@@ -123,6 +128,7 @@ namespace Zapateria.UI.Caja
             this.btnRegistrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRegistrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // lblSubTotal
             // 
@@ -193,12 +199,44 @@ namespace Zapateria.UI.Caja
             this.label7.TabIndex = 152;
             this.label7.Text = "Total";
             // 
+            // clienteContenedor
+            // 
+            this.clienteContenedor.BackColor = System.Drawing.Color.White;
+            this.clienteContenedor.Controls.Add(this.lblCliente);
+            this.clienteContenedor.Controls.Add(this.profile);
+            this.clienteContenedor.Location = new System.Drawing.Point(34, 95);
+            this.clienteContenedor.Name = "clienteContenedor";
+            this.clienteContenedor.Size = new System.Drawing.Size(222, 39);
+            this.clienteContenedor.TabIndex = 189;
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(67)))), ((int)(((byte)(119)))));
+            this.lblCliente.Location = new System.Drawing.Point(41, 9);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(177, 21);
+            this.lblCliente.TabIndex = 27;
+            this.lblCliente.Text = "Cliente de la Factura";
+            this.lblCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // profile
+            // 
+            this.profile.Image = global::Zapateria.Properties.Resources.Profile_32x;
+            this.profile.InitialImage = global::Zapateria.Properties.Resources.Profile;
+            this.profile.Location = new System.Drawing.Point(3, 3);
+            this.profile.Name = "profile";
+            this.profile.Size = new System.Drawing.Size(32, 32);
+            this.profile.TabIndex = 26;
+            this.profile.TabStop = false;
+            // 
             // frmEfectivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(445, 450);
+            this.Controls.Add(this.clienteContenedor);
             this.Controls.Add(this.lblSubTotal);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label8);
@@ -211,10 +249,14 @@ namespace Zapateria.UI.Caja
             this.Name = "frmEfectivo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEfectivo";
+            this.Load += new System.EventHandler(this.frmEfectivo_Load);
+            this.LocationChanged += new System.EventHandler(this.frmEfectivo_LocationChanged);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.clienteContenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.profile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,5 +276,8 @@ namespace Zapateria.UI.Caja
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel clienteContenedor;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.PictureBox profile;
     }
 }

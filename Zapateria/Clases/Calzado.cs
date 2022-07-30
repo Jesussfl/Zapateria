@@ -49,8 +49,8 @@ namespace Zapateria.Clases
         //Constructor
         public Calzado()
         {
-            CargarSQL = @"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, inv.precioVenta,
-                        inv.costeTotal 
+            CargarSQL = @"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta,
+                        concat('$', FORMAT(inv.costeTotal, 2, 'de_DE')) as costeTotal 
                         from inventario inv 
                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
                         INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer)";
@@ -68,7 +68,7 @@ namespace Zapateria.Clases
                 "Coste"
             };
 
-            CargarEditarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta, costeTotal) 
+            InsertarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta, costeTotal) 
                              VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta, @costeTotal)";
 
             BuscarSQL = $@"{CargarSQL} where concat_ws(idProducto,ctg.nombreCategoria, ctg.marca, mdl.nombreModelo,tipoCalzado,talla,color) like";
@@ -92,7 +92,7 @@ namespace Zapateria.Clases
                 new MySqlParameter("@costeTotal", costePorProducto)
                 };
 
-            InsertarActualizarEliminar(CargarEditarSQL, true, false);
+            InsertarActualizarEliminar(InsertarSQL, true, false);
         }
         public void ExtraerDatos() //Metodo para extraer y llenar los atributos desde la base de datos
         {
