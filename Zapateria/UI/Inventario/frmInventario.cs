@@ -138,6 +138,20 @@ namespace Zapateria.Inventario
         {
  
         }
+        private void cbTallas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbTallas.SelectedItem.ToString() == "Todas")
+            {
+                inventarioDB.Cargar(inventarioDB.CargarSQL);
+
+            }
+            else
+            {
+                inventarioDB.BuscarSQL = $"{inventarioDB.CargarSQL} WHERE  talla = {cbTallas.SelectedItem}";
+                inventarioDB.Cargar(inventarioDB.BuscarSQL);
+            }
+            
+        }
         #endregion
 
     }

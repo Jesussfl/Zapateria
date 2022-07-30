@@ -36,7 +36,7 @@ namespace Zapateria.Clases
         {
             CargarSQL = "Select concat_ws('. ',tipoCedula,ciEmpleado) as cedula,  concat_ws(' ',nombres, apellidos) as empleado, direccion, telefono, horario, ventasRealizadas From empleados";
             Columnas = new string[] { "Cédula", "Empleado", "Dirección","Teléfono", "Horario", "Ventas Realizadas" };
-            CargarEditarSQL = @"insert into empleados (ciEmpleado, tipoCedula, nombres, apellidos, direccion, telefono, horario, ventasRealizadas) 
+            InsertarSQL = @"insert into empleados (ciEmpleado, tipoCedula, nombres, apellidos, direccion, telefono, horario, ventasRealizadas) 
                                 values (@ciEmpleado, @tipoCedula, @nombres, @apellidos, @telefono, @direccion, @horario, @ventasRealizadas)";
             BuscarSQL = $"{CargarSQL} where concat(ciEmpleado, tipoCedula, nombres, apellidos) like";
 
@@ -93,7 +93,7 @@ namespace Zapateria.Clases
                 new MySqlParameter("@ventasRealizadas", ventasRealizadas)
                 };
 
-            InsertarActualizarEliminar(CargarEditarSQL, true, false);
+            InsertarActualizarEliminar(InsertarSQL, true, false);
         }
     }
 }

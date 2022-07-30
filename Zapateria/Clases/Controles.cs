@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ComponentModel;
+using Zapateria.Controles;
 
 namespace Zapateria.Clases
 {
@@ -18,7 +19,13 @@ namespace Zapateria.Clases
             if (tb.Text == text) { tb.Text = ""; }
             else if (string.IsNullOrWhiteSpace(tb.Text)) { tb.Text = text; }
         }
-        
+        public void añadirPlaceholderInputs(InputText tb, string text)
+        {
+            //Funcion para añadir texto de ayuda en los textbox
+            if (tb.Texts == text) { tb.Texts = ""; }
+            else if (string.IsNullOrWhiteSpace(tb.Texts)) { tb.Texts = text; }
+        }
+
         public Point Location { get; private set; }
 
         public void mostrarPopup(Form frm)

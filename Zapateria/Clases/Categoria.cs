@@ -26,7 +26,7 @@ namespace Zapateria.Clases
         public Categoria()
         {
             CargarSQL = "Select * from categorias";
-            CargarEditarSQL = "insertar_categorias";
+            InsertarSQL = "insertar_categorias";
             SqlCombo = "Select idCategoria, nombreCategoria from categorias";
 
         }
@@ -41,7 +41,7 @@ namespace Zapateria.Clases
                 new MySqlParameter("@marca", marca)
             };
 
-            InsertarActualizarEliminar(CargarEditarSQL, true, true);
+            InsertarActualizarEliminar(InsertarSQL, true, true);
         }
 
         #endregion

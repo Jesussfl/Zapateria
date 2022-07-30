@@ -46,7 +46,7 @@ namespace Zapateria.UI.Caja
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbColor = new System.Windows.Forms.ComboBox();
+            this.cbTipoCuenta = new System.Windows.Forms.ComboBox();
             this.btnPedir = new System.Windows.Forms.Button();
             this.txtCedula = new Zapateria.Controles.InputText();
             this.panel3.SuspendLayout();
@@ -152,11 +152,12 @@ namespace Zapateria.UI.Caja
             // btnRegistrar
             // 
             this.btnRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegistrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(158)))), ((int)(((byte)(87)))));
+            this.btnRegistrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(201)))), ((int)(((byte)(201)))));
             this.btnRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrar.Enabled = false;
             this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
             this.btnRegistrar.Image = global::Zapateria.Properties.Resources.add_squareWhite;
             this.btnRegistrar.Location = new System.Drawing.Point(202, 18);
             this.btnRegistrar.Name = "btnRegistrar";
@@ -261,21 +262,21 @@ namespace Zapateria.UI.Caja
             this.label2.TabIndex = 158;
             this.label2.Text = "Tipo de Cuenta";
             // 
-            // cbColor
+            // cbTipoCuenta
             // 
-            this.cbColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbColor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbColor.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.cbColor.FormattingEnabled = true;
-            this.cbColor.IntegralHeight = false;
-            this.cbColor.Items.AddRange(new object[] {
+            this.cbTipoCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbTipoCuenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoCuenta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoCuenta.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.cbTipoCuenta.FormattingEnabled = true;
+            this.cbTipoCuenta.IntegralHeight = false;
+            this.cbTipoCuenta.Items.AddRange(new object[] {
             "CORRIENTE",
             "AHORRO"});
-            this.cbColor.Location = new System.Drawing.Point(22, 333);
-            this.cbColor.Name = "cbColor";
-            this.cbColor.Size = new System.Drawing.Size(374, 25);
-            this.cbColor.TabIndex = 159;
+            this.cbTipoCuenta.Location = new System.Drawing.Point(22, 333);
+            this.cbTipoCuenta.Name = "cbTipoCuenta";
+            this.cbTipoCuenta.Size = new System.Drawing.Size(374, 25);
+            this.cbTipoCuenta.TabIndex = 159;
             // 
             // btnPedir
             // 
@@ -285,13 +286,14 @@ namespace Zapateria.UI.Caja
             this.btnPedir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPedir.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnPedir.Location = new System.Drawing.Point(153, 393);
+            this.btnPedir.Location = new System.Drawing.Point(107, 393);
             this.btnPedir.Name = "btnPedir";
-            this.btnPedir.Size = new System.Drawing.Size(92, 42);
+            this.btnPedir.Size = new System.Drawing.Size(206, 42);
             this.btnPedir.TabIndex = 19;
             this.btnPedir.Text = "Pedir Clave";
             this.btnPedir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPedir.UseVisualStyleBackColor = false;
+            this.btnPedir.Click += new System.EventHandler(this.btnPedir_Click);
             // 
             // txtCedula
             // 
@@ -320,7 +322,7 @@ namespace Zapateria.UI.Caja
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(421, 551);
             this.Controls.Add(this.btnPedir);
-            this.Controls.Add(this.cbColor);
+            this.Controls.Add(this.cbTipoCuenta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblSubTotal);
             this.Controls.Add(this.lblTotal);
@@ -365,7 +367,7 @@ namespace Zapateria.UI.Caja
         private Controles.InputText txtCedula;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbColor;
+        private System.Windows.Forms.ComboBox cbTipoCuenta;
         private System.Windows.Forms.Button btnPedir;
         private System.Windows.Forms.Panel clienteContenedor;
         private System.Windows.Forms.Label lblCliente;

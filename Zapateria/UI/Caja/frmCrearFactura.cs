@@ -34,7 +34,10 @@ namespace Zapateria.Secciones.Caja
         {
             InitializeComponent();
             coleccionCalzado.Grid = dataGridView1;
-
+            coleccionCalzado.CargarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, inv.precioVenta
+                                        from inventario inv 
+                                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
+                                        INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer)";
             coleccionCalzado.BuscarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, inv.precioVenta
                                         from inventario inv 
                                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
@@ -86,7 +89,8 @@ namespace Zapateria.Secciones.Caja
         {
             //Botón de limpiar busqueda
             busProducto.Clear();
-            if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == false) { busProducto.Text = "Buscar Producto"; }
+               
+            if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == false) { busProducto.Text = "Buscar Producto";  }
         }
 
         private void busProducto_TextChanged(object sender, EventArgs e)
@@ -95,12 +99,14 @@ namespace Zapateria.Secciones.Caja
             if (string.IsNullOrWhiteSpace(busProducto.Text) && busProducto.Focused == true || busProducto.Text == "Buscar Producto")
             { 
                 clearTb.Visible = false;
+                coleccionCalzado.Cargar(coleccionCalzado.CargarSQL);
 
 
             }
             else if (string.IsNullOrWhiteSpace(busProducto.Text))
             {
-                CargarBusqueda();
+                coleccionCalzado.Cargar(coleccionCalzado.CargarSQL);
+
 
             }
             else 
@@ -156,9 +162,9 @@ namespace Zapateria.Secciones.Caja
                     auxVentas.Productos = new int[] { codigos[i] };
                     auxVentas.Cantidad = obtenerCantidad(productos[i]);
                     auxVentas.PrecioCalculado = precioMultiplicado[i];
-                    auxVentas.CargarEditarSQL = "Insert into aux_ventas (idProducto, cantidad, precioCalculado, detalle) values (@idProducto, @cantidad, @precioCalculado, @detalle)";
+                    auxVentas.InsertarSQL = "Insert into aux_ventas (idProducto, cantidad, precioCalculado, detalle) values (@idProducto, @cantidad, @precioCalculado, @detalle)";
 
-                    auxVentas.cargarAtributosAUXILIAR();
+                    auxVentas.CargarAtributosAuxiliar();
 
                 }
             }
@@ -223,5 +229,20 @@ namespace Zapateria.Secciones.Caja
             productos.Clear();
         }
         #endregion
+
+        private void CrearFactura_Load(object sender, EventArgs e)
+        {
+            coleccionCalzado.Cargar(coleccionCalzado.CargarSQL);
+            if (existeColumna == false)
+            {
+                coleccionCalzado.AsignarNombreColumnas();
+
+                coleccionCalzado.AsignarBotones("acciones", "Acciones", "Añadir");
+
+                modificarColumnas();
+
+                existeColumna = true;
+            }
+        }
     }
 }
