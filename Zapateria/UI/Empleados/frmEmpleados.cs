@@ -13,20 +13,20 @@ namespace Zapateria.Secciones.Empleados
 {
     public partial class Empleados : Form
     {
+        #region Instanciaciones
         Clases.Empleado empleados = new Clases.Empleado();
-        Clases.Controles controles = new Clases.Controles();
+        Clases.Controles controles = new Clases.Controles(); 
+        #endregion
 
+        //Constructor
         public Empleados()
         {
             InitializeComponent();
             empleados.Grid = dataGridView1;
-
-            //Asignacion de color de bordes a botones de paginacion
-            btnSiguiente.FlatAppearance.BorderColor = btnSiguiente.Parent.BackColor;
-            btnAnterior.FlatAppearance.BorderColor = btnAnterior.Parent.BackColor;
-            btnIrFinal.FlatAppearance.BorderColor = btnIrFinal.Parent.BackColor;
+       
         }
 
+        #region Eventos Principales
         private void Empleados_Load(object sender, EventArgs e)
         {
             CargarDatos();
@@ -37,6 +37,20 @@ namespace Zapateria.Secciones.Empleados
             empleados.AsignarNombreColumnas();
             empleados.AutoCompletar(busEmpleado);
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarEmpleado popup = new frmAgregarEmpleado();
+            popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
+            controles.mostrarPopup(popup);
+        }
+        private void popup_FormClosed(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
+        {
+            CargarDatos();
+        } 
+        #endregion
+
+        #region Busqueda
         private void busEmpleado_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(busEmpleado.Text) && busEmpleado.Focused == true || busEmpleado.Text == "Buscar Cliente")
@@ -74,17 +88,7 @@ namespace Zapateria.Secciones.Empleados
         {
             busEmpleado.Clear();
             if (string.IsNullOrWhiteSpace(busEmpleado.Text) && busEmpleado.Focused == false) { busEmpleado.Text = "Buscar Cliente"; }
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            frmAgregarEmpleado popup = new frmAgregarEmpleado();
-            popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
-            controles.mostrarPopup(popup);
-        }
-        private void popup_FormClosed(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
-        {
-            CargarDatos();
-        }
+        } 
+        #endregion
     }
 }

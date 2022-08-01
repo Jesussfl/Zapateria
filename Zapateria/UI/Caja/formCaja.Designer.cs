@@ -51,7 +51,7 @@ namespace Zapateria.UI.Caja
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.btnRegistrarCliente = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.clienteContenedor = new System.Windows.Forms.Panel();
             this.lblCliente = new System.Windows.Forms.Label();
             this.profile = new System.Windows.Forms.PictureBox();
@@ -107,7 +107,7 @@ namespace Zapateria.UI.Caja
             this.panel14.Controls.Add(this.panel13);
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel7);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(0, 0);
             this.panel14.Name = "panel14";
             this.panel14.Padding = new System.Windows.Forms.Padding(24, 8, 16, 8);
@@ -138,7 +138,7 @@ namespace Zapateria.UI.Caja
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -146,11 +146,11 @@ namespace Zapateria.UI.Caja
             this.dataGridView1.ColumnHeadersHeight = 48;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(21)))), ((int)(((byte)(200)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -170,16 +170,13 @@ namespace Zapateria.UI.Caja
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 42;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(658, 180);
-            this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
             // panel13
             // 
@@ -269,9 +266,9 @@ namespace Zapateria.UI.Caja
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Location = new System.Drawing.Point(32, 66);
+            this.panel1.Location = new System.Drawing.Point(-44, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(601, 2);
+            this.panel1.Size = new System.Drawing.Size(1135, 3);
             this.panel1.TabIndex = 18;
             // 
             // label5
@@ -287,7 +284,7 @@ namespace Zapateria.UI.Caja
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.btnRegistrarCliente);
+            this.panel16.Controls.Add(this.label1);
             this.panel16.Controls.Add(this.clienteContenedor);
             this.panel16.Controls.Add(this.label9);
             this.panel16.Controls.Add(this.btnAgregarPro);
@@ -298,29 +295,26 @@ namespace Zapateria.UI.Caja
             this.panel16.Size = new System.Drawing.Size(660, 125);
             this.panel16.TabIndex = 27;
             // 
-            // btnRegistrarCliente
+            // label1
             // 
-            this.btnRegistrarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegistrarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
-            this.btnRegistrarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegistrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrarCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarCliente.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarCliente.Location = new System.Drawing.Point(535, 6);
-            this.btnRegistrarCliente.Name = "btnRegistrarCliente";
-            this.btnRegistrarCliente.Size = new System.Drawing.Size(115, 42);
-            this.btnRegistrarCliente.TabIndex = 28;
-            this.btnRegistrarCliente.Text = "Nuevo Cliente";
-            this.btnRegistrarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegistrarCliente.UseVisualStyleBackColor = false;
-            this.btnRegistrarCliente.Click += new System.EventHandler(this.btnRegistrarCliente_Click);
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(234, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 17);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Añadir Cliente";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // clienteContenedor
             // 
+            this.clienteContenedor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.clienteContenedor.BackColor = System.Drawing.Color.White;
             this.clienteContenedor.Controls.Add(this.lblCliente);
             this.clienteContenedor.Controls.Add(this.profile);
-            this.clienteContenedor.Location = new System.Drawing.Point(307, 9);
+            this.clienteContenedor.Location = new System.Drawing.Point(428, 8);
             this.clienteContenedor.Name = "clienteContenedor";
             this.clienteContenedor.Size = new System.Drawing.Size(222, 39);
             this.clienteContenedor.TabIndex = 27;
@@ -359,6 +353,7 @@ namespace Zapateria.UI.Caja
             // 
             // btnAgregarPro
             // 
+            this.btnAgregarPro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarPro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
             this.btnAgregarPro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregarPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -631,7 +626,7 @@ namespace Zapateria.UI.Caja
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(251)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(0)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -639,11 +634,11 @@ namespace Zapateria.UI.Caja
             this.dataGridView2.ColumnHeadersHeight = 48;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(21)))), ((int)(((byte)(200)))));
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -663,10 +658,7 @@ namespace Zapateria.UI.Caja
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(10);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView2.RowTemplate.Height = 42;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -678,7 +670,7 @@ namespace Zapateria.UI.Caja
             this.panel15.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel15.Controls.Add(this.panel18);
             this.panel15.Controls.Add(this.panel19);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel15.Location = new System.Drawing.Point(700, 0);
             this.panel15.Name = "panel15";
             this.panel15.Padding = new System.Windows.Forms.Padding(16, 0, 16, 8);
@@ -691,8 +683,8 @@ namespace Zapateria.UI.Caja
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1103, 623);
-            this.Controls.Add(this.panel15);
             this.Controls.Add(this.panel14);
+            this.Controls.Add(this.panel15);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "formCaja";
             this.Text = "Caja";
@@ -757,17 +749,17 @@ namespace Zapateria.UI.Caja
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel clienteContenedor;
         private System.Windows.Forms.PictureBox profile;
         private System.Windows.Forms.Button btnReiniciar;
-        private System.Windows.Forms.Button btnRegistrarCliente;
         public System.Windows.Forms.Button btnAgregarPro;
         public System.Windows.Forms.Label lblSubTotal;
         public System.Windows.Forms.Label lblTotal;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox busCliente;
         public System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label1;
     }
 }

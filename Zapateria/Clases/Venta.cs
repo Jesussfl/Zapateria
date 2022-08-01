@@ -1,28 +1,35 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Zapateria.Clases
 {
     public class Venta : Database
     {
         #region Atributos
-        private string cedulaCliente;
+
         private string idProductos;
-        private string detalle;
-        private double montoTotal;
-        private string metodoPago;
+        private string cedulaCliente;
         private string cedulaEmpleado;
-        private double ganancia;
+        private string detalle;
+        private string metodoPago;
+        private double subTotal;
+        private double montoTotal;
         private DateTime fechaVenta;
         private string referencia;
+        private const int iva = 16;
+
 
         private int[] productos;
         private string cantidad;
         private double precioCalculado; 
+
         #endregion
 
         #region Encapsulamiento
@@ -35,7 +42,7 @@ namespace Zapateria.Clases
         public double MontoTotal { get => montoTotal; set => montoTotal = value; }
         public string MetodoPago { get => metodoPago; set => metodoPago = value; }
         public string CedulaEmpleado { get => cedulaEmpleado; set => cedulaEmpleado = value; }
-        public double Ganancia { get => ganancia; set => ganancia = value; }
+        public double Subtotal { get => subTotal; set => subTotal = value; }
         public DateTime FechaVenta { get => fechaVenta; set => fechaVenta = value; }
         public string Referencia { get => referencia; set => referencia = value; } 
         #endregion
@@ -44,7 +51,10 @@ namespace Zapateria.Clases
         //Constructor
         public Venta()
         {
-            CargarSQL = "select idFactura, ciCliente, idProductos, detalle, concat('$', FORMAT(montoTotal, 2, 'de_DE')) as montoTotal, metodoPago, concat('$', FORMAT(ganancia, 2, 'de_DE')) as ganancia, fechaVenta, referencias from ventas";
+            CargarSQL = @"select idFactura, ciCliente, idProductos, detalle, 
+                        concat('$', FORMAT(subTotal, 2, 'de_DE')) as subTotal, 
+                        concat('$', FORMAT(montoTotal, 2, 'de_DE')) as montoTotal,  metodoPago,fechaVenta, referencias 
+                        from ventas";
 
             Columnas = new string[] 
             {
@@ -52,25 +62,43 @@ namespace Zapateria.Clases
                 "Cliente",
                 "Productos",
                 "Detalle",
+                "SubTotal",
                 "Monto Total",
                 "Método de Pago",
-                "Ganancia",
                 "Fecha de venta",
                 "Referencia"
             };
 
-            InsertarSQL = "Insert into ventas (ciCliente, idProductos,detalle,montoTotal,metodoPago,ganancia,fechaVenta,referencias) values (@ciCliente, @idProductos,@detalle,@montoTotal,@metodoPago,@ganancia,@fechaVenta,@referencias)";
-            BuscarSQL = "select * from ventas where concat_ws(ciCliente, idProductos, metodoPago, referencias) like";
+            InsertarSQL = @"Insert into ventas (ciCliente, idProductos,detalle,montoTotal,metodoPago,subtotal,fechaVenta,referencias) 
+                            values (@ciCliente, @idProductos,@detalle,@montoTotal,@metodoPago,@subtotal,@fechaVenta,@referencias)";
+
+            BuscarSQL = $"{CargarSQL} where concat_ws(idFactura,ciCliente, idProductos, metodoPago, referencias) like";
+
         }
 
         #region Métodos
+
+        public void AjustarColumnas()
+        {
+            Grid.Columns["idFactura"].FillWeight = 35;
+            Grid.Columns["detalle"].FillWeight = 155;
+            Grid.Columns["ciCliente"].FillWeight = 45;
+            Grid.Columns["montoTotal"].FillWeight = 43;
+            Grid.Columns["montoTotal"].DefaultCellStyle.ForeColor = Color.Green;
+            Grid.Columns["montoTotal"].DefaultCellStyle.SelectionForeColor = Color.Green;
+            Grid.Columns["subTotal"].FillWeight = 45;
+
+            Grid.Columns["metodoPago"].FillWeight = 55;
+            Grid.Columns["fechaVenta"].FillWeight = 65;
+            Grid.Columns["referencias"].FillWeight = 50;
+        }
         public void CargarAtributosAuxiliar() //Método para parametrizar los atributos y cargarlos en mysql en la tabla auxiliar de ventas
         {
             Parametros = new MySqlParameter[]
             {
                 new MySqlParameter("@idProducto", productos[0]),
                 new MySqlParameter("@cantidad", Convert.ToInt32(cantidad)),
-                new MySqlParameter("@precioCalculado", precioCalculado),
+                new MySqlParameter("@subtotal", subTotal),
                 new MySqlParameter("@detalle", IdProductos),
 
             };
@@ -85,9 +113,9 @@ namespace Zapateria.Clases
             new MySqlParameter("@ciCliente", cedulaCliente),
             new MySqlParameter("@idProductos", idProductos),
             new MySqlParameter("@detalle", detalle),
+            new MySqlParameter("@subtotal", subTotal),
             new MySqlParameter("@montoTotal", montoTotal),
             new MySqlParameter("@metodoPago", metodoPago),
-            new MySqlParameter("@ganancia", ganancia),
             new MySqlParameter("@fechaVenta", fechaVenta),
             new MySqlParameter("@referencias", referencia)
 
@@ -95,7 +123,7 @@ namespace Zapateria.Clases
 
             InsertarActualizarEliminar(InsertarSQL, false);
         }
-        public int ExtraerCantidadProducto(int idProducto) //Método para extraer el nombre del cliente
+        public int ExtraerCantidadProducto(int idProducto) //Método para extraer la cantidad de los productos
         {
             Conexion.Open();
 
@@ -125,6 +153,28 @@ namespace Zapateria.Clases
             objInventario.InsertarActualizarEliminar(objInventario.InsertarSQL, false);
             
         }
+        public void CalcularMontos() //Método para el cálculo de los montos
+        {
+            subTotal = Grid.Rows.Cast<DataGridViewRow>() //Sumar columnas del datagrid
+            .Sum(t => Convert.ToDouble(t.Cells["precioCalculado"].Value));
+
+            montoTotal = ((subTotal * iva) / 100) + subTotal;
+
+        }
+        public string JuntarFilas(string columna) //Metodo para juntar las filas de una columna de un datagrid;
+        {
+            DataTable dt = (DataTable)Grid.DataSource;
+            List<string> lista = new List<string>(dt.Rows.Count);
+
+            foreach (DataRow row in dt.Rows) //Añadir ids de los productos
+            {
+                lista.Add((string)row[columna].ToString());
+
+            }
+
+            return string.Join(", ", lista);
+        }
+
         #endregion
 
     }

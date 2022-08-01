@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Zapateria.Clases
 {
-    class Colores
+    public class Colores
     {
-        public static Color primary { get { return Color.FromArgb(112, 57, 201); } }
-        public static Color secondary { get { return Color.FromArgb(107, 122, 153); } }
-        public static Color white { get { return Color.FromArgb(249, 249, 249); } }
+
+        //Clase exclusiva para guardar los colores del proyecto y puedan ser reutilizados
+        public static Color Primary { get { return Color.FromArgb(112, 57, 201); } }
+        public static Color Secondary { get { return Color.FromArgb(107, 122, 153); } }
+        public static Color White { get { return Color.FromArgb(249, 249, 249); } }
         public static Color BG { get { return Color.FromArgb(22, 0, 66); } }
 
     }

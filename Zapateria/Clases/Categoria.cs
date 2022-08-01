@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zapateria.Clases
 {
-    class Categoria : Database
+    class Categoria : Database //Herencia
     {
 
         #region Atributos
@@ -15,18 +15,20 @@ namespace Zapateria.Clases
         private string nombreCategoria;
         private string marca;
 
+        #endregion
+
         #region Encapsulamiento
         public string NombreCategoria { get => nombreCategoria; set => nombreCategoria = value; }
         public string Marca { get => marca; set => marca = value; }
         #endregion 
 
-        #endregion
-
         //Constructor
         public Categoria()
         {
             CargarSQL = "Select * from categorias";
+
             InsertarSQL = "insertar_categorias";
+
             SqlCombo = "Select idCategoria, nombreCategoria from categorias";
 
         }

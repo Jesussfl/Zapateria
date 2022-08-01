@@ -13,7 +13,7 @@ namespace Zapateria.UI.Inventario
 {
     public partial class frmCategoriasYModelos : Form
     {
-        #region Instanciación
+        #region Instanciaciones
 
         Clases.Modelo coleccionModelos = new Clases.Modelo();
         Clases.Categoria coleccionCategorias = new Clases.Categoria();
@@ -21,6 +21,7 @@ namespace Zapateria.UI.Inventario
         Clases.Categoria nuevaCategoria; 
         #endregion
 
+        bool existeColumna = false;
         //Constructor
         public frmCategoriasYModelos()
         {
@@ -30,6 +31,7 @@ namespace Zapateria.UI.Inventario
 
 
         #region Métodos
+
         private void cargarDatosCategorias()
         {
             //Cargar ComboBoxes
@@ -41,7 +43,7 @@ namespace Zapateria.UI.Inventario
 
 
         }
-        bool existeColumna = false;
+
         private void cargarDatosModelos()
         {
             coleccionCategorias.LlenarComboBox(cbCategoriaModelo, "Select id, idCategoria,nombreCategoria, concat_ws('-',idCategoria, nombreCategoria, marca) as categoria from categorias order by idCategoria", "idCategoria", "categoria");
@@ -64,10 +66,12 @@ namespace Zapateria.UI.Inventario
             dataGridView1.Columns["Editar"].FillWeight = 30;
             dataGridView1.Columns["categoria"].FillWeight = 40;
         }
+
         #endregion
 
 
         #region Eventos
+
         private void frmCategoriasYModelos_Load(object sender, EventArgs e)
         {
             cargarDatosCategorias();
@@ -123,6 +127,7 @@ namespace Zapateria.UI.Inventario
             coleccionModelos.BuscarSQL = $"{coleccionModelos.CargarSQL} where c.idCategoria = {cbCategoriaModelo.SelectedValue}";
             coleccionModelos.Cargar(coleccionModelos.BuscarSQL);
         }
+
         #endregion
 
 

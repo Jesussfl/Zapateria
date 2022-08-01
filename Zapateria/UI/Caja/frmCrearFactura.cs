@@ -34,11 +34,11 @@ namespace Zapateria.Secciones.Caja
         {
             InitializeComponent();
             coleccionCalzado.Grid = dataGridView1;
-            coleccionCalzado.CargarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, inv.precioVenta
+            coleccionCalzado.CargarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, concat('$', FORMAT(precioVenta, 2, 'de_DE')) as precioVenta
                                         from inventario inv 
                                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
                                         INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer)";
-            coleccionCalzado.BuscarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, inv.precioVenta
+            coleccionCalzado.BuscarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, concat('$', FORMAT(precioVenta, 2, 'de_DE')) as precioVenta
                                         from inventario inv 
                                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
                                         INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer) 
@@ -82,6 +82,78 @@ namespace Zapateria.Secciones.Caja
 
             return extractor;
         }
+        #endregion
+
+
+        #region Eventos Principales
+        private void CrearFactura_Load(object sender, EventArgs e)
+        {
+            coleccionCalzado.Cargar(coleccionCalzado.CargarSQL);
+            if (existeColumna == false)
+            {
+                coleccionCalzado.AsignarNombreColumnas();
+
+                coleccionCalzado.AsignarBotones("acciones", "Acciones", "Añadir");
+
+                modificarColumnas();
+
+                existeColumna = true;
+            }
+        }
+
+
+        private void btnAñadir_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("¿Seguro que quieres añadir los elementos seleccionados a la factura?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                auxVentas = new Clases.Venta(); //Creacion de nueva venta auxiliar
+
+                for(int i = 0; i < codigos.Count;i++) //Ingreso de valores a los atributos de la clase venta
+                {
+                    auxVentas.IdProductos = productos[i];
+                    auxVentas.Productos = new int[] { codigos[i] };
+                    auxVentas.Cantidad = obtenerCantidad(productos[i]);
+                    auxVentas.Subtotal = precioMultiplicado[i];
+                    auxVentas.InsertarSQL = "Insert into aux_ventas (idProducto, cantidad, precioCalculado, detalle) values (@idProducto, @cantidad, @subtotal, @detalle)";
+
+                    auxVentas.CargarAtributosAuxiliar();
+
+                }
+            }
+
+            
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e) //Evento para dar click al botón del datagrid y añadir elementos a la lista
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "Acciones")
+            {
+                using (frmIngresarCantidad frm = new frmIngresarCantidad()) //Se utiliza este metodo para extraer resultados del form hijo llamado (Ingresar Cantidad)
+                {
+                    frm.ShowDialog();
+
+                    if (frm.resultado == true)
+                    {
+                        string result = frm.GetMyResult();
+
+                        //Ingreso de valores a los atributos del formulario
+                        codigos.Add(Convert.ToInt32(dataGridView1.CurrentRow.Cells["idProducto"].Value));
+                        productos.Add(result + "X " + dataGridView1.CurrentRow.Cells["Producto"].Value + " de color " + dataGridView1.CurrentRow.Cells["color"].Value);
+
+                        precioMultiplicado.Add(Convert.ToDouble(dataGridView1.CurrentRow.Cells["precioVenta"].Value.ToString().Substring(1)) * Convert.ToDouble(result)); //Calculo del monto total por producto
+
+                        listProductos.Items.Clear(); //Se limpia el listbox en caso de agregar nuevos elementos
+                        listProductos.Items.AddRange(productos.ToArray());
+                    }
+                    
+                }
+
+            }
+        }
+
+
         #endregion
 
         #region Busqueda
@@ -137,83 +209,13 @@ namespace Zapateria.Secciones.Caja
 
         #endregion
 
-
-        #region Eventos
-        private void pictureBox1_Click(object sender, EventArgs e)
+        #region Botones básicos
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            listProductos.Items.Clear();
+            codigos.Clear();
+            productos.Clear();
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnAñadir_Click(object sender, EventArgs e)
-        {
-
-            if (MessageBox.Show("¿Seguro que quieres añadir los elementos seleccionados a la factura?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                auxVentas = new Clases.Venta(); //Creacion de nueva venta auxiliar
-
-                for(int i = 0; i < codigos.Count;i++) //Ingreso de valores a los atributos de la clase venta
-                {
-                    auxVentas.IdProductos = productos[i];
-                    auxVentas.Productos = new int[] { codigos[i] };
-                    auxVentas.Cantidad = obtenerCantidad(productos[i]);
-                    auxVentas.PrecioCalculado = precioMultiplicado[i];
-                    auxVentas.InsertarSQL = "Insert into aux_ventas (idProducto, cantidad, precioCalculado, detalle) values (@idProducto, @cantidad, @precioCalculado, @detalle)";
-
-                    auxVentas.CargarAtributosAuxiliar();
-
-                }
-            }
-
-            
-            this.Close();
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e) //Evento para dar click al botón del datagrid y añadir elementos a la lista
-        {
-            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "Acciones")
-            {
-                using (frmIngresarCantidad frm = new frmIngresarCantidad()) //Se utiliza este metodo para extraer resultados del form hijo llamado (Ingresar Cantidad)
-                {
-                    frm.ShowDialog();
-
-                    if (frm.resultado == true)
-                    {
-                        string result = frm.GetMyResult();
-
-                        //Ingreso de valores a los atributos del formulario
-                        codigos.Add(Convert.ToInt32(dataGridView1.CurrentRow.Cells["idProducto"].Value));
-                        productos.Add(result + "X " + dataGridView1.CurrentRow.Cells["Producto"].Value + " de color " + dataGridView1.CurrentRow.Cells["color"].Value);
-
-                        precioMultiplicado.Add(Convert.ToDouble(dataGridView1.CurrentRow.Cells["precioVenta"].Value) * Convert.ToDouble(result)); //Calculo del monto total por producto
-
-                        listProductos.Items.Clear(); //Se limpia el listbox en caso de agregar nuevos elementos
-                        listProductos.Items.AddRange(productos.ToArray());
-                    }
-                    
-                }
-
-            }
-        }
-
-        private void btnOcultar_Click(object sender, EventArgs e)
-        {
-            datagridContenedor.Hide();
-            btnMostrar.Visible = true;
-            btnOcultar.Visible = false;
-        }
-
-        private void btnMostrar_Click(object sender, EventArgs e)
-        {
-            datagridContenedor.Show();
-            btnMostrar.Visible = false;
-            btnOcultar.Visible = true;
-        }
-
         private void button2_Click_1(object sender, EventArgs e)
         {
 
@@ -221,28 +223,26 @@ namespace Zapateria.Secciones.Caja
             productos.RemoveAt(listProductos.SelectedIndex);
             listProductos.Items.RemoveAt(listProductos.SelectedIndex);
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnMostrar_Click(object sender, EventArgs e)
         {
-            listProductos.Items.Clear();
-            codigos.Clear();
-            productos.Clear();
+            datagridContenedor.Show();
+            btnMostrar.Visible = false;
+            btnOcultar.Visible = true;
         }
+        private void btnOcultar_Click(object sender, EventArgs e)
+        {
+            datagridContenedor.Hide();
+            btnMostrar.Visible = true;
+            btnOcultar.Visible = false;
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        } 
         #endregion
-
-        private void CrearFactura_Load(object sender, EventArgs e)
-        {
-            coleccionCalzado.Cargar(coleccionCalzado.CargarSQL);
-            if (existeColumna == false)
-            {
-                coleccionCalzado.AsignarNombreColumnas();
-
-                coleccionCalzado.AsignarBotones("acciones", "Acciones", "Añadir");
-
-                modificarColumnas();
-
-                existeColumna = true;
-            }
-        }
     }
 }

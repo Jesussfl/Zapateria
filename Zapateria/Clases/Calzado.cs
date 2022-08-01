@@ -8,9 +8,10 @@ using System.Windows.Forms;
 
 namespace Zapateria.Clases
 {
-    public class Calzado : Database
+    public class Calzado : Database //Herencia
     {
         #region Atributos
+
         private int codigo;
         private string marca;
         private string nombreCategoria;
@@ -26,6 +27,8 @@ namespace Zapateria.Clases
         private double costePorProducto;
 
         private string[] colores = new string[] { "NEGRO", "GRIS", "BLANCO", "MARRON", "AMARILLO", "VERDE", "BEIGE", "AZUL", "ROSADO", "MORADO", "ROJO", "VERDE", "AMARILLO", "NARANJA" };
+
+        #endregion
 
         #region Encapsulamiento
         //Encapsulamiento
@@ -44,37 +47,36 @@ namespace Zapateria.Clases
         public string NombreCategoria { get => nombreCategoria; set => nombreCategoria = value; }
         public string[] Colores { get => colores; set => colores = value; }
         #endregion
-        #endregion
 
         //Constructor
         public Calzado()
         {
-            CargarSQL = @"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta,
-                        concat('$', FORMAT(inv.costeTotal, 2, 'de_DE')) as costeTotal 
+            CargarSQL = @"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta
                         from inventario inv 
-                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
-                        INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer)";
+                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.idCategoria) 
+                        LEFT JOIN modelos mdl ON (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria)";
 
             Columnas = new string[] 
             { 
                 "Código", 
                 "Producto", 
                 "Descripcion", 
-                "Sexo", 
+                "Tipo", 
                 "Talla", 
                 "Color", 
                 "Cantidad", 
                 "Precio", 
-                "Coste"
+                
             };
 
-            InsertarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta, costeTotal) 
-                             VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta, @costeTotal)";
+            InsertarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta) 
+                             VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta)";
 
             BuscarSQL = $@"{CargarSQL} where concat_ws(idProducto,ctg.nombreCategoria, ctg.marca, mdl.nombreModelo,tipoCalzado,talla,color) like";
         }
 
         #region Métodos
+
         public void CargarAtributos() //Método para generar los parametros de MYSQL e insertarlos en la base de datos
         {
             
@@ -88,8 +90,8 @@ namespace Zapateria.Clases
                 new MySqlParameter("@talla", talla),
                 new MySqlParameter("@color", color),
                 new MySqlParameter("@cantidad", cantidad),
-                new MySqlParameter("@precioVenta", precioProducto),
-                new MySqlParameter("@costeTotal", costePorProducto)
+                new MySqlParameter("@precioVenta", precioProducto)
+               
                 };
 
             InsertarActualizarEliminar(InsertarSQL, true, false);
@@ -109,6 +111,7 @@ namespace Zapateria.Clases
 
 
         }
+
         #endregion
     }
  

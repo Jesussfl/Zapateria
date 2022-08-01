@@ -13,8 +13,14 @@ namespace Zapateria.Secciones.Clientes
 {
     public partial class Clientes : Form
     {
+        #region Instanciaciones
         Clases.Cliente clientes = new Clases.Cliente();
-        Clases.Controles controles = new Clases.Controles();
+        Clases.Controles controles = new Clases.Controles(); 
+        #endregion
+
+        bool existeColumna = false;
+
+        //Constructor
         public Clientes()
         {
             InitializeComponent();
@@ -22,12 +28,11 @@ namespace Zapateria.Secciones.Clientes
             clientes.Grid = dataGridView1;
 
             //Asignacion de color de bordes a botones de paginacion
-            btnSiguiente.FlatAppearance.BorderColor = btnSiguiente.Parent.BackColor;
-            btnAnterior.FlatAppearance.BorderColor = btnAnterior.Parent.BackColor;
-            btnIrFinal.FlatAppearance.BorderColor = btnIrFinal.Parent.BackColor;
+         
         }
 
-        bool existeColumna = false;
+
+        #region Métodos
 
         private void CargarDatos()
         {
@@ -40,7 +45,10 @@ namespace Zapateria.Secciones.Clientes
                 existeColumna = true;
             }
             clientes.AutoCompletar(busCliente);
-        }
+        } 
+        #endregion
+
+        #region Eventos Principales
         private void Clientes_Load(object sender, EventArgs e)
         {
             //Llamados para cargar el grid y sus columnas
@@ -56,7 +64,8 @@ namespace Zapateria.Secciones.Clientes
         private void popup_FormClosed(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
         {
             CargarDatos();
-        }
+        } 
+        #endregion
 
         #region Busqueda
         private void clearTb_Click(object sender, EventArgs e)

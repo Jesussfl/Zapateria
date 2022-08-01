@@ -14,9 +14,10 @@ namespace Zapateria.Ventas
     public partial class Ventas : Form
     {
         #region Instanciaciones
+
         Clases.Venta ventas = new Clases.Venta();
-        Clases.Calzado coleccionCalzados = new Clases.Calzado();
         Clases.Controles controles = new Clases.Controles(); 
+
         #endregion
 
         //Constructor
@@ -29,13 +30,15 @@ namespace Zapateria.Ventas
 
         }
 
-        #region Eventos
+        #region Eventos Principales
+
         private void Ventas_Load(object sender, EventArgs e)
         {
             //Llamados para cargar el grid y sus columnas
 
             ventas.Cargar(ventas.CargarSQL);
             ventas.AsignarNombreColumnas();
+            ventas.AjustarColumnas();
 
         }
 
@@ -76,13 +79,17 @@ namespace Zapateria.Ventas
 
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            string cantidad = "321";
-            string[,] datos = { { DateTime.Now.ToString(), "date"},
-                                { cantidad, "amount"},
-                                { "Zapatos-Negros", "bestProduct"}};
-            string ruta = Environment.CurrentDirectory.Replace(@"\bin\Debug", @"\Resources\Reportes\Reporte-Sencillo (Template).docx");
-            ventas.GenerarReporteSencillo(ruta, datos);
+
+            ventas.Grid = dataGridView1;
+            ventas.GenerarReporteExcel("ventas");
+            //string cantidad = "321";
+            //string[,] datos = { { DateTime.Now.ToString(), "date"},
+            //                    { cantidad, "amount"},
+            //                    { "Zapatos-Negros", "bestProduct"}};
+            //string ruta = Environment.CurrentDirectory.Replace(@"\bin\Debug", @"\Resources\Reportes\Reporte-Sencillo (Template).docx");
+            //ventas.GenerarReporteSencillo(ruta, datos);
         } 
+
         #endregion
 
         #region Busqueda
@@ -92,12 +99,20 @@ namespace Zapateria.Ventas
             if (string.IsNullOrWhiteSpace(busVenta.Text) && busVenta.Focused == true || busVenta.Text == "Buscar Venta")
             {
                 clearTb.Visible = false;
+                if (dataGridView1.RowCount > 0)
+                {
                 ventas.Cargar(ventas.CargarSQL);
+
+                }
             }
             else
             {
                 clearTb.Visible = true;
-                ventas.Cargar($"{ventas.BuscarSQL} '%{busVenta.Text}%'");
+                if (dataGridView1.RowCount > 0)
+                {
+                    ventas.BuscarSQL = $"{ventas.CargarSQL} where concat_ws(idFactura,ciCliente, idProductos, metodoPago, referencias) like";
+                    ventas.Cargar($"{ventas.BuscarSQL} '%{busVenta.Text}%'");
+                }
             }
         }
 
@@ -125,6 +140,7 @@ namespace Zapateria.Ventas
             busVenta.Clear();
             if (string.IsNullOrWhiteSpace(busVenta.Text) && busVenta.Focused == false) { busVenta.Text = "Buscar Venta"; }
         } 
+
         #endregion
     }
 }

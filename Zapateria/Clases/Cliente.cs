@@ -10,9 +10,10 @@ using System.Windows.Forms;
 namespace Zapateria.Clases
 {
     
-    public class Cliente : Database
+    public class Cliente : Database//Herencia
     {
         #region Atributos
+
         private string cedula;
         private string tipoCedulaCliente;
         private string nombre;
@@ -23,6 +24,8 @@ namespace Zapateria.Clases
         private int cantidadCompras;
 
         private string[] tiposCedulas = new string[] { "V", "E", "J" };
+
+        #endregion
 
         #region Encapsulamiento
         public string Cedula { get => cedula; set => cedula = value; }
@@ -36,15 +39,16 @@ namespace Zapateria.Clases
         public string[] TiposCedulas { get => tiposCedulas; set => tiposCedulas = value; }
         #endregion
 
-        #endregion
-
         //Constructor
         public Cliente()
         {
             CargarSQL = "Select concat_ws('. ',tipoCedula,ciCliente) as cedula,  concat_ws(' ',nombre, apellido) as cliente, telefono, direccion, fechaRegistro, cantidadCompras From clientes";
+
             Columnas = new string[] { "Cédula", "Cliente", "Teléfono", "Dirección", "Fecha de Registro", "Compras Realizadas" };
+
             InsertarSQL = @"insert into clientes (ciCliente, tipoCedula, nombre, apellido, telefono, direccion, fechaRegistro) 
                                 values (@ciCliente, @tipoCedula, @nombre, @apellido, @telefono, @direccion, @fechaRegistro)";
+
             BuscarSQL = $"{CargarSQL} where concat(ciCliente, tipoCedula, nombre, apellido) like";
 
         }
@@ -99,6 +103,7 @@ namespace Zapateria.Clases
 
             InsertarActualizarEliminar(InsertarSQL, true, false);
         } 
+
         #endregion
     }
 }
