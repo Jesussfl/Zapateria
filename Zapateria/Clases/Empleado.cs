@@ -8,9 +8,11 @@ using System.Windows.Forms;
 
 namespace Zapateria.Clases
 {
-    public class Empleado : Database
+    public class Empleado : Database //Herencia
     {
+
         #region Atributos
+
         private string cedula;
         private string tipoCedulaEmpleado;
         private string nombres;
@@ -19,8 +21,15 @@ namespace Zapateria.Clases
         private string telefono;
         private string horario;
         private int ventasRealizadas;
+        private string correo;
+        private string contraseña;
 
         private string[] tiposCedulas = new string[] { "V", "E", "J" };
+
+        #endregion
+
+
+        #region Encapsulamiento
 
         public string Cedula { get => cedula; set => cedula = value; }
         public string TipoCedulaEmpleado { get => tipoCedulaEmpleado; set => tipoCedulaEmpleado = value; }
@@ -31,17 +40,27 @@ namespace Zapateria.Clases
         public string Horario { get => horario; set => horario = value; }
         public int VentasRealizadas { get => ventasRealizadas; set => ventasRealizadas = value; }
         public string[] TiposCedulas { get => tiposCedulas; set => tiposCedulas = value; }
+        public string Correo { get => correo; set => correo = value; }
+        public string Contraseña { get => contraseña; set => contraseña = value; } 
+
         #endregion
+
+        //Constructor
         public Empleado()
         {
-            CargarSQL = "Select concat_ws('. ',tipoCedula,ciEmpleado) as cedula,  concat_ws(' ',nombres, apellidos) as empleado, direccion, telefono, horario, ventasRealizadas From empleados";
-            Columnas = new string[] { "Cédula", "Empleado", "Dirección","Teléfono", "Horario", "Ventas Realizadas" };
-            InsertarSQL = @"insert into empleados (ciEmpleado, tipoCedula, nombres, apellidos, direccion, telefono, horario, ventasRealizadas) 
-                                values (@ciEmpleado, @tipoCedula, @nombres, @apellidos, @telefono, @direccion, @horario, @ventasRealizadas)";
+            CargarSQL = "Select concat_ws('. ',tipoCedula,ciEmpleado) as cedula,  concat_ws(' ',nombres, apellidos) as empleado, direccion, telefono, horario, correo From empleados";
+
+            Columnas = new string[] { "Cédula", "Empleado", "Dirección","Teléfono", "Horario", "Correo" };
+
+            InsertarSQL = @"insert into empleados (ciEmpleado, tipoCedula, nombres, apellidos, direccion, telefono, horario, correo, contraseña) 
+                                values (@ciEmpleado, @tipoCedula, @nombres, @apellidos, @direccion, @telefono, @horario, @correo, @contraseña)";
+
             BuscarSQL = $"{CargarSQL} where concat(ciEmpleado, tipoCedula, nombres, apellidos) like";
 
         }
-        public void AutoCompletar(System.Windows.Forms.TextBox textbox)
+
+        #region Métodos
+        public void AutoCompletar(TextBox textbox)
         {
             Conexion.Open();
             MySqlCommand cm = new MySqlCommand("select ciEmpleado, concat(' ',nombres,apellidos) as empleado from empleados", Conexion);
@@ -59,28 +78,26 @@ namespace Zapateria.Clases
             Conexion.Close();
 
         }
-        public string ExtraerCliente()
+
+        public string ExtraerEmpleado(string correo) //Método es para extraer el nombre del cliente
         {
             Conexion.Open();
-            MySqlCommand cm = new MySqlCommand("select ciEmpleado, concat(' ',nombres,apellidos) as empleado from empleados", Conexion);
+            MySqlCommand cm = new MySqlCommand($"select concat_ws(' ',nombres,apellidos) as empleado from empleados where correo = '{correo}'", Conexion);
             MySqlDataReader sdr = cm.ExecuteReader();
 
-            if (sdr.Read())
+            while (sdr.Read())
             {
-
-                return sdr["ciEmpleado"].ToString();
-
+                return sdr.GetValue(0).ToString();
             }
-            else
-            {
 
-                return "Null";
-            }
+            return "No existe";
 
         }
 
         public void CargarAtributos()
         {
+
+
             Parametros = new MySqlParameter[]
                 {
                 new MySqlParameter("@ciEmpleado", cedula),
@@ -90,10 +107,17 @@ namespace Zapateria.Clases
                 new MySqlParameter("@telefono", telefono),
                 new MySqlParameter("@direccion", direccion),
                 new MySqlParameter("@horario", horario),
-                new MySqlParameter("@ventasRealizadas", ventasRealizadas)
+                new MySqlParameter("@correo", correo),
+                new MySqlParameter("@contraseña", contraseña)
                 };
 
             InsertarActualizarEliminar(InsertarSQL, true, false);
-        }
+
+
+
+
+        } 
+
+        #endregion
     }
 }

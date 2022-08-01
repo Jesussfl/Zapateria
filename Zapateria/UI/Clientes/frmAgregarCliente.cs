@@ -24,13 +24,15 @@ namespace Zapateria.UI.Clientes
             
         }
 
-        //Metodos
+
+        #region Métodos
         private void CargarDatos() //Metodo para cargar todos los datos necesarios
         {
             cbTipo.DataSource = coleccionClientes.TiposCedulas;
-        }
-        
-        
+        } 
+        #endregion
+
+
         #region Eventos
         private void btnCancelar_Click(object sender, EventArgs e)
         {

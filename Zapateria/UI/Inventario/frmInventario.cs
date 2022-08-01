@@ -16,8 +16,11 @@ namespace Zapateria.Inventario
 {
     public partial class frmInventario : Form
     {
-        #region Instanciaciones
+        private bool existeColumna = false;
         public Calzado inventarioDB { get; set; }
+
+
+        #region Instanciaciones
 
         Clases.Controles controles = new Clases.Controles();
         #endregion
@@ -29,18 +32,17 @@ namespace Zapateria.Inventario
 
             inventarioDB = new Calzado();
             inventarioDB.Grid = dataGridView1; //Definición de atributos para la clase inventario
-            cargarDatos();
+            CargarDatos();
 
             //Asignacion de color de bordes a botones de paginacion
-            btnSiguiente.FlatAppearance.BorderColor = btnSiguiente.Parent.BackColor;
-            btnAnterior.FlatAppearance.BorderColor = btnAnterior.Parent.BackColor;
-            btnIrFinal.FlatAppearance.BorderColor = btnIrFinal.Parent.BackColor;
+           
 
         }
 
-        //Métodos
-        bool existeColumna = false;
-        public void cargarDatos() //Función dedicada a rellenar las filas del datagridview
+
+        #region Métodos
+
+        public void CargarDatos() //Función dedicada a rellenar las filas del datagridview
         {
 
 
@@ -48,23 +50,77 @@ namespace Zapateria.Inventario
             if (existeColumna == false)
             {
                 inventarioDB.AsignarNombreColumnas();
-                inventarioDB.AsignarBotones("editar", "Editar", "Editar");
+                inventarioDB.AsignarBotones("editar", "", "Editar");
                 existeColumna = true;
             }
-           
-            dataGridView1.Columns["idProducto"].FillWeight = 35;
-            dataGridView1.Columns["talla"].FillWeight = 20;
-            dataGridView1.Columns["color"].FillWeight = 50;
-            dataGridView1.Columns["precioVenta"].FillWeight = 30;
-            dataGridView1.Columns["cantidad"].FillWeight = 30;
-            dataGridView1.Columns["tipoCalzado"].FillWeight = 45;
-            dataGridView1.Columns["costeTotal"].FillWeight = 30;
-            dataGridView1.Columns["editar"].FillWeight = 30;
 
+
+
+            ModificarColumnas();
 
 
         }
 
+        private void ModificarColumnas()
+        {
+            dataGridView1.Columns["idProducto"].FillWeight = 35;
+            dataGridView1.Columns["talla"].FillWeight = 20;
+            dataGridView1.Columns["color"].FillWeight = 50;
+            dataGridView1.Columns["precioVenta"].FillWeight = 30;
+            dataGridView1.Columns["precioVenta"].DefaultCellStyle.ForeColor = Color.Green;
+            dataGridView1.Columns["precioVenta"].DefaultCellStyle.SelectionForeColor = Color.DarkGreen;
+
+            dataGridView1.Columns["cantidad"].FillWeight = 30;
+
+            dataGridView1.Columns["tipoCalzado"].FillWeight = 45;
+
+            dataGridView1.Columns["editar"].FillWeight = 30;
+        }
+
+        #endregion
+
+        #region Eventos Principales
+
+        public void Inventario_Load(object sender, EventArgs e)
+        {
+            this.dataGridView1.ClearSelection();
+        }
+        private void btnAgregar_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
+        {
+            frmAgregarProductos popup = new frmAgregarProductos(this);
+            controles.mostrarPopup(popup);
+        }
+        private void btnCategoriasModelos_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
+        {
+
+            frmCategoriasYModelos popup = new frmCategoriasYModelos();
+            controles.mostrarPopup(popup);
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+ 
+        }
+        private void cbTallas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbTallas.SelectedItem.ToString() == "Todas")
+            {
+                inventarioDB.Cargar(inventarioDB.CargarSQL);
+
+            }
+            else
+            {
+                inventarioDB.BuscarSQL = $"{inventarioDB.CargarSQL} WHERE  talla = {cbTallas.SelectedItem}";
+                inventarioDB.Cargar(inventarioDB.BuscarSQL);
+            }
+            
+        }
+
+        #endregion
 
         #region Busqueda
         private void clearTb_Click(object sender, EventArgs e) //Botón de limpiar busqueda
@@ -109,49 +165,6 @@ namespace Zapateria.Inventario
             }
         }
 
-        #endregion
-
-        #region Eventos
-
-
-        public void Inventario_Load(object sender, EventArgs e)
-        {
-          
-        }
-        private void btnAgregar_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
-        {
-            frmAgregarProductos popup = new frmAgregarProductos(this);
-            controles.mostrarPopup(popup);
-        }
-        private void btnCategoriasModelos_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
-        {
-
-            frmCategoriasYModelos popup = new frmCategoriasYModelos();
-            controles.mostrarPopup(popup);
-        }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
- 
-        }
-        private void cbTallas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(cbTallas.SelectedItem.ToString() == "Todas")
-            {
-                inventarioDB.Cargar(inventarioDB.CargarSQL);
-
-            }
-            else
-            {
-                inventarioDB.BuscarSQL = $"{inventarioDB.CargarSQL} WHERE  talla = {cbTallas.SelectedItem}";
-                inventarioDB.Cargar(inventarioDB.BuscarSQL);
-            }
-            
-        }
         #endregion
 
     }

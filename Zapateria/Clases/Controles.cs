@@ -12,21 +12,43 @@ namespace Zapateria.Clases
 {
     public class Controles
     {
-        
+        //Clase dedicada exclusivamente a almacenar métodos sencillos para los controles de la interfáz gráfica
+
+        public Point Location { get; private set; }
         public void añadirPlaceholder(TextBox tb, string text)
         {
             //Funcion para añadir texto de ayuda en los textbox
-            if (tb.Text == text) { tb.Text = ""; }
-            else if (string.IsNullOrWhiteSpace(tb.Text)) { tb.Text = text; }
+            if (tb.Text == text) 
+            {
+             
+                tb.Text = "";  
+            }
+            else if (string.IsNullOrWhiteSpace(tb.Text)) { tb.PasswordChar = '\0'; tb.Text = text; }
         }
         public void añadirPlaceholderInputs(InputText tb, string text)
         {
             //Funcion para añadir texto de ayuda en los textbox
-            if (tb.Texts == text) { tb.Texts = ""; }
-            else if (string.IsNullOrWhiteSpace(tb.Texts)) { tb.Texts = text; }
+            if (tb.Texts == text) 
+            {
+                if (tb.Texts == "Contraseña" || tb.Texts == "Confirmar Contraseña")
+                {
+                    tb.Texts = "";
+                    tb.PasswordChar = true;
+
+                } 
+                    tb.Texts = "";
+            }
+            else if (string.IsNullOrWhiteSpace(tb.Texts)) { tb.PasswordChar = false; tb.Texts = text; }
         }
 
-        public Point Location { get; private set; }
+        public void AceptarSoloNumeros(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+            (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
 
         public void mostrarPopup(Form frm)
         {

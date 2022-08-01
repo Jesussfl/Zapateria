@@ -13,6 +13,15 @@ namespace Zapateria
 {
     public partial class Inicio : Form
     {
+        //Definicion de variables con formularios indexados en pagina de inicio
+        formCaja caj = new formCaja();
+        Ventas.Ventas ven = new Ventas.Ventas();
+        Inventario.frmInventario inv = new Inventario.frmInventario();
+        Secciones.Clientes.Clientes cli = new Secciones.Clientes.Clientes();
+        Secciones.Empleados.Empleados emp = new Secciones.Empleados.Empleados();
+
+
+
 
         public Inicio()
         {
@@ -21,19 +30,10 @@ namespace Zapateria
             //Definición de bordes UI
             
    
-
+          
         }
 
-        //Definicion de variables con formularios indexados en pagina de inicio
-        formCaja caj = new formCaja();
-        Ventas.Ventas ven = new Ventas.Ventas();
-        Inventario.frmInventario inv = new Inventario.frmInventario();
-        Reportes.Reportes rep = new Reportes.Reportes();
-        Secciones.Clientes.Clientes cli = new Secciones.Clientes.Clientes();
-        Secciones.Empleados.Empleados emp = new Secciones.Empleados.Empleados();
-
-
-        //Funcion para abrir formularios desde el sidebar
+        
         private void abrirForms(Form frm)
         {
             frm.TopLevel = false;
@@ -43,7 +43,7 @@ namespace Zapateria
             frm.BringToFront();
             frm.Show();
             frm.Dock = DockStyle.Fill;
-        }
+        }//Funcion para abrir formularios desde el sidebar
 
         #region Botones
 
@@ -81,7 +81,7 @@ namespace Zapateria
 
 
             Button click = (Button)sender;
-            click.BackColor = Clases.Colores.primary;
+            click.BackColor = Clases.Colores.Primary;
             click.ForeColor = Color.White;
  
 
@@ -94,13 +94,7 @@ namespace Zapateria
             misBotonesApariencia(btnInventario, null);
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
-        {
-            //Llamado a pagina de reportes
-            abrirForms(rep);
-            misBotonesApariencia(btnReportes, null);
-
-        }
+ 
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
@@ -126,8 +120,9 @@ namespace Zapateria
             misBotonesApariencia(btnSalir, null);
 
             //Cerrar Programa
+            
             this.Close();
-
+            Application.Exit();
         }
 
         #endregion

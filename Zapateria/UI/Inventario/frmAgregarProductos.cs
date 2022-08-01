@@ -17,23 +17,28 @@ namespace Zapateria.Secciones.Inventario
     {
 
         #region Instanciaciones
+
         Clases.Calzado objCalzado;
+
         Clases.Calzado coleccionCalzados = new Clases.Calzado();
-        //Clases.Calzado coleccionCalzados = new Clases.Calzado();
         Clases.Categoria coleccionCategorias = new Clases.Categoria();
         Clases.Modelo coleccionModelo = new Clases.Modelo();
 
         Clases.Controles controles = new Clases.Controles();
-        //Formulario Padre
-        private frmInventario frm;
 
         #endregion
+        
+        private frmInventario frm;
+
 
         public frmAgregarProductos(frmInventario frm) //Constructor
         {
             InitializeComponent();
             this.frm = frm;   //Asignación a la variable con el formulario padre
         }
+
+
+        #region Métodos
         private string obtenerCategoria()
         {
             string[] extractor = cbCategoria.Text.Split('-');
@@ -43,25 +48,17 @@ namespace Zapateria.Secciones.Inventario
 
         private void cargarDatos()
         {
-            
+
             cbColor.DataSource = coleccionCalzados.Colores;
             coleccionCategorias.LlenarComboBox(cbCategoria, "Select id, concat_ws('-',idCategoria,nombreCategoria, marca) as categoria, nombreCategoria from categorias order by(idCategoria)", "id", "categoria");
-            //coleccionCategorias.LlenarComboBox(cbMarca, $"Select idCategoria, marca from categorias where idCategoria like '%{cbCategoria.SelectedValue}%'", "idCategoria", "marca");
-            coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria like '%{obtenerCategoria()}%'", "id", "nombreModelo");
-        }
+            
+            coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria = '%{obtenerCategoria()}%'", "id", "nombreModelo");
+        } 
+        #endregion
 
 
 
-        #region Eventos
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        #region Eventos Principales
 
         private void frmAgregarProductos_Load(object sender, EventArgs e)
         {
@@ -71,21 +68,22 @@ namespace Zapateria.Secciones.Inventario
         private void btnAñadir_Click(object sender, EventArgs e)
         {
 
-            objCalzado = new Clases.Calzado();
-            //Marca = cbMarca.Text,
-            objCalzado.CodigoCategoria = cbCategoria.SelectedValue.ToString();
-            objCalzado.CodigoModelo = cbModelo.SelectedValue.ToString();
-            objCalzado.Descripcion = txtDescripcion.Texts;
-            objCalzado.TipoCalzado = cbSexo.Text;
-            objCalzado.Talla = int.Parse(cbTalla.Text);
-            objCalzado.Color = cbColor.Text;
-            objCalzado.Cantidad = int.Parse(txtStock.Texts);
-            objCalzado.PrecioProducto = double.Parse(txtPrecioVenta.Texts);
-            objCalzado.CostePorProducto = double.Parse(txtCosteMercancia.Texts);
+            objCalzado = new Clases.Calzado()
+            {
+                CodigoCategoria = obtenerCategoria(),
+                CodigoModelo = cbModelo.SelectedValue.ToString(),
+                Descripcion = txtDescripcion.Texts,
+                TipoCalzado = cbSexo.Text,
+                Talla = int.Parse(cbTalla.Text),
+                Color = cbColor.Text,
+                Cantidad = int.Parse(txtStock.Texts),
+                PrecioProducto = double.Parse(txtPrecioVenta.Texts)
+            };
             objCalzado.Codigo = objCalzado.GenerarCodigo();
 
             objCalzado.CargarAtributos();
-            frm.cargarDatos();
+
+            frm.CargarDatos();
 
            this.Close();
         }
@@ -110,14 +108,21 @@ namespace Zapateria.Secciones.Inventario
             coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria like '%{extractor[0]}%'", "id", "nombreModelo");
 
         }
+
+        #endregion
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
-
-        #endregion
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
     }

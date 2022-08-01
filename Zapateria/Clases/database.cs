@@ -12,24 +12,29 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using DocumentFormat.OpenXml.Spreadsheet;
+using ClosedXML.Excel;
 
 namespace Zapateria
 {
     public class Database
     {
         #region Atributos
-        //Atributos
+
         private string[] columnas;
         private string cargarSQL;
         private string insertarSQL;
         private string eliminarSQL;
         private string buscarSQL;
         private string sqlCombo;
+        private bool hayError = false;
+        private int numeroError;
         private MySqlParameter[] parametros;
 
         private MySqlConnection conexion = new MySqlConnection("server=localhost; uid=root; password=13122002b; database=zapateria; port=3306");
+
         #endregion
-        //pscale_pw_0lQdoePNHCUe1bJlJ6USh9PxMCAwLY6sGwXR_hSiITw
+        
         #region Encapsulamiento
         public string[] Columnas { get => columnas; set => columnas = value; }
         public string CargarSQL { get => cargarSQL; set => cargarSQL = value; }
@@ -40,9 +45,13 @@ namespace Zapateria
         public DataGridView Grid { get; set; }
         public MySqlParameter[] Parametros { get => parametros; set => parametros = value; }
         public MySqlConnection Conexion { get => conexion; set => conexion = value; }
+        public bool HayError { get => hayError; set => hayError = value; }
+        public int NumeroError { get => numeroError; set => numeroError = value; }
+
         #endregion
 
         #region Métodos
+
         public void Cargar(string consulta) //Método para cargar y buscar en la base de datos
         {
 
@@ -57,6 +66,7 @@ namespace Zapateria
             conexion.Close();
 
         }
+
 
         //Método para insertar, actualizar y eliminar en la base de datos
         public void InsertarActualizarEliminar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false, bool IncluyeParametros = true) 
@@ -82,11 +92,14 @@ namespace Zapateria
   
 
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                hayError = true;
+                numeroError = ex.Number;
+                MessageBox.Show(ex.Message +" "+ numeroError);
             }
         }
+
         public void LlenarComboBox(ComboBox comboBox, string consulta, string value, string display) //Metodo para cargar items a combobox
         {
             
@@ -102,6 +115,7 @@ namespace Zapateria
             comboBox.DataSource = dt;
 
         } 
+
         public void AsignarNombreColumnas() //Método para cambiar el nombre de las columnas
         {
 
@@ -113,33 +127,38 @@ namespace Zapateria
                 i += 1;
             }
         }
+
         public void AsignarBotones(string nombreBase, string nombreHeader, string textoBotón, bool tipo = false) //Método para agregar una columna con botones
         {
             if (tipo == false)
             {
-                DataGridViewButtonColumn columnaBoton = new DataGridViewButtonColumn();
-                columnaBoton.Name = nombreBase;
-                columnaBoton.HeaderText = nombreHeader;
-                columnaBoton.Text = textoBotón;
-                columnaBoton.UseColumnTextForButtonValue = true;
-                columnaBoton.FlatStyle = FlatStyle.Flat;
+                DataGridViewButtonColumn columnaBoton = new DataGridViewButtonColumn
+                {
+                    Name = nombreBase,
+                    HeaderText = nombreHeader,
+                    Text = textoBotón,
+                    UseColumnTextForButtonValue = true,
+                    FlatStyle = FlatStyle.Flat
+                };
                 columnaBoton.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 columnaBoton.Width = 50;
-                columnaBoton.DefaultCellStyle.ForeColor = Clases.Colores.primary;
+                columnaBoton.DefaultCellStyle.ForeColor = Clases.Colores.Primary;
                 columnaBoton.ReadOnly = false;
 
                 Grid.Columns.Add(columnaBoton);
             }
             else
             {
-                DataGridViewCheckBoxColumn columnaCheck = new DataGridViewCheckBoxColumn();
-                columnaCheck.Name = nombreBase;
-                columnaCheck.HeaderText = nombreHeader;
-                columnaCheck.ReadOnly = false;
+                DataGridViewCheckBoxColumn columnaCheck = new DataGridViewCheckBoxColumn
+                {
+                    Name = nombreBase,
+                    HeaderText = nombreHeader,
+                    ReadOnly = false,
 
-                columnaCheck.FillWeight = 40;
-                columnaCheck.Width = 50;
-                columnaCheck.DefaultCellStyle.ForeColor = Clases.Colores.primary;
+                    FillWeight = 40,
+                    Width = 50
+                };
+                columnaCheck.DefaultCellStyle.ForeColor = Clases.Colores.Primary;
 
                 Grid.Columns.Add(columnaCheck);
 
@@ -148,9 +167,9 @@ namespace Zapateria
 
 
         }
+
         public void GenerarReporteSencillo(string document, string[,] datos)
         {
-            // To search and replace content in a document part.
             using (SaveFileDialog sfd = new SaveFileDialog() {Filter = "Word |*.docx"})
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
@@ -203,6 +222,37 @@ namespace Zapateria
             
         }
 
+        public void GenerarReporteExcel(string columna)
+        {
+            DataTable dt = (DataTable)Grid.DataSource;
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using(XLWorkbook workbook = new XLWorkbook())
+                        {
+                            workbook.Worksheets.Add(dt, columna);
+                            workbook.SaveAs(sfd.FileName);
+                        }
+                        if(System.IO.File.Exists(sfd.FileName) == true)
+                        {
+                            Process.Start(sfd.FileName);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El archivo no fue creado");
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error");
+                        throw;
+                    }
+                }
+            }
+        }
         #endregion
 
     }

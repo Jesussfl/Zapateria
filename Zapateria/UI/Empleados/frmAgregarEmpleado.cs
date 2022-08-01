@@ -20,16 +20,17 @@ namespace Zapateria.UI.Empleados
         {
             InitializeComponent();
         }
+
+
+        #region Métodos
         private void CargarDatos()
         {
             cbTipo.DataSource = coleccionEmpleados.TiposCedulas;
 
-        }
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        } 
+        #endregion
 
+        #region Eventos Principales
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             nuevoEmpleado = new Clases.Empleado()
@@ -43,17 +44,31 @@ namespace Zapateria.UI.Empleados
                 Horario = txtHorario.Texts.ToUpper()
             };
             nuevoEmpleado.CargarAtributos();
+
+            if (nuevoEmpleado.HayError == true && nuevoEmpleado.NumeroError == 1062)
+            {
+                MessageBox.Show("Ya existe un registro con esta cédula");
+            }
             this.Close();
         }
 
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void frmAgregarEmpleado_Load(object sender, EventArgs e)
         {
             CargarDatos();
         }
+        #endregion
+
+
+        #region Eventos
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        } 
+        #endregion
     }
 }
