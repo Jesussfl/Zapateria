@@ -103,7 +103,7 @@ namespace Zapateria.Clases
 
             };
 
-            InsertarActualizarEliminar(InsertarSQL, false);
+            Insertar(InsertarSQL, false);
 
         }
         public void CargarAtributosVentas()//Método para parametrizar los atributos y cargarlos en mysql en la tabla de ventas
@@ -121,7 +121,24 @@ namespace Zapateria.Clases
 
        };
 
-            InsertarActualizarEliminar(InsertarSQL, false);
+            Insertar(InsertarSQL, false);
+        }
+        public override MySqlParameter[] ParametrizarAtributos()
+        {
+
+            //Método para cargar atributos a la base de datos
+            Parametros = new MySqlParameter[]
+             {
+            new MySqlParameter("@ciCliente", cedulaCliente),
+            new MySqlParameter("@idProductos", idProductos),
+            new MySqlParameter("@detalle", detalle),
+            new MySqlParameter("@subtotal", subTotal),
+            new MySqlParameter("@montoTotal", montoTotal),
+            new MySqlParameter("@metodoPago", metodoPago),
+            new MySqlParameter("@fechaVenta", fechaVenta),
+            new MySqlParameter("@referencias", referencia)
+             };
+            return Parametros;
         }
         public int ExtraerCantidadProducto(int idProducto) //Método para extraer la cantidad de los productos
         {
@@ -150,7 +167,7 @@ namespace Zapateria.Clases
 
             objInventario.Parametros = new MySqlParameter[] { new MySqlParameter("@cantidad", nuevaCantidad) };
 
-            objInventario.InsertarActualizarEliminar(objInventario.InsertarSQL, false);
+            objInventario.Insertar(objInventario.InsertarSQL, false);
             
         }
         public void CalcularMontos() //Método para el cálculo de los montos

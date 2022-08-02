@@ -37,7 +37,10 @@ namespace Zapateria.Clases
 
 
         #region Métodos
-
+        public override MySqlParameter[] ParametrizarAtributos()
+        {
+            return null;
+        }
         public bool ValidarEmail(string email) //Método para verificar que el correo esté correcto
         {
             var correoCortado = email.Trim();

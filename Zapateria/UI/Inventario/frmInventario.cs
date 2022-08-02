@@ -85,26 +85,6 @@ namespace Zapateria.Inventario
         {
             this.dataGridView1.ClearSelection();
         }
-        private void btnAgregar_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
-        {
-            frmAgregarProductos popup = new frmAgregarProductos(this);
-            controles.mostrarPopup(popup);
-        }
-        private void btnCategoriasModelos_Click(object sender, EventArgs e) //Llamado del formulario para agregar productos
-        {
-
-            frmCategoriasYModelos popup = new frmCategoriasYModelos();
-            controles.mostrarPopup(popup);
-        }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
- 
-        }
         private void cbTallas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(cbTallas.SelectedItem.ToString() == "Todas")
@@ -120,6 +100,26 @@ namespace Zapateria.Inventario
             
         }
 
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "")
+            {
+                frmEditarProductos popup = new frmEditarProductos(this);
+                popup.id = dataGridView1.CurrentRow.Cells["idProducto"].Value.ToString();
+             
+                controles.mostrarPopup(popup);
+            }
+        }
+
+        private void btnCategoriasModelos_Click(object sender, EventArgs e)
+        {
+            controles.mostrarPopup(new frmCategoriasYModelos());
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            controles.mostrarPopup(new frmAgregarProductos(this));
+        }
         #endregion
 
         #region Busqueda

@@ -62,7 +62,7 @@ namespace Zapateria.UI.Caja
             venta.InsertarSQL = "Insert into aux_ventas (idProducto) values (@idProducto)";
 
             venta.EliminarSQL = "delete from aux_ventas";
-            venta.InsertarActualizarEliminar(venta.EliminarSQL, false, false, false);
+            venta.Insertar(venta.EliminarSQL, false, false, false);
 
             #endregion
 
@@ -146,7 +146,7 @@ namespace Zapateria.UI.Caja
         }
         private void LimpiarFactura()
         {
-            venta.InsertarActualizarEliminar(venta.EliminarSQL, false, false, false);
+            venta.Insertar(venta.EliminarSQL, false, false, false);
             lblCliente.Text = "Cliente de la Factura";
             busCliente.Text = "Buscar Cliente";
             CargarDatos();
@@ -245,11 +245,6 @@ namespace Zapateria.UI.Caja
             popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
             controles.mostrarPopup(popup);
         }
-        private void popup_FormClosed(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
-        {
-            CargarDatos();
-   
-        }
 
 
 
@@ -258,6 +253,11 @@ namespace Zapateria.UI.Caja
             frmAgregarCliente popup = new frmAgregarCliente();
             popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
             controles.mostrarPopup(popup);
+        }
+        private void popup_FormClosed(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
+        {
+            CargarDatos();
+   
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -341,7 +341,7 @@ namespace Zapateria.UI.Caja
             {
 
                 venta.EliminarSQL = $"delete from aux_ventas where idProducto = {dataGridView1.CurrentRow.Cells["idProducto"].Value.ToString()}";
-                venta.InsertarActualizarEliminar(venta.EliminarSQL, true, false, false);
+                venta.Insertar(venta.EliminarSQL, true, false, false);
                 CargarDatos();
             }
         }
@@ -353,7 +353,7 @@ namespace Zapateria.UI.Caja
         {
             if (MessageBox.Show("¿Seguro que desea una nueva factura?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                venta.InsertarActualizarEliminar(venta.EliminarSQL, false, false, false);
+                venta.Insertar(venta.EliminarSQL, false, false, false);
                 lblCliente.Text = "Cliente de la Factura";
                 busCliente.Text = "Buscar Cliente";
                 CargarDatos();

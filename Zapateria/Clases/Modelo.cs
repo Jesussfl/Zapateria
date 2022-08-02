@@ -49,11 +49,21 @@ namespace Zapateria.Clases
                 new MySqlParameter("@nombreModelo", nombreModelo)
              };
 
-            InsertarActualizarEliminar(InsertarSQL, false);
-            InsertarActualizarEliminar("idgrupal", false, true);
+            Insertar(InsertarSQL, false);
+            Insertar("idgrupal", false, true);
 
         }
+        public override MySqlParameter[] ParametrizarAtributos()
+        {
 
+            //Método para cargar atributos a la base de datos
+            Parametros = new MySqlParameter[]
+             {
+                new MySqlParameter("@idCategoria", idCategoria),
+                new MySqlParameter("@nombreModelo", nombreModelo)
+             };
+            return Parametros;
+        }
         #endregion
     }
 }

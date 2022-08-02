@@ -1,7 +1,7 @@
 ﻿
 namespace Zapateria.Secciones.Inventario
 {
-    partial class frmAgregarProductos
+    partial class frmEditarProductos
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@ namespace Zapateria.Secciones.Inventario
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlStock = new System.Windows.Forms.Panel();
             this.txtStock = new System.Windows.Forms.TextBox();
-            this.pnlPrecio = new System.Windows.Forms.Panel();
+            this.pnlPrecioVenta = new System.Windows.Forms.Panel();
             this.txtPrecioVenta = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new Zapateria.Controles.InputText();
             this.cbSexo = new System.Windows.Forms.ComboBox();
@@ -61,7 +61,7 @@ namespace Zapateria.Secciones.Inventario
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlStock.SuspendLayout();
-            this.pnlPrecio.SuspendLayout();
+            this.pnlPrecioVenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +105,7 @@ namespace Zapateria.Secciones.Inventario
             this.btnAñadir.Name = "btnAñadir";
             this.btnAñadir.Size = new System.Drawing.Size(204, 42);
             this.btnAñadir.TabIndex = 17;
-            this.btnAñadir.Text = "  Registrar Producto";
+            this.btnAñadir.Text = "  Guardar Cambios";
             this.btnAñadir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAñadir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAñadir.UseVisualStyleBackColor = false;
@@ -114,7 +114,7 @@ namespace Zapateria.Secciones.Inventario
             // panel2
             // 
             this.panel2.Controls.Add(this.pnlStock);
-            this.panel2.Controls.Add(this.pnlPrecio);
+            this.panel2.Controls.Add(this.pnlPrecioVenta);
             this.panel2.Controls.Add(this.txtDescripcion);
             this.panel2.Controls.Add(this.cbSexo);
             this.panel2.Controls.Add(this.label12);
@@ -167,16 +167,16 @@ namespace Zapateria.Secciones.Inventario
             this.txtStock.TabIndex = 17;
             this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
-            // pnlPrecio
+            // pnlPrecioVenta
             // 
-            this.pnlPrecio.AutoSize = true;
-            this.pnlPrecio.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlPrecio.Controls.Add(this.txtPrecioVenta);
-            this.pnlPrecio.Location = new System.Drawing.Point(226, 311);
-            this.pnlPrecio.Name = "pnlPrecio";
-            this.pnlPrecio.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this.pnlPrecio.Size = new System.Drawing.Size(259, 28);
-            this.pnlPrecio.TabIndex = 158;
+            this.pnlPrecioVenta.AutoSize = true;
+            this.pnlPrecioVenta.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlPrecioVenta.Controls.Add(this.txtPrecioVenta);
+            this.pnlPrecioVenta.Location = new System.Drawing.Point(226, 311);
+            this.pnlPrecioVenta.Name = "pnlPrecioVenta";
+            this.pnlPrecioVenta.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
+            this.pnlPrecioVenta.Size = new System.Drawing.Size(259, 28);
+            this.pnlPrecioVenta.TabIndex = 158;
             // 
             // txtPrecioVenta
             // 
@@ -475,9 +475,9 @@ namespace Zapateria.Secciones.Inventario
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(122)))), ((int)(((byte)(153)))));
             this.label4.Location = new System.Drawing.Point(19, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(198, 30);
+            this.label4.Size = new System.Drawing.Size(167, 30);
             this.label4.TabIndex = 45;
-            this.label4.Text = "Agregar Productos";
+            this.label4.Text = "Editar Producto";
             // 
             // pictureBox1
             // 
@@ -491,7 +491,7 @@ namespace Zapateria.Secciones.Inventario
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
-            // frmAgregarProductos
+            // frmEditarProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -501,7 +501,7 @@ namespace Zapateria.Secciones.Inventario
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmAgregarProductos";
+            this.Name = "frmEditarProductos";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgregarProductos";
@@ -511,8 +511,8 @@ namespace Zapateria.Secciones.Inventario
             this.panel2.PerformLayout();
             this.pnlStock.ResumeLayout(false);
             this.pnlStock.PerformLayout();
-            this.pnlPrecio.ResumeLayout(false);
-            this.pnlPrecio.PerformLayout();
+            this.pnlPrecioVenta.ResumeLayout(false);
+            this.pnlPrecioVenta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -546,7 +546,7 @@ namespace Zapateria.Secciones.Inventario
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlStock;
         private System.Windows.Forms.TextBox txtStock;
-        private System.Windows.Forms.Panel pnlPrecio;
+        private System.Windows.Forms.Panel pnlPrecioVenta;
         private System.Windows.Forms.TextBox txtPrecioVenta;
     }
 }

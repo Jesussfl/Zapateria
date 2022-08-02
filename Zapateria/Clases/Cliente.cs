@@ -82,6 +82,7 @@ namespace Zapateria.Clases
             while (sdr.Read())
             {
                 return sdr.GetValue(1).ToString();
+                
             }
 
             return "No existe";
@@ -101,9 +102,22 @@ namespace Zapateria.Clases
                 new MySqlParameter("@fechaRegistro", fechaRegistro)
                 };
 
-            InsertarActualizarEliminar(InsertarSQL, true, false);
+            Insertar(InsertarSQL, true, false);
         } 
-
+        public override MySqlParameter[] ParametrizarAtributos()
+        {
+            Parametros = new MySqlParameter[]
+            {
+                new MySqlParameter("@ciCliente", cedula),
+                new MySqlParameter("@tipoCedula", tipoCedulaCliente),
+                new MySqlParameter("@nombre", nombre),
+                new MySqlParameter("@Apellido", apellido),
+                new MySqlParameter("@telefono", telefono),
+                new MySqlParameter("@direccion", direccion),
+                new MySqlParameter("@fechaRegistro", fechaRegistro)
+            };
+            return Parametros;
+        }
         #endregion
     }
 }

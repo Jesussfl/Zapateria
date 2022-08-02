@@ -111,13 +111,28 @@ namespace Zapateria.Clases
                 new MySqlParameter("@contraseña", contraseña)
                 };
 
-            InsertarActualizarEliminar(InsertarSQL, true, false);
+            Insertar(InsertarSQL, true, false);
 
 
 
 
-        } 
-
+        }
+        public override MySqlParameter[] ParametrizarAtributos()
+        {
+            Parametros = new MySqlParameter[]
+             {
+                new MySqlParameter("@ciEmpleado", cedula),
+                new MySqlParameter("@tipoCedula", tipoCedulaEmpleado),
+                new MySqlParameter("@nombres", nombres),
+                new MySqlParameter("@apellidos", apellidos),
+                new MySqlParameter("@telefono", telefono),
+                new MySqlParameter("@direccion", direccion),
+                new MySqlParameter("@horario", horario),
+                new MySqlParameter("@correo", correo),
+                new MySqlParameter("@contraseña", contraseña)
+             };
+            return Parametros;
+        }
         #endregion
     }
 }

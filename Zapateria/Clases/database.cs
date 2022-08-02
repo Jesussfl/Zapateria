@@ -17,19 +17,21 @@ using ClosedXML.Excel;
 
 namespace Zapateria
 {
-    public class Database
+    public abstract class Database
     {
         #region Atributos
 
         private string[] columnas;
         private string cargarSQL;
         private string insertarSQL;
+        private string actualizarSQL;
         private string eliminarSQL;
         private string buscarSQL;
         private string sqlCombo;
         private bool hayError = false;
         private int numeroError;
         private MySqlParameter[] parametros;
+        public DataGridView Grid { get; set; }
 
         private MySqlConnection conexion = new MySqlConnection("server=localhost; uid=root; password=13122002b; database=zapateria; port=3306");
 
@@ -42,11 +44,11 @@ namespace Zapateria
         public string EliminarSQL { get => eliminarSQL; set => eliminarSQL = value; }
         public string BuscarSQL { get => buscarSQL; set => buscarSQL = value; }
         public string SqlCombo { get => sqlCombo; set => sqlCombo = value; }
-        public DataGridView Grid { get; set; }
         public MySqlParameter[] Parametros { get => parametros; set => parametros = value; }
         public MySqlConnection Conexion { get => conexion; set => conexion = value; }
         public bool HayError { get => hayError; set => hayError = value; }
         public int NumeroError { get => numeroError; set => numeroError = value; }
+        public string ActualizarSQL { get => actualizarSQL; set => actualizarSQL = value; }
 
         #endregion
 
@@ -66,26 +68,22 @@ namespace Zapateria
             conexion.Close();
 
         }
-
-
-        //Método para insertar, actualizar y eliminar en la base de datos
-        public void InsertarActualizarEliminar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false, bool IncluyeParametros = true) 
+        public void Insertar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false, bool IncluyeParametros = true) 
         {
             
             try
             {
 
                 conexion.Open();
+
                 MySqlCommand cmd = new MySqlCommand(consulta, conexion);
 
                 if (EsProcedimiento == true) { cmd.CommandType = CommandType.StoredProcedure; }
 
-                if (IncluyeParametros)
-                {
-                    cmd.Parameters.AddRange(parametros);
+                if (IncluyeParametros) { cmd.Parameters.AddRange(ParametrizarAtributos()); }
 
-                }
                 cmd.ExecuteNonQuery();
+
                 conexion.Close();
 
                 if (IncluyeMensaje == true) { MessageBox.Show("Se han actualizado los cambios"); }
@@ -96,11 +94,92 @@ namespace Zapateria
             {
                 hayError = true;
                 numeroError = ex.Number;
-                MessageBox.Show(ex.Message +" "+ numeroError);
+                
+            }
+        }
+        public void Actualizar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false, bool IncluyeParametros = true)
+        {
+
+            try
+            {
+
+                conexion.Open();
+
+                MySqlCommand cmd = new MySqlCommand(consulta, conexion);
+
+                if (EsProcedimiento == true) { cmd.CommandType = CommandType.StoredProcedure; }
+
+                if (IncluyeParametros) { cmd.Parameters.AddRange(ParametrizarAtributos()); }
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+
+                if (IncluyeMensaje == true) { MessageBox.Show("Se han actualizado los cambios"); }
+
+
+            }
+            catch (MySqlException ex)
+            {
+                hayError = true;
+                numeroError = ex.Number;
+
+            }
+        }
+        public void Eliminar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false, bool IncluyeParametros = true)
+        {
+
+            try
+            {
+
+                conexion.Open();
+
+                MySqlCommand cmd = new MySqlCommand(consulta, conexion);
+
+                if (EsProcedimiento == true) { cmd.CommandType = CommandType.StoredProcedure; }
+
+                if (IncluyeParametros) { cmd.Parameters.AddRange(ParametrizarAtributos()); }
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+
+                if (IncluyeMensaje == true) { MessageBox.Show("Se han actualizado los cambios"); }
+
+
+            }
+            catch (MySqlException ex)
+            {
+                hayError = true;
+                numeroError = ex.Number;
+
             }
         }
 
-        public void LlenarComboBox(ComboBox comboBox, string consulta, string value, string display) //Metodo para cargar items a combobox
+        public string ExtraerDato(string consulta, string columna)
+        {
+            string dato;
+            conexion.Open();
+            MySqlCommand cm = new MySqlCommand(consulta, Conexion);
+            MySqlDataReader sdr = cm.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                dato = sdr[columna].ToString();
+                conexion.Close();
+                return dato;
+
+            }
+            else
+            {
+                dato = "No existe";
+                conexion.Close();
+                return dato;
+            }
+        }
+        public abstract MySqlParameter[] ParametrizarAtributos(); //Metodo para que los atributos sean compatibles con la base de datos
+
+        public void LlenarComboBox(ComboBox comboBox, string consulta, string value, string display) //Metodo para cargar items a un combobox
         {
             
             MySqlCommand cm = new MySqlCommand(consulta, conexion);
@@ -116,7 +195,7 @@ namespace Zapateria
 
         } 
 
-        public void AsignarNombreColumnas() //Método para cambiar el nombre de las columnas
+        public void AsignarNombreColumnas() //Método para cambiar el nombre de las columnas de un datagridview
         {
 
             
@@ -253,6 +332,8 @@ namespace Zapateria
                 }
             }
         }
+        
+
         #endregion
 
     }

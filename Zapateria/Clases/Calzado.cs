@@ -24,7 +24,6 @@ namespace Zapateria.Clases
         private string color;
         private int cantidad;
         private double precioProducto;
-        private double costePorProducto;
 
         private string[] colores = new string[] { "NEGRO", "GRIS", "BLANCO", "MARRON", "AMARILLO", "VERDE", "BEIGE", "AZUL", "ROSADO", "MORADO", "ROJO", "VERDE", "AMARILLO", "NARANJA" };
 
@@ -39,7 +38,6 @@ namespace Zapateria.Clases
         public string Color { get => color; set => color = value; }
         public int Cantidad { get => cantidad; set => cantidad = value; }
         public double PrecioProducto { get => precioProducto; set => precioProducto = value; }
-        public double CostePorProducto { get => costePorProducto; set => costePorProducto = value; }
         public string CodigoModelo { get => codigoModelo; set => codigoModelo = value; }
         public string CodigoCategoria { get => codigoCategoria; set => codigoCategoria = value; }
         public string TipoCalzado { get => tipoCalzado; set => tipoCalzado = value; }
@@ -56,60 +54,60 @@ namespace Zapateria.Clases
                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.idCategoria) 
                         LEFT JOIN modelos mdl ON (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria)";
 
-            Columnas = new string[] 
-            { 
-                "Código", 
-                "Producto", 
-                "Descripcion", 
-                "Tipo", 
-                "Talla", 
-                "Color", 
-                "Cantidad", 
-                "Precio", 
-                
+            Columnas = new string[]
+            {
+                "Código",
+                "Producto",
+                "Descripcion",
+                "Sexo",
+                "Talla",
+                "Color",
+                "Cantidad",
+                "Precio",
+
             };
 
             InsertarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta) 
                              VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta)";
+            ActualizarSQL = @"UPDATE inventario SET idProducto = @idProducto, idCategoria = @idCategoria, idModelo = @idModelo, descripcion = @descripcion, tipoCalzado = @tipoCalzado, talla = @talla, color = @color, cantidad = @cantidad, precioVenta = @precioVenta";
 
             BuscarSQL = $@"{CargarSQL} where concat_ws(idProducto,ctg.nombreCategoria, ctg.marca, mdl.nombreModelo,tipoCalzado,talla,color) like";
         }
 
         #region Métodos
-
-        public void CargarAtributos() //Método para generar los parametros de MYSQL e insertarlos en la base de datos
+        public int AsignarCódigo() //Funcion para generar un código a cada producto según ciertas características
         {
-            
+
+            int indexColor = Array.IndexOf(Colores, color);
+
+            return int.Parse(CodigoCategoria + codigoModelo + talla.ToString() + indexColor.ToString());
+
+
+        }
+        public string ObtenerCategoria(string texto) //Metodo para obtener el string (categoria) del texto que se envie
+        {
+            string[] extractor = texto.Split('-');
+
+            return extractor[0];
+        } 
+
+        public override MySqlParameter[] ParametrizarAtributos() //Polimorfismo - Se modifica el método declarado en la clase base de datos
+        {
+            //Metodo para hacer los atributos compatibles con mysql
             Parametros = new MySqlParameter[]
-                {
+            {
                 new MySqlParameter("@idProducto", codigo),
-                new MySqlParameter("@idCategoria", codigoCategoria),
-                new MySqlParameter("@idModelo", codigoModelo),
+                new MySqlParameter("@idCategoria", int.Parse(codigoCategoria)),
+                new MySqlParameter("@idModelo", int.Parse(codigoModelo)),
                 new MySqlParameter("@descripcion", descripcion),
                 new MySqlParameter("@tipoCalzado", tipoCalzado),
                 new MySqlParameter("@talla", talla),
                 new MySqlParameter("@color", color),
                 new MySqlParameter("@cantidad", cantidad),
                 new MySqlParameter("@precioVenta", precioProducto)
-               
-                };
 
-            InsertarActualizarEliminar(InsertarSQL, true, false);
-        }
-        public void ExtraerDatos() //Metodo para extraer y llenar los atributos desde la base de datos
-        {
-            Conexion.Open();
-
-            Conexion.Close();
-        }
-        public int GenerarCodigo() //Funcion para generar un código a cada producto según ciertas características
-        {
-            
-            int indexColor = Array.IndexOf(Colores, color);
-
-            return int.Parse(CodigoCategoria + codigoModelo + talla.ToString() + indexColor.ToString());
-
-
+            };
+            return Parametros;
         }
 
         #endregion

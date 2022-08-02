@@ -13,7 +13,7 @@ using Zapateria.UI.Inventario;
 
 namespace Zapateria.Secciones.Inventario
 {
-    public partial class frmAgregarProductos : Form
+    public partial class frmEditarProductos : Form
     {
 
         #region Instanciaciones
@@ -29,9 +29,9 @@ namespace Zapateria.Secciones.Inventario
         #endregion
         
         private frmInventario frm;
+        public string id;
 
-
-        public frmAgregarProductos(frmInventario frm)
+        public frmEditarProductos(frmInventario frm)
         {
             InitializeComponent();
             this.frm = frm;   //Asignación a la variable con el formulario padre
@@ -39,18 +39,43 @@ namespace Zapateria.Secciones.Inventario
 
 
         #region Métodos
-        private void CargarDatos()
+        private void CargarDatos() //Este metodo carga todos los datos necesarios del formulario
         {
 
             cbColor.DataSource = coleccionCalzados.Colores;
 
-            coleccionCategorias.LlenarComboBox(cbCategoria, "Select id, concat_ws('-',idCategoria,nombreCategoria, marca) as categoria, nombreCategoria from categorias order by(idCategoria)", "id", "categoria");
+           coleccionCategorias.LlenarComboBox(cbCategoria, "Select id, concat_ws('-',idCategoria,nombreCategoria, marca) as categoria, nombreCategoria from categorias order by(idCategoria)", "id", "categoria");
 
             string categoria = coleccionCalzados.ObtenerCategoria(cbCategoria.Text);
             coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria = '%{categoria}%'", "id", "nombreModelo");
-        } 
-        #endregion
 
+            LlenarCampos();
+        } 
+        private void LlenarCampos() //Este método extrae todos los datos del producto al cual se va a editar y carga con datos los controles de la interfaz
+        {
+            string consulta = $@"select inv.idProducto, concat_ws('-',ctg.idCategoria,ctg.nombreCategoria,marca) as categoria , mdl.nombreModelo as modelo,descripcion, tipoCalzado, talla, color, cantidad, precioVenta
+                                from inventario inv
+                                INNER JOIN categorias ctg ON (inv.idCategoria = ctg.idCategoria) 
+                                LEFT JOIN modelos mdl ON (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria) 
+                                where idProducto = {id}";
+
+            cbCategoria.SelectedIndex = cbCategoria.FindStringExact(coleccionCalzados.ExtraerDato($"{consulta}", "categoria"));
+
+            cbModelo.SelectedIndex = cbModelo.FindStringExact(coleccionCalzados.ExtraerDato($"{consulta}", "modelo"));
+
+            txtDescripcion.Texts = coleccionCalzados.ExtraerDato($"{consulta}", "descripcion");
+
+            cbSexo.SelectedIndex = cbSexo.FindStringExact(coleccionCalzados.ExtraerDato($"{consulta}", "tipoCalzado"));
+
+            cbTalla.SelectedIndex = cbTalla.FindStringExact(coleccionCalzados.ExtraerDato($"{consulta}", "talla"));
+
+            cbColor.SelectedIndex = cbColor.FindStringExact(coleccionCalzados.ExtraerDato($"{consulta}", "color"));
+
+            txtStock.Text = coleccionCalzados.ExtraerDato($"{consulta}", "cantidad");
+
+            txtPrecioVenta.Text = coleccionCalzados.ExtraerDato($"{consulta}", "precioVenta");
+        }
+        #endregion
 
         #region Eventos Principales
 
@@ -72,11 +97,11 @@ namespace Zapateria.Secciones.Inventario
                 Cantidad = int.Parse(txtStock.Text),
                 PrecioProducto = double.Parse(txtPrecioVenta.Text)
             };
+
             objCalzado.CodigoCategoria = objCalzado.ObtenerCategoria(cbCategoria.Text);
-            
             objCalzado.Codigo = objCalzado.AsignarCódigo();
 
-            objCalzado.Insertar(objCalzado.InsertarSQL);
+            objCalzado.Actualizar($"{objCalzado.ActualizarSQL} where idProducto = {id}");
 
  //---------------------------------------------------------------------------------------------
             //Validación en caso de algún error
@@ -151,8 +176,6 @@ namespace Zapateria.Secciones.Inventario
             controles.AceptarSoloNumeros(e);
 
         }
-        #endregion
-
         private void btnNuevaCategoria_Click_1(object sender, EventArgs e)
         {
             frmCategoriasYModelos popup = new frmCategoriasYModelos();
@@ -181,5 +204,7 @@ namespace Zapateria.Secciones.Inventario
             CargarDatos();
 
         }
+        #endregion
+
     }
 }

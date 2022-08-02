@@ -80,8 +80,11 @@ namespace Zapateria.Ventas
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
 
+            
             ventas.Grid = dataGridView1;
             ventas.GenerarReporteExcel("ventas");
+
+
             //string cantidad = "321";
             //string[,] datos = { { DateTime.Now.ToString(), "date"},
             //                    { cantidad, "amount"},

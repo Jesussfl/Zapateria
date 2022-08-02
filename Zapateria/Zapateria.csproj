@@ -141,6 +141,12 @@
     <Compile Include="UI\Empleados\frmEmpleados.Designer.cs">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Inventario\frmEditarProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Inventario\frmEditarProductos.Designer.cs">
+      <DependentUpon>frmEditarProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Inventario\frmAgregarProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Empleados\frmEmpleados.resx">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Inventario\frmEditarProductos.resx">
+      <DependentUpon>frmEditarProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Inventario\frmAgregarProductos.resx">
       <DependentUpon>frmAgregarProductos.cs</DependentUpon>

@@ -104,7 +104,7 @@ namespace Zapateria.UI.Inventario
             };
 
             nuevaCategoria.cargarAtributos();
-            nuevaCategoria.InsertarActualizarEliminar("asignar_ids", false, true);
+            nuevaCategoria.Insertar("asignar_ids", false, true);
 
             //Actualización de campos
             cargarDatosCategorias();
