@@ -46,13 +46,21 @@ namespace Zapateria.Clases
         public string[] Colores { get => colores; set => colores = value; }
         #endregion
 
-        //Constructor
-        public Calzado()
+        public Calzado()  //Constructor
         {
+            //Consultas
             CargarSQL = @"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta
                         from inventario inv 
                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.idCategoria) 
                         LEFT JOIN modelos mdl ON (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria)";
+            InsertarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta) 
+                             VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta)";
+            EliminarSQL = "delete from inventario where idProducto = ";
+            ActualizarSQL = @"UPDATE inventario 
+                            SET idProducto = @idProducto, idCategoria = @idCategoria, idModelo = @idModelo, descripcion = @descripcion, tipoCalzado = @tipoCalzado, 
+                            talla = @talla, color = @color, cantidad = @cantidad, precioVenta = @precioVenta";
+            BuscarSQL = $@"{CargarSQL} where concat_ws(idProducto,ctg.nombreCategoria, ctg.marca, mdl.nombreModelo,tipoCalzado,talla,color) like";
+
 
             Columnas = new string[]
             {
@@ -67,11 +75,6 @@ namespace Zapateria.Clases
 
             };
 
-            InsertarSQL = @"INSERT INTO inventario (idProducto, idCategoria, idModelo, descripcion, tipoCalzado, talla, color, cantidad, precioVenta) 
-                             VALUES (@idProducto, @idCategoria, @idModelo, @descripcion,@tipoCalzado, @talla, @color, @cantidad, @precioVenta)";
-            ActualizarSQL = @"UPDATE inventario SET idProducto = @idProducto, idCategoria = @idCategoria, idModelo = @idModelo, descripcion = @descripcion, tipoCalzado = @tipoCalzado, talla = @talla, color = @color, cantidad = @cantidad, precioVenta = @precioVenta";
-
-            BuscarSQL = $@"{CargarSQL} where concat_ws(idProducto,ctg.nombreCategoria, ctg.marca, mdl.nombreModelo,tipoCalzado,talla,color) like";
         }
 
         #region Métodos

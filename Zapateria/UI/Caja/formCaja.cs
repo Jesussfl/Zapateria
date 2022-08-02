@@ -18,20 +18,17 @@ namespace Zapateria.UI.Caja
         #region Instanciaciones
 
         Clases.Controles controles = new Clases.Controles();
-
         Clases.Cliente clientes = new Clases.Cliente();
         Clases.Venta venta = new Clases.Venta();
         Clases.Venta historial = new Clases.Venta();
-
         Clases.Venta nuevaVenta;
 
         #endregion
 
 
         #region Atributos
+        public string nombreEmpleado;
         public string cedulaCliente;
-
- 
         private bool columnaExiste = false;
         private string referencia;
         #endregion
@@ -39,12 +36,19 @@ namespace Zapateria.UI.Caja
         public formCaja() //Constructor
         {
             InitializeComponent();
+            venta.EliminarSQL = "delete from aux_ventas";
+            
+            venta.Eliminar(venta.EliminarSQL, false);
+        }
 
-            #region Constructor auxiliar de ventas
+        #region Métodos del formulario
+        private void CargarConsultasGridFactura()//Metodo que guarda todas las consultas de MYSQL para el datagridview de la factura
+        {
             venta.Grid = dataGridView1;
+
             venta.CargarSQL = @"select aux.detalle, aux.precioCalculado,aux.idProducto,aux.cantidad,concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.id) as producto, inv.color, inv.talla, concat('$', FORMAT(precioVenta, 2, 'de_DE')) as precioVenta
                                       from aux_ventas aux 
-                                      inner join inventario inv on(aux.idProducto = inv.idProducto) inner join categorias ctg on (inv.idCategoria = ctg.id) inner join modelos mdl on (inv.idModelo = mdl.indexer)";
+                                      inner join inventario inv on(aux.idProducto = inv.idProducto) inner join categorias ctg on (inv.idCategoria = ctg.idCategoria) inner join modelos mdl on (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria)";
 
             venta.Columnas = new string[]
             {
@@ -62,48 +66,40 @@ namespace Zapateria.UI.Caja
             venta.InsertarSQL = "Insert into aux_ventas (idProducto) values (@idProducto)";
 
             venta.EliminarSQL = "delete from aux_ventas";
-            venta.Insertar(venta.EliminarSQL, false, false, false);
 
-            #endregion
 
-            #region Constructor historial de ventas
+        } 
+        private void CargarConsultasGridHistorial()//Metodo que guarda todas las consultas de MYSQL para el datagridview del historial
+        {
             historial.Grid = dataGridView2;
             historial.CargarSQL = "select vnt.idFactura, ciCliente, idProductos, concat('$', FORMAT(montoTotal, 2, 'de_DE')) as montoTotal, concat('$', FORMAT(subtotal, 2, 'de_DE')) as subtotal from ventas vnt WHERE DATE(`fechaVenta`) = CURDATE()";
-            historial.Columnas = new string[] { "Factura", "Cliente", "Productos", "Monto", "Subtotal" }; 
-            #endregion
-
+            historial.Columnas = new string[] { "Factura", "Cliente", "Productos", "Monto", "Subtotal" };
         }
-
-        #region Métodos
-        private void CargarDatos() //Método para cargar todos los datos en el grid
+        private void CargarGrids() //Método para mostrar los datos en cada Datagridview de la caja
         {
-            venta.Grid = dataGridView1;
-
+            CargarConsultasGridFactura();
+            CargarConsultasGridHistorial();
             venta.Cargar(venta.CargarSQL);
-
             historial.Cargar(historial.CargarSQL);
+        }
+        private void CargarDatos() //Método para cargar todos los datos en el formulario
+        {
+   
+            CargarGrids();
 
             clientes.AutoCompletar(busCliente);
 
-            if (columnaExiste == false)
-            {
-
-                venta.AsignarBotones("eliminar", "", "Quitar");                
-                venta.AsignarNombreColumnas();
-
-                historial.AsignarNombreColumnas();
-                columnaExiste = true;
-            }
-            ModificarColumnas();
-
+            ComprobarColumnasExtras();
+            AjustarColumnasGridFactura();
 
             venta.CalcularMontos();
-
             lblSubTotal.Text = "$" + venta.Subtotal.ToString();
             lblTotal.Text = "$" + venta.MontoTotal.ToString();
 
         }
-        private void ModificarColumnas() //Metodo para modificar caracteristicas de las columnas
+        
+
+        private void AjustarColumnasGridFactura() //Metodo para modificar caracteristicas de las columnas
         {
             dataGridView1.Columns["precioCalculado"].Visible = false;
             dataGridView1.Columns["detalle"].Visible = false;
@@ -115,23 +111,32 @@ namespace Zapateria.UI.Caja
             dataGridView1.Columns["cantidad"].FillWeight = 30;
 
         }
-        
-        private void CargarValores(string metodoPago) //Metodo para cargar los atributos de la nueva clase
+        private void ComprobarColumnasExtras() //Metodo que evita que se dupliquen las columnas con botones
+        {
+
+            if (columnaExiste == false)
+            {
+                venta.AsignarBotones("eliminar", "", "Quitar");
+                venta.AsignarNombreColumnas();
+                historial.AsignarNombreColumnas();
+                columnaExiste = true;
+            }
+        }
+        private void GuardarVenta(string metodoPago) //Metodo para cargar los atributos de la nueva clase
         {
             nuevaVenta = new Clases.Venta();
 
             nuevaVenta.MetodoPago = metodoPago;
             nuevaVenta.IdProductos = venta.JuntarFilas("idProducto");
             nuevaVenta.Detalle = venta.JuntarFilas("detalle");
-            MessageBox.Show(nuevaVenta.Detalle);
             nuevaVenta.CedulaCliente = cedulaCliente;
             nuevaVenta.MontoTotal = venta.MontoTotal;
-            nuevaVenta.CedulaEmpleado = "123";
+            nuevaVenta.NombreEmpleado = nombreEmpleado;
             nuevaVenta.Subtotal = venta.Subtotal;
             nuevaVenta.FechaVenta = DateTime.Now;
             nuevaVenta.Referencia = referencia;
 
-            nuevaVenta.CargarAtributosVentas();
+            nuevaVenta.Insertar(nuevaVenta.InsertarSQL);
             CargarDatos();
         }
         private bool Validacion() //Método para validar si se han añadido elementos a la factura
@@ -146,33 +151,17 @@ namespace Zapateria.UI.Caja
         }
         private void LimpiarFactura()
         {
-            venta.Insertar(venta.EliminarSQL, false, false, false);
+            venta.Eliminar(venta.EliminarSQL, false);
             lblCliente.Text = "Cliente de la Factura";
             busCliente.Text = "Buscar Cliente";
             CargarDatos();
-        }
-        private void ActualizarInventario()
-        {
-            DataTable dt = (DataTable)dataGridView1.DataSource;
-            List<int> ids = new List<int>(dt.Rows.Count);
-            List<int> cantidades = new List<int>(dt.Rows.Count);
-
-            foreach (DataRow row in dt.Rows) //Añadir ids de los productos
-            {
-                ids.Add((int)row["idProducto"]);
-                cantidades.Add((int)row["cantidad"]);
-            }
-
-            for (int i = 0; i < ids.Count; i++)
-            {
-                historial.ContarInventario(ids[i], cantidades[i]);
-            }
-        }
+        } //Metodo para vaciar los datos del datagridview de fatura
 
         #endregion
 
 
         #region Búsqueda de clientes
+
         private void pictureBox3_Click_1(object sender, EventArgs e)
         {
 
@@ -180,7 +169,6 @@ namespace Zapateria.UI.Caja
             busCliente.Clear();
             if (string.IsNullOrWhiteSpace(busCliente.Text) && busCliente.Focused == false) { busCliente.Text = "Buscar Cliente"; }
         }
-
         private void busCliente_Leave_1(object sender, EventArgs e)
         {
             //Añade el texto de ayuda al buscador
@@ -188,14 +176,12 @@ namespace Zapateria.UI.Caja
             controles.añadirPlaceholder(busCliente, "Buscar Cliente");
 
         }
-
         private void busCliente_Enter_1(object sender, EventArgs e)
         {
             //Añade o quita el texto de ayuda al buscador
 
             controles.añadirPlaceholder(busCliente, "Buscar Cliente");
         }
-
         private void busCliente_TextChanged(object sender, EventArgs e)
         {
             //Valida que el texto de ayuda esté colocado o no para hacer visible el botón de limpiar
@@ -219,47 +205,56 @@ namespace Zapateria.UI.Caja
                 e.SuppressKeyPress = true;
                 if (MessageBox.Show("¿Seguro que quieres asignar esta factura a este usuario?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    
-                    lblCliente.Text = clientes.ExtraerCliente(busCliente.Text);
-                    cedulaCliente = busCliente.Text;
-                    clientes.Conexion.Close();
-                    busCliente.Text = "Buscar Cliente";
+
+                    string nombreCliente = clientes.ExtraerDato($"select ciCliente, concat_ws(' ',nombre,apellido) as cliente from clientes where ciCliente = {busCliente.Text}", "cliente");
+                    if(nombreCliente == null || nombreCliente == "No existe")
+                    {
+                        MessageBox.Show("El cliente no existe, porfavor registre el nuevo cliente");
+                        btnRegistrarCliente.Focus();
+                    }
+                    else
+                    {
+                        lblCliente.Text = nombreCliente;
+                        cedulaCliente = busCliente.Text;
+                        busCliente.Clear();
+                        btnAgregarPro.Focus();
+
+                    }
 
 
                 }
             
             }
         }
+
         #endregion
 
 
         #region Eventos Principales
+
         private void Caja_Load(object sender, EventArgs e)
         {
             CargarDatos();
         }
-
         private void btnAgregarPro_Click(object sender, EventArgs e) //Llamada a formulario de agregar Productos
         {
             Secciones.Caja.CrearFactura popup = new Secciones.Caja.CrearFactura();
             popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
             controles.mostrarPopup(popup);
-        }
+            CargarDatos();
 
-
-
-        private void btnRegistrarCliente_Click(object sender, EventArgs e)
-        {
-            frmAgregarCliente popup = new frmAgregarCliente();
-            popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
-            controles.mostrarPopup(popup);
         }
         private void popup_FormClosed(object sender, FormClosedEventArgs e) //Al cerrar el formulario de agregar productos se cargan los datos nuevamente
         {
             CargarDatos();
    
         }
-
+        private void btnRegistrarCliente_Click(object sender, EventArgs e)
+        {
+            frmAgregarCliente popup = new frmAgregarCliente();
+            popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
+            controles.mostrarPopup(popup);
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             if (Validacion() == false)
@@ -275,7 +270,8 @@ namespace Zapateria.UI.Caja
 
                     if (frm.resultado == true)
                     {
-                        CargarValores(frm.metodoPago);
+                        GuardarVenta(frm.metodoPago);
+                        venta.ContarInventario();
                         LimpiarFactura();
                     }
                 }
@@ -283,7 +279,6 @@ namespace Zapateria.UI.Caja
             }
       
         }
-
         private void btnPunto_Click(object sender, EventArgs e)
         {
             if(Validacion() == false)
@@ -299,8 +294,8 @@ namespace Zapateria.UI.Caja
 
                     if (frm.resultado == true)
                     {
-                        ActualizarInventario();
-                        CargarValores(frm.metodoPago);
+                        GuardarVenta(frm.metodoPago);
+                        venta.ContarInventario();
                         LimpiarFactura();
 
                     }
@@ -326,7 +321,7 @@ namespace Zapateria.UI.Caja
                     if (frm.resultado == true)
                     {
                         referencia = frm.txtReferencia.Texts;
-                        CargarValores(frm.metodoPago);
+                        GuardarVenta(frm.metodoPago);
                         LimpiarFactura();
 
                     }
@@ -349,6 +344,7 @@ namespace Zapateria.UI.Caja
         #endregion
 
         #region Botones 
+
         private void btnReiniciar_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Seguro que desea una nueva factura?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -365,6 +361,7 @@ namespace Zapateria.UI.Caja
             popup.FormClosed += new FormClosedEventHandler(popup_FormClosed);
             controles.mostrarPopup(popup);
         }
+
         #endregion
 
     }

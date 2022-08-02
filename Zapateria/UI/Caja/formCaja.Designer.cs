@@ -51,7 +51,7 @@ namespace Zapateria.UI.Caja
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnRegistrarCliente = new System.Windows.Forms.Label();
             this.clienteContenedor = new System.Windows.Forms.Panel();
             this.lblCliente = new System.Windows.Forms.Label();
             this.profile = new System.Windows.Forms.PictureBox();
@@ -284,7 +284,7 @@ namespace Zapateria.UI.Caja
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.label1);
+            this.panel16.Controls.Add(this.btnRegistrarCliente);
             this.panel16.Controls.Add(this.clienteContenedor);
             this.panel16.Controls.Add(this.label9);
             this.panel16.Controls.Add(this.btnAgregarPro);
@@ -295,18 +295,18 @@ namespace Zapateria.UI.Caja
             this.panel16.Size = new System.Drawing.Size(660, 125);
             this.panel16.TabIndex = 27;
             // 
-            // label1
+            // btnRegistrarCliente
             // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(234, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 17);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Añadir Cliente";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.btnRegistrarCliente.AutoSize = true;
+            this.btnRegistrarCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrarCliente.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRegistrarCliente.Location = new System.Drawing.Point(234, 19);
+            this.btnRegistrarCliente.Name = "btnRegistrarCliente";
+            this.btnRegistrarCliente.Size = new System.Drawing.Size(96, 17);
+            this.btnRegistrarCliente.TabIndex = 29;
+            this.btnRegistrarCliente.Text = "Añadir Cliente";
+            this.btnRegistrarCliente.Click += new System.EventHandler(this.label1_Click);
             // 
             // clienteContenedor
             // 
@@ -760,6 +760,6 @@ namespace Zapateria.UI.Caja
         public System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label btnRegistrarCliente;
     }
 }

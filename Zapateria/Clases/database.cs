@@ -94,6 +94,7 @@ namespace Zapateria
             {
                 hayError = true;
                 numeroError = ex.Number;
+                MessageBox.Show(ex.Message);
                 
             }
         }
@@ -123,10 +124,10 @@ namespace Zapateria
             {
                 hayError = true;
                 numeroError = ex.Number;
-
+                MessageBox.Show(ex.Message);
             }
         }
-        public void Eliminar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false, bool IncluyeParametros = true)
+        public void Eliminar(string consulta, bool IncluyeMensaje = true, bool EsProcedimiento = false)
         {
 
             try
@@ -138,7 +139,7 @@ namespace Zapateria
 
                 if (EsProcedimiento == true) { cmd.CommandType = CommandType.StoredProcedure; }
 
-                if (IncluyeParametros) { cmd.Parameters.AddRange(ParametrizarAtributos()); }
+               
 
                 cmd.ExecuteNonQuery();
 
@@ -177,6 +178,7 @@ namespace Zapateria
                 return dato;
             }
         }
+
         public abstract MySqlParameter[] ParametrizarAtributos(); //Metodo para que los atributos sean compatibles con la base de datos
 
         public void LlenarComboBox(ComboBox comboBox, string consulta, string value, string display) //Metodo para cargar items a un combobox

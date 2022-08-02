@@ -10,15 +10,16 @@ using System.Windows.Forms;
 
 namespace Zapateria.UI.Clientes
 {
-    public partial class frmAgregarCliente : Form
+    public partial class frmEditarCliente : Form
     {
         #region Instanciaciones
         Clases.Cliente coleccionClientes = new Clases.Cliente();
         Clases.Cliente nuevoCliente;
         #endregion
 
+        public string cedulaCliente; //Atributo que guarda la cedula del cliente seleccionado a editar
         //Constructor
-        public frmAgregarCliente()
+        public frmEditarCliente()
         {
             InitializeComponent();
             
@@ -29,6 +30,14 @@ namespace Zapateria.UI.Clientes
         private void CargarDatos() //Metodo para cargar todos los datos necesarios
         {
             cbTipo.DataSource = coleccionClientes.TiposCedulas;
+        
+            string consulta = "Select ciCliente, concat_ws('. ',tipoCedula,ciCliente) as cedula,  concat_ws(' ',nombre, apellido) as cliente, nombre,apellido, telefono, direccion, fechaRegistro From clientes";
+            txtCedulaRif.Texts = cedulaCliente;
+            txtCedulaRif.Enabled = false;
+            txtNombre.Texts = coleccionClientes.ExtraerDato(consulta, "nombre");
+            txtApellido.Texts = coleccionClientes.ExtraerDato(consulta, "apellido");
+            txtDireccion.Texts = coleccionClientes.ExtraerDato(consulta, "direccion");
+            txtTelefono.Texts = coleccionClientes.ExtraerDato(consulta, "telefono");
         } 
         #endregion
 
@@ -51,7 +60,7 @@ namespace Zapateria.UI.Clientes
                 Direccion = txtDireccion.Texts.ToUpper(),
                 FechaRegistro = DateTime.Now
             };
-            nuevoCliente.Insertar(nuevoCliente.InsertarSQL);
+            nuevoCliente.Actualizar($"{nuevoCliente.ActualizarSQL} where ciCliente = {cedulaCliente}");
             this.Close();
         }
 

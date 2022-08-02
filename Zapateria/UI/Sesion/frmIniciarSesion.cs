@@ -90,10 +90,10 @@ namespace Zapateria.UI.Sesion
                 Contraseña = txtRegistrarContraseña.Text
 
             };
-            nuevoEmpleado.CargarAtributos();
 
+            nuevoEmpleado.Insertar(nuevoEmpleado.InsertarSQL, false);
 
-            if (nuevoEmpleado.HayError) //En caso de haber un error
+            if (nuevoEmpleado.HayError == true) //En caso de haber un error
             {
                 iniciar = false;
                 codigoError = nuevoEmpleado.NumeroError;
@@ -115,10 +115,19 @@ namespace Zapateria.UI.Sesion
 
                     MessageBox.Show("Ya existe alguien registrado con esta cedula");
                     }
+                    else
+                    {
+                        MessageBox.Show("Parece que hubo un problema con la base de datos :C");
+
+                    }
                 }
                 else
                 {
-                    sesiones.IniciarSesion(this);
+                    Clases.Sesion nuevaSesion = new Clases.Sesion();
+                    nuevaSesion.Correo = txtRegistroCorreo.Text;
+                    nuevaSesion.Contraseña = txtContraseña.Text;
+                    MessageBox.Show("Registro exitoso");
+                    nuevaSesion.IniciarSesion(this);
 
                 }
             }

@@ -41,10 +41,11 @@ namespace Zapateria.Secciones.Clientes
             if (existeColumna == false)
             {
                 clientes.AsignarNombreColumnas();
-                clientes.AsignarBotones("editar", "Editar", "Editar");
+                clientes.AsignarBotones("editar", "", "Editar");
                 existeColumna = true;
             }
             clientes.AutoCompletar(busCliente);
+            dataGridView1.Columns["ciCliente"].Visible = false;
         } 
         #endregion
 
@@ -105,7 +106,19 @@ namespace Zapateria.Secciones.Clientes
                 e.SuppressKeyPress = true;
                 clientes.Cargar($"{clientes.BuscarSQL} '%{busCliente.Text}%'"); //Se llama el atributo con el query y se le asigna el valor del buscador}
             }
-        } 
+        }
         #endregion
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "")
+            {
+                frmEditarCliente popup = new frmEditarCliente();
+                popup.cedulaCliente = dataGridView1.CurrentRow.Cells["ciCliente"].Value.ToString();
+
+                controles.mostrarPopup(popup);
+                CargarDatos();
+            }
+        }
     }
 }

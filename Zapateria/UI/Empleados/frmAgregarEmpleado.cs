@@ -40,10 +40,8 @@ namespace Zapateria.UI.Empleados
                 Nombres = txtNombre.Texts.ToUpper(),
                 Apellidos = txtApellido.Texts.ToUpper(),
                 Telefono = txtTelefono.Texts,
-                Direccion = txtDireccion.Texts.ToUpper(),
-                Horario = txtHorario.Texts.ToUpper()
             };
-            nuevoEmpleado.CargarAtributos();
+            nuevoEmpleado.Insertar(nuevoEmpleado.InsertarSQL);
 
             if (nuevoEmpleado.HayError == true && nuevoEmpleado.NumeroError == 1062)
             {

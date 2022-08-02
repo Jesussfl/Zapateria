@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using MySql.Data.MySqlClient;
 using Zapateria.Controles;
+using Zapateria.UI.Caja;
 using Zapateria.UI.Sesion;
 
 namespace Zapateria.Clases
 {
-    class Sesion : Database //Herencia
+    public class Sesion : Database //Herencia
     {
 
         Empleado empleados = new Empleado();
@@ -144,7 +145,9 @@ namespace Zapateria.Clases
         {
 
             Inicio frmInicio = new Inicio();
-            frmInicio.nombreUsuario.Text = empleados.ExtraerEmpleado(correo);
+            string nombreCliente = empleados.ExtraerDato($"select ciEmpleado, concat_ws(' ',nombres,apellidos) as empleado from empleados where correo = '{correo}'", "empleado");
+            frmInicio.nombreUsuario.Text = nombreCliente;
+            frmInicio.correoEmpleado = correo;
             frmInicio.Show();
             frm.Hide();
         } 

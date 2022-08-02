@@ -19,7 +19,7 @@ namespace Zapateria.Secciones.Caja
         #region Instanciaciones
         Clases.Controles controles = new Clases.Controles();
         Clases.Calzado coleccionCalzado = new Clases.Calzado();
-        Clases.Venta auxVentas; 
+        Clases.Compra compra; 
         #endregion
 
         #region Atributos
@@ -36,8 +36,8 @@ namespace Zapateria.Secciones.Caja
             coleccionCalzado.Grid = dataGridView1;
             coleccionCalzado.CargarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, concat('$', FORMAT(precioVenta, 2, 'de_DE')) as precioVenta
                                         from inventario inv 
-                                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
-                                        INNER JOIN modelos mdl ON (inv.idModelo = mdl.indexer)";
+                                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.idCategoria) 
+                                        INNER JOIN modelos mdl ON (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria)";
             coleccionCalzado.BuscarSQL = $@"Select inv.idProducto, concat_ws('-',ctg.nombreCategoria,ctg.marca,mdl.nombreModelo) as Producto, inv.tipoCalzado, inv.talla, inv.color, concat('$', FORMAT(precioVenta, 2, 'de_DE')) as precioVenta
                                         from inventario inv 
                                         INNER JOIN categorias ctg ON (inv.idCategoria = ctg.id) 
@@ -107,23 +107,22 @@ namespace Zapateria.Secciones.Caja
 
             if (MessageBox.Show("¿Seguro que quieres añadir los elementos seleccionados a la factura?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                auxVentas = new Clases.Venta(); //Creacion de nueva venta auxiliar
+                compra = new Clases.Compra(); //Creacion de nueva venta auxiliar
 
                 for(int i = 0; i < codigos.Count;i++) //Ingreso de valores a los atributos de la clase venta
                 {
-                    auxVentas.IdProductos = productos[i];
-                    auxVentas.Productos = new int[] { codigos[i] };
-                    auxVentas.Cantidad = obtenerCantidad(productos[i]);
-                    auxVentas.Subtotal = precioMultiplicado[i];
-                    auxVentas.InsertarSQL = "Insert into aux_ventas (idProducto, cantidad, precioCalculado, detalle) values (@idProducto, @cantidad, @subtotal, @detalle)";
-
-                    auxVentas.CargarAtributosAuxiliar();
+                    compra.NombreProducto = productos[i];
+                    compra.IdProducto = codigos[i];
+                    compra.Cantidad = obtenerCantidad(productos[i]);
+                    compra.PrecioCalculado = precioMultiplicado[i];
+                    compra.Detalle = listProductos.Items[i].ToString();
+                    compra.Insertar(compra.InsertarSQL, false);
 
                 }
             }
 
             
-            this.Close();
+           this.Close();
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e) //Evento para dar click al botón del datagrid y añadir elementos a la lista

@@ -21,7 +21,6 @@ namespace Zapateria.Clases
         private string telefono;
         private string direccion;
         private DateTime fechaRegistro;
-        private int cantidadCompras;
 
         private string[] tiposCedulas = new string[] { "V", "E", "J" };
 
@@ -35,22 +34,22 @@ namespace Zapateria.Clases
         public string Telefono { get => telefono; set => telefono = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public DateTime FechaRegistro { get => fechaRegistro; set => fechaRegistro = value; }
-        public int CantidadCompras { get => cantidadCompras; set => cantidadCompras = value; } 
         public string[] TiposCedulas { get => tiposCedulas; set => tiposCedulas = value; }
         #endregion
 
         //Constructor
         public Cliente()
         {
-            CargarSQL = "Select concat_ws('. ',tipoCedula,ciCliente) as cedula,  concat_ws(' ',nombre, apellido) as cliente, telefono, direccion, fechaRegistro, cantidadCompras From clientes";
+            CargarSQL = "Select ciCliente, concat_ws('. ',tipoCedula,ciCliente) as cedula,  concat_ws(' ',nombre, apellido) as cliente, telefono, direccion, fechaRegistro From clientes";
 
-            Columnas = new string[] { "Cédula", "Cliente", "Teléfono", "Dirección", "Fecha de Registro", "Compras Realizadas" };
+            Columnas = new string[] { "cedula","Cédula", "Cliente", "Teléfono", "Dirección", "Fecha de Registro" };
 
             InsertarSQL = @"insert into clientes (ciCliente, tipoCedula, nombre, apellido, telefono, direccion, fechaRegistro) 
                                 values (@ciCliente, @tipoCedula, @nombre, @apellido, @telefono, @direccion, @fechaRegistro)";
 
             BuscarSQL = $"{CargarSQL} where concat(ciCliente, tipoCedula, nombre, apellido) like";
 
+            ActualizarSQL = "update clientes set ciCliente = @ciCliente, tipoCedula = @tipoCedula, nombre = @nombre, apellido = @apellido, telefono = @telefono, direccion = @direccion, fechaRegistro = @fechaRegistro";
         }
 
 
@@ -73,37 +72,6 @@ namespace Zapateria.Clases
             Conexion.Close();
 
         }
-        public string ExtraerCliente(string cedula) //Método es para extraer el nombre del cliente
-        {
-            Conexion.Open();
-            MySqlCommand cm = new MySqlCommand($"select ciCliente, concat_ws(' ',nombre,apellido) as cliente from clientes where ciCliente = {cedula}", Conexion);
-            MySqlDataReader sdr = cm.ExecuteReader();
-
-            while (sdr.Read())
-            {
-                return sdr.GetValue(1).ToString();
-                
-            }
-
-            return "No existe";
-
-        }
-        public void CargarAtributos() //Metodo encargado de parametrizar los atributos y cargarlos en el mysql
-        {
-
-            Parametros = new MySqlParameter[]
-                {
-                new MySqlParameter("@ciCliente", cedula),
-                new MySqlParameter("@tipoCedula", tipoCedulaCliente),
-                new MySqlParameter("@nombre", nombre),
-                new MySqlParameter("@Apellido", apellido),
-                new MySqlParameter("@telefono", telefono),
-                new MySqlParameter("@direccion", direccion),
-                new MySqlParameter("@fechaRegistro", fechaRegistro)
-                };
-
-            Insertar(InsertarSQL, true, false);
-        } 
         public override MySqlParameter[] ParametrizarAtributos()
         {
             Parametros = new MySqlParameter[]

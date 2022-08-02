@@ -27,9 +27,12 @@ namespace Zapateria.Secciones.Inventario
         Clases.Controles controles = new Clases.Controles();
 
         #endregion
-        
+
+        #region Atributos del formulario
         private frmInventario frm;
-        public string id;
+
+        public string id; //Atributo que recoge el id del producto seleccionado 
+        #endregion
 
         public frmEditarProductos(frmInventario frm)
         {
@@ -149,6 +152,15 @@ namespace Zapateria.Secciones.Inventario
 
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Seguro que desea eliminar este producto del inventario?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                coleccionCalzados.Eliminar(coleccionCalzados.EliminarSQL + id);
+                frm.CargarDatos();
+                this.Close();
+            }
+        }
         #endregion
 
         #region Eventos Normales

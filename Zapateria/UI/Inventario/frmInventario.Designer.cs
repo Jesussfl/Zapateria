@@ -329,6 +329,7 @@ namespace Zapateria.Inventario
             // btnCategoriasModelos
             // 
             this.btnCategoriasModelos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnCategoriasModelos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCategoriasModelos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCategoriasModelos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategoriasModelos.ForeColor = System.Drawing.Color.White;
@@ -345,6 +346,7 @@ namespace Zapateria.Inventario
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.White;

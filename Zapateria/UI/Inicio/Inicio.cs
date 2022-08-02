@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zapateria.Inventario;
 using Zapateria.UI.Caja;
 
 namespace Zapateria
@@ -16,25 +17,25 @@ namespace Zapateria
         //Definicion de variables con formularios indexados en pagina de inicio
         formCaja caj = new formCaja();
         Ventas.Ventas ven = new Ventas.Ventas();
-        Inventario.frmInventario inv = new Inventario.frmInventario();
-        Secciones.Clientes.Clientes cli = new Secciones.Clientes.Clientes();
         Secciones.Empleados.Empleados emp = new Secciones.Empleados.Empleados();
 
-
-
-
+        public string correoEmpleado;
         public Inicio()
         {
             InitializeComponent();
             quitarBordeBtns();
-            //Definición de bordes UI
-            
    
           
         }
 
+
+
+
+
+
         
-        private void abrirForms(Form frm)
+        
+        private void abrirForms(Form frm)//Funcion para abrir formularios desde el sidebar
         {
             frm.TopLevel = false;
             frm.TopMost = true;
@@ -43,7 +44,7 @@ namespace Zapateria
             frm.BringToFront();
             frm.Show();
             frm.Dock = DockStyle.Fill;
-        }//Funcion para abrir formularios desde el sidebar
+        }
 
         #region Botones
 
@@ -90,7 +91,7 @@ namespace Zapateria
         private void btnInventario_Click(object sender, EventArgs e)
         {
             //Llamado a pagina de inventario
-            abrirForms(inv);
+            abrirForms(new frmInventario());
             misBotonesApariencia(btnInventario, null);
         }
 
@@ -108,6 +109,7 @@ namespace Zapateria
         private void btnCaja_Click(object sender, EventArgs e)
         {
             //Llamado a pagina de caja
+            caj.nombreEmpleado = nombreUsuario.Text;
             abrirForms(caj);
 
             misBotonesApariencia(btnCaja, null);
@@ -145,7 +147,7 @@ namespace Zapateria
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-
+            correoEmpleado = nombreUsuario.Text;
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
@@ -153,14 +155,14 @@ namespace Zapateria
             //Llamado a pagina de empleados
             abrirForms(emp);
             misBotonesApariencia(btnEmpleados, null);
-
+            
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
 
             //Llamado a pagina de clientes
-            abrirForms(cli);
+            abrirForms(new Secciones.Clientes.Clientes());
 
             misBotonesApariencia(btnClientes, null) ;
 
