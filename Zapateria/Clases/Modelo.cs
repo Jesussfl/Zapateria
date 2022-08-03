@@ -39,20 +39,6 @@ namespace Zapateria.Clases
 
 
         #region Métodos
-        public void cargarAtributos()
-        {
-
-            //Método para cargar atributos a la base de datos
-            Parametros = new MySqlParameter[]
-             {
-                new MySqlParameter("@idCategoria", idCategoria),
-                new MySqlParameter("@nombreModelo", nombreModelo)
-             };
-
-            Insertar(InsertarSQL, false);
-            Insertar("idgrupal", false, true);
-
-        }
         public override MySqlParameter[] ParametrizarAtributos()
         {
 

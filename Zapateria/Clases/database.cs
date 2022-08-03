@@ -190,11 +190,14 @@ namespace Zapateria
             DataTable dt = new DataTable();
 
             da.Fill(dt);
-
+            DataRow dr = dt.NewRow();
+            dr[display] = "Seleccionar";
+            dr[value] = 0;
+            dt.Rows.InsertAt(dr, 0);
             comboBox.ValueMember = value;
             comboBox.DisplayMember = display;
             comboBox.DataSource = dt;
-
+      
         } 
 
         public void AsignarNombreColumnas() //Método para cambiar el nombre de las columnas de un datagridview
@@ -251,7 +254,7 @@ namespace Zapateria
 
         public void GenerarReporteSencillo(string document, string[,] datos)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog() {Filter = "Word |*.docx"})
+            using (SaveFileDialog sfd = new SaveFileDialog() {Filter = "Pdf |*.pdf"})
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -285,6 +288,7 @@ namespace Zapateria
                             j = 0;
 
                         }
+
                         WordprocessingDocument word = (WordprocessingDocument)wordDoc.SaveAs(sfd.FileName);
                         word.Close();
                         wordDoc.Close();

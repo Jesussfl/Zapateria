@@ -73,21 +73,6 @@ namespace Zapateria.Clases
 
         }
 
-        public string ExtraerEmpleado(string correo) //Método es para extraer el nombre del cliente
-        {
-            Conexion.Open();
-            MySqlCommand cm = new MySqlCommand($"select concat_ws(' ',nombres,apellidos) as empleado from empleados where correo = '{correo}'", Conexion);
-            MySqlDataReader sdr = cm.ExecuteReader();
-
-            while (sdr.Read())
-            {
-                return sdr.GetValue(0).ToString();
-            }
-
-            return "No existe";
-
-        }
-
         public override MySqlParameter[] ParametrizarAtributos()
         {
             Parametros = new MySqlParameter[]

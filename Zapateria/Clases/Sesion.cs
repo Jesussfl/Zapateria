@@ -49,7 +49,7 @@ namespace Zapateria.Clases
             if (correoCortado.EndsWith("."))
             {
                 MessageBox.Show("El correo no es válido");
-                return false; // suggested by @TK-421
+                return false;
             }
             try
             {

@@ -16,7 +16,7 @@ namespace Zapateria.Ventas
         #region Instanciaciones
 
         Clases.Venta ventas = new Clases.Venta();
-        Clases.Controles controles = new Clases.Controles(); 
+        Clases.Controles controles = new Clases.Controles();
 
         #endregion
 
@@ -78,19 +78,24 @@ namespace Zapateria.Ventas
         }
 
         private void btnGenerarReporte_Click(object sender, EventArgs e)
-        {
+        { 
+            string cantidad = "321";
+            string periodo;
+            if (cbFiltrarFecha.SelectedItem == null || cbFiltrarFecha.SelectedItem == "Todos")
+            {
+               periodo = "Desde los inicios";
+            }
+            else
+            {
+                periodo = cbFiltrarFecha.Text;
+            }
+            string[,] datos = { { DateTime.Now.ToString(), "date"},
+                                { periodo, "lapse"},
+                                { ventas.BuscarProductoMasVendido(), "bestProduct"},
+                                { cantidad, "amount"}};
 
-            
-            ventas.Grid = dataGridView1;
-            ventas.GenerarReporteExcel("ventas");
-
-
-            //string cantidad = "321";
-            //string[,] datos = { { DateTime.Now.ToString(), "date"},
-            //                    { cantidad, "amount"},
-            //                    { "Zapatos-Negros", "bestProduct"}};
-            //string ruta = Environment.CurrentDirectory.Replace(@"\bin\Debug", @"\Resources\Reportes\Reporte-Sencillo (Template).docx");
-            //ventas.GenerarReporteSencillo(ruta, datos);
+            string ruta = Environment.CurrentDirectory.Replace(@"\bin\Debug", @"\Resources\Reportes\Reporte-Sencillo (Template).docx");
+            ventas.GenerarReporteSencillo(ruta, datos);
         } 
 
         #endregion
@@ -142,8 +147,14 @@ namespace Zapateria.Ventas
         {
             busVenta.Clear();
             if (string.IsNullOrWhiteSpace(busVenta.Text) && busVenta.Focused == false) { busVenta.Text = "Buscar Venta"; }
-        } 
+        }
 
         #endregion
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            ventas.Grid = dataGridView1;
+            ventas.GenerarReporteExcel("ventas");
+        }
     }
 }

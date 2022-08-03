@@ -86,12 +86,14 @@ namespace Zapateria.UI.Inventario
                 IdCategoria = (int)cbCategoriaModelo.SelectedValue,
                 NombreModelo = txtModelo.Texts.ToUpper()
             };
-            nuevoModelo.cargarAtributos();
+            nuevoModelo.Insertar(nuevoModelo.InsertarSQL, true, false);
+            nuevoModelo.Insertar("idgrupal", false, true);
 
             //Limpiar y Actualizar Campos
             cargarDatosCategorias();
             cargarDatosModelos();
             cbCategoriaModelo.ResetText();
+            txtModelo.Texts = "";
             coleccionModelos.Cargar(coleccionModelos.CargarSQL);
         }
         private void btnRegistrarCategoria_Click(object sender, EventArgs e)
@@ -103,7 +105,7 @@ namespace Zapateria.UI.Inventario
                 Marca = cbMarca.Text.ToUpper()
             };
 
-            nuevaCategoria.cargarAtributos();
+            nuevaCategoria.Insertar(nuevaCategoria.InsertarSQL, true, true);
             nuevaCategoria.Insertar("asignar_ids", false, true);
 
             //Actualización de campos

@@ -65,7 +65,7 @@ namespace Zapateria.Secciones.Inventario
             objCalzado = new Clases.Calzado() //Nueva instancia del calzado
             {
                 CodigoModelo = cbModelo.SelectedValue.ToString(),
-                Descripcion = txtDescripcion.Texts,
+                Descripcion = txtDescripcion.Texts.ToUpper(),
                 TipoCalzado = cbSexo.Text,
                 Talla = int.Parse(cbTalla.Text),
                 Color = cbColor.Text,
@@ -119,9 +119,7 @@ namespace Zapateria.Secciones.Inventario
         }
         private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] extractor = cbCategoria.Text.Split('-');
-            coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria like '%{extractor[0]}%'", "id", "nombreModelo");
-
+  
         }
 
         #endregion
@@ -179,6 +177,13 @@ namespace Zapateria.Secciones.Inventario
         {
 
             CargarDatos();
+
+        }
+
+        private void cbCategoria_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string[] extractor = cbCategoria.Text.Split('-');
+            coleccionModelo.LlenarComboBox(cbModelo, $"Select id, nombreModelo from modelos where idCategoria like '%{extractor[0]}%'", "id", "nombreModelo");
 
         }
     }

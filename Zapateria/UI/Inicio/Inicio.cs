@@ -100,7 +100,7 @@ namespace Zapateria
         private void btnVentas_Click(object sender, EventArgs e)
         {
             //Llamado a pagina de ventas
-            abrirForms(ven);
+            abrirForms(new Ventas.Ventas());
 
             misBotonesApariencia(btnVentas, null);
 

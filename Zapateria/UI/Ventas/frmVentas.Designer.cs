@@ -38,6 +38,7 @@ namespace Zapateria.Ventas
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.topContenedor = new System.Windows.Forms.Panel();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -50,7 +51,7 @@ namespace Zapateria.Ventas
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.btnGenerarReporte = new System.Windows.Forms.Button();
+            this.btnReporte = new System.Windows.Forms.Button();
             this.cbFiltrarFecha = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dbContenedor.SuspendLayout();
@@ -143,9 +144,10 @@ namespace Zapateria.Ventas
             // 
             // topContenedor
             // 
+            this.topContenedor.Controls.Add(this.btnExcel);
             this.topContenedor.Controls.Add(this.label2);
             this.topContenedor.Controls.Add(this.panel8);
-            this.topContenedor.Controls.Add(this.btnGenerarReporte);
+            this.topContenedor.Controls.Add(this.btnReporte);
             this.topContenedor.Controls.Add(this.cbFiltrarFecha);
             this.topContenedor.Controls.Add(this.label1);
             this.topContenedor.Dock = System.Windows.Forms.DockStyle.Top;
@@ -153,6 +155,23 @@ namespace Zapateria.Ventas
             this.topContenedor.Name = "topContenedor";
             this.topContenedor.Size = new System.Drawing.Size(1065, 114);
             this.topContenedor.TabIndex = 7;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Image = global::Zapateria.Properties.Resources.exportWhite;
+            this.btnExcel.Location = new System.Drawing.Point(785, 13);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(108, 46);
+            this.btnExcel.TabIndex = 147;
+            this.btnExcel.Text = " Excel";
+            this.btnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // label2
             // 
@@ -294,22 +313,22 @@ namespace Zapateria.Ventas
             this.pictureBox7.TabIndex = 1;
             this.pictureBox7.TabStop = false;
             // 
-            // btnGenerarReporte
+            // btnReporte
             // 
-            this.btnGenerarReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerarReporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
-            this.btnGenerarReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerarReporte.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarReporte.ForeColor = System.Drawing.Color.White;
-            this.btnGenerarReporte.Image = global::Zapateria.Properties.Resources.exportWhite;
-            this.btnGenerarReporte.Location = new System.Drawing.Point(934, 13);
-            this.btnGenerarReporte.Name = "btnGenerarReporte";
-            this.btnGenerarReporte.Size = new System.Drawing.Size(114, 46);
-            this.btnGenerarReporte.TabIndex = 71;
-            this.btnGenerarReporte.Text = "  Exportar";
-            this.btnGenerarReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGenerarReporte.UseVisualStyleBackColor = false;
-            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
+            this.btnReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(57)))), ((int)(((byte)(201)))));
+            this.btnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReporte.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReporte.ForeColor = System.Drawing.Color.White;
+            this.btnReporte.Image = global::Zapateria.Properties.Resources.exportWhite;
+            this.btnReporte.Location = new System.Drawing.Point(899, 13);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(149, 46);
+            this.btnReporte.TabIndex = 71;
+            this.btnReporte.Text = "Reporte sencillo";
+            this.btnReporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReporte.UseVisualStyleBackColor = false;
+            this.btnReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
             // 
             // cbFiltrarFecha
             // 
@@ -381,7 +400,7 @@ namespace Zapateria.Ventas
         private System.Windows.Forms.Panel topContenedor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbFiltrarFecha;
-        private System.Windows.Forms.Button btnGenerarReporte;
+        private System.Windows.Forms.Button btnReporte;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
@@ -395,5 +414,6 @@ namespace Zapateria.Ventas
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

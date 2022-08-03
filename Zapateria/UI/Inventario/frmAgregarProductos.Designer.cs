@@ -37,7 +37,6 @@ namespace Zapateria.Secciones.Inventario
             this.txtStock = new System.Windows.Forms.TextBox();
             this.pnlPrecio = new System.Windows.Forms.Panel();
             this.txtPrecioVenta = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new Zapateria.Controles.InputText();
             this.cbSexo = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnNuevaCategoria = new System.Windows.Forms.Label();
@@ -58,6 +57,7 @@ namespace Zapateria.Secciones.Inventario
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtDescripcion = new Zapateria.Controles.InputText();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlStock.SuspendLayout();
@@ -191,26 +191,6 @@ namespace Zapateria.Secciones.Inventario
             this.txtPrecioVenta.TabIndex = 17;
             this.txtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraseñaConfirmar_KeyPress);
             // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDescripcion.BackColor = System.Drawing.Color.White;
-            this.txtDescripcion.BorderColor = System.Drawing.Color.Gainsboro;
-            this.txtDescripcion.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
-            this.txtDescripcion.BorderSize = 2;
-            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDescripcion.Location = new System.Drawing.Point(51, 209);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescripcion.Multiline = false;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Padding = new System.Windows.Forms.Padding(8);
-            this.txtDescripcion.PasswordChar = false;
-            this.txtDescripcion.Size = new System.Drawing.Size(357, 34);
-            this.txtDescripcion.TabIndex = 104;
-            this.txtDescripcion.Texts = "";
-            this.txtDescripcion.UnderlinedStyle = false;
-            // 
             // cbSexo
             // 
             this.cbSexo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -296,6 +276,7 @@ namespace Zapateria.Secciones.Inventario
             this.cbCategoria.Size = new System.Drawing.Size(357, 25);
             this.cbCategoria.TabIndex = 96;
             this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
+            this.cbCategoria.SelectionChangeCommitted += new System.EventHandler(this.cbCategoria_SelectionChangeCommitted);
             // 
             // label10
             // 
@@ -490,6 +471,26 @@ namespace Zapateria.Secciones.Inventario
             this.pictureBox1.TabIndex = 52;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtDescripcion.BackColor = System.Drawing.Color.White;
+            this.txtDescripcion.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtDescripcion.BorderFocusColor = System.Drawing.Color.DarkSlateBlue;
+            this.txtDescripcion.BorderSize = 2;
+            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDescripcion.Location = new System.Drawing.Point(51, 209);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcion.Multiline = false;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Padding = new System.Windows.Forms.Padding(8);
+            this.txtDescripcion.PasswordChar = false;
+            this.txtDescripcion.Size = new System.Drawing.Size(357, 34);
+            this.txtDescripcion.TabIndex = 104;
+            this.txtDescripcion.Texts = "";
+            this.txtDescripcion.UnderlinedStyle = false;
             // 
             // frmAgregarProductos
             // 

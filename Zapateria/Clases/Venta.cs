@@ -84,6 +84,7 @@ namespace Zapateria.Clases
             Grid.Columns["metodoPago"].FillWeight = 55;
             Grid.Columns["fechaVenta"].FillWeight = 65;
             Grid.Columns["referencias"].FillWeight = 50;
+            Grid.Columns["empleado"].FillWeight = 50;
         }
         public override MySqlParameter[] ParametrizarAtributos() //Polimorfismo - Se modifica el método declarado en la clase base de datos
         {
@@ -123,6 +124,23 @@ namespace Zapateria.Clases
 
             return string.Join(", ", lista);
         }
+        public string BuscarProductoMasVendido() //Metodo para encontrar el producto que se ha vendido mas
+        {
+
+            string consulta = @"select substring_index(idProductos, ',', 1) as ids, sum(v.montoTotal) from ventas v
+                                group by ids order by sum(v.montoTotal) desc limit 1";
+            string productoMasVendido = ExtraerDato(consulta, "ids");
+            
+            consulta = $@"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta
+                        from inventario inv 
+                        INNER JOIN categorias ctg ON (inv.idCategoria = ctg.idCategoria) 
+                        LEFT JOIN modelos mdl ON (inv.idModelo = mdl.id and inv.idCategoria = mdl.idCategoria) where idProducto = {productoMasVendido}";
+
+            productoMasVendido = ExtraerDato(consulta, "producto");
+            return productoMasVendido;
+
+        }
+
 
 
         //Métodos para actualizar el inventario

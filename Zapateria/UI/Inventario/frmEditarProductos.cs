@@ -93,7 +93,7 @@ namespace Zapateria.Secciones.Inventario
             objCalzado = new Clases.Calzado() //Nueva instancia del calzado
             {
                 CodigoModelo = cbModelo.SelectedValue.ToString(),
-                Descripcion = txtDescripcion.Texts,
+                Descripcion = txtDescripcion.Texts.ToUpper(),
                 TipoCalzado = cbSexo.Text,
                 Talla = int.Parse(cbTalla.Text),
                 Color = cbColor.Text,
