@@ -95,12 +95,12 @@ namespace Zapateria.Ventas
                 filtro = cbFiltrarFecha.Text;
 
             }
-            mejorVenta = ventas.BuscarVentaMasAlta(filtro);
-            MessageBox.Show(mejorVenta);
+            
+           
 
             string[,] datos = { { DateTime.Now.ToString(), "date"},
                                 { periodo, "lapse"},
-                                { ventas.BuscarProductoMasVendido(), "bestProduct"},
+                                { ventas.BuscarProductoMasVendido(filtro), "bestProduct"},
                                 { cantidad, "amount"}};
 
             string ruta = Environment.CurrentDirectory.Replace(@"\bin\Debug", @"\Resources\Reportes\Reporte-Sencillo (Template).docx");

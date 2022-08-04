@@ -160,23 +160,34 @@ namespace Zapateria
         public string ExtraerDato(string consulta, string columna)
         {
             string dato;
-            conexion.Open();
-            MySqlCommand cm = new MySqlCommand(consulta, Conexion);
-            MySqlDataReader sdr = cm.ExecuteReader();
-
-            if (sdr.Read())
+            try
             {
-                dato = sdr[columna].ToString();
-                conexion.Close();
-                return dato;
+                conexion.Open();
+                MySqlCommand cm = new MySqlCommand(consulta, Conexion);
+                MySqlDataReader sdr = cm.ExecuteReader();
 
+                if (sdr.Read())
+                {
+                    dato = sdr[columna].ToString();
+                    conexion.Close();
+                    return dato;
+
+                }
+                else
+                {
+                    dato = "No existe";
+                    conexion.Close();
+                    return dato;
+                }
             }
-            else
+            catch (Exception)
             {
+                MessageBox.Show("No se encontraron datos, puede que el filtrado no contenga datos");
                 dato = "No existe";
                 conexion.Close();
                 return dato;
             }
+   
         }
 
         public abstract MySqlParameter[] ParametrizarAtributos(); //Metodo para que los atributos sean compatibles con la base de datos

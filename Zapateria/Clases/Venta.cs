@@ -127,8 +127,8 @@ namespace Zapateria.Clases
         public string BuscarProductoMasVendido(string cb) //Metodo para encontrar el producto que se ha vendido mas
         {
 
-            string consulta = @"select substring_index(idProductos, ',', 1) as ids, sum(v.montoTotal) from ventas v
-                                group by ids order by sum(v.montoTotal) desc limit 1" + FiltrarFecha(cb);
+            string consulta = $@"select substring_index(idProductos, ',', 1) as ids, sum(v.montoTotal), fechaVenta from ventas v {FiltrarFecha(cb)}
+                                group by ids order by sum(v.montoTotal) desc limit 1 ";
             string productoMasVendido = ExtraerDato(consulta, "ids");
             
             consulta = $@"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta
