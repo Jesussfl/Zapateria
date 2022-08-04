@@ -160,23 +160,34 @@ namespace Zapateria
         public string ExtraerDato(string consulta, string columna)
         {
             string dato;
-            conexion.Open();
-            MySqlCommand cm = new MySqlCommand(consulta, Conexion);
-            MySqlDataReader sdr = cm.ExecuteReader();
-
-            if (sdr.Read())
+            try
             {
-                dato = sdr[columna].ToString();
-                conexion.Close();
-                return dato;
+                conexion.Open();
+                MySqlCommand cm = new MySqlCommand(consulta, Conexion);
+                MySqlDataReader sdr = cm.ExecuteReader();
 
+                if (sdr.Read())
+                {
+                    dato = sdr[columna].ToString();
+                    conexion.Close();
+                    return dato;
+
+                }
+                else
+                {
+                    dato = "No existe";
+                    conexion.Close();
+                    return dato;
+                }
             }
-            else
+            catch (Exception)
             {
+                MessageBox.Show("No se encontraron datos, puede que el filtrado no contenga datos");
                 dato = "No existe";
                 conexion.Close();
                 return dato;
             }
+   
         }
 
         public abstract MySqlParameter[] ParametrizarAtributos(); //Metodo para que los atributos sean compatibles con la base de datos
@@ -254,56 +265,65 @@ namespace Zapateria
 
         public void GenerarReporteSencillo(string document, string[,] datos)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog() {Filter = "Pdf |*.pdf"})
+            try
             {
-                if (sfd.ShowDialog() == DialogResult.OK)
+                using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Word |*.docx" })
                 {
-
-                    using (WordprocessingDocument wordDoc = WordprocessingDocument.CreateFromTemplate(document, false))
+                    if (sfd.ShowDialog() == DialogResult.OK)
                     {
-                        string docText = null;
-                        string buscar, reemplazar;
-                        int j = 0;
-                        for (int i = 0; i <= datos.GetUpperBound(1) + 1; i++)
+
+                        using (WordprocessingDocument wordDoc = WordprocessingDocument.CreateFromTemplate(document, false))
                         {
-                            while(j == 0)
+                            string docText = null;
+                            string buscar, reemplazar;
+                            int j = 0;
+                            for (int i = 0; i <= datos.GetUpperBound(1) + 1; i++)
                             {
-                                buscar = datos[i, j + 1];
-                                reemplazar = datos[i, j];
-
-                                using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+                                while (j == 0)
                                 {
-                                    docText = sr.ReadToEnd();
-                                }
+                                    buscar = datos[i, j + 1];
+                                    reemplazar = datos[i, j];
 
-                                Regex regexText = new Regex(buscar);
-                                docText = regexText.Replace(docText, reemplazar);
+                                    using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+                                    {
+                                        docText = sr.ReadToEnd();
+                                    }
 
-                                using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
-                                {
-                                    sw.Write(docText);
+                                    Regex regexText = new Regex(buscar);
+                                    docText = regexText.Replace(docText, reemplazar);
+
+                                    using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
+                                    {
+                                        sw.Write(docText);
+                                    }
+                                    j = 1;
                                 }
-                                j = 1;
+                                j = 0;
+
                             }
-                            j = 0;
+
+                            WordprocessingDocument word = (WordprocessingDocument)wordDoc.SaveAs(sfd.FileName);
+                            word.Close();
+                            wordDoc.Close();
 
                         }
-
-                        WordprocessingDocument word = (WordprocessingDocument)wordDoc.SaveAs(sfd.FileName);
-                        word.Close();
-                        wordDoc.Close();
-
-                    }
-                    if (System.IO.File.Exists(sfd.FileName) == true)
-                    {
-                        Process.Start(sfd.FileName);
-                    }
-                    else
-                    {
-                        MessageBox.Show("El archivo no existe");
+                        if (System.IO.File.Exists(sfd.FileName) == true)
+                        {
+                            Process.Start(sfd.FileName);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El archivo no existe");
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Ya hay unn reporte abierto");
+                
+            }
+            
             
         }
 

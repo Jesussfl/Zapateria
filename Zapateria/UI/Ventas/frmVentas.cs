@@ -39,7 +39,7 @@ namespace Zapateria.Ventas
             ventas.Cargar(ventas.CargarSQL);
             ventas.AsignarNombreColumnas();
             ventas.AjustarColumnas();
-
+            cbFiltrarFecha.SelectedIndex = 0;
         }
 
         private void cbFiltrarFecha_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,18 +80,27 @@ namespace Zapateria.Ventas
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         { 
             string cantidad = "321";
+            string filtro;
             string periodo;
+            string mejorVenta;
             if (cbFiltrarFecha.SelectedItem == null || cbFiltrarFecha.SelectedItem == "Todos")
             {
                periodo = "Desde los inicios";
+               filtro = "Todos";
+
             }
             else
             {
                 periodo = cbFiltrarFecha.Text;
+                filtro = cbFiltrarFecha.Text;
+
             }
+            
+           
+
             string[,] datos = { { DateTime.Now.ToString(), "date"},
                                 { periodo, "lapse"},
-                                { ventas.BuscarProductoMasVendido(), "bestProduct"},
+                                { ventas.BuscarProductoMasVendido(filtro), "bestProduct"},
                                 { cantidad, "amount"}};
 
             string ruta = Environment.CurrentDirectory.Replace(@"\bin\Debug", @"\Resources\Reportes\Reporte-Sencillo (Template).docx");

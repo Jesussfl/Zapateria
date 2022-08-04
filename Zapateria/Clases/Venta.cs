@@ -124,11 +124,11 @@ namespace Zapateria.Clases
 
             return string.Join(", ", lista);
         }
-        public string BuscarProductoMasVendido() //Metodo para encontrar el producto que se ha vendido mas
+        public string BuscarProductoMasVendido(string cb) //Metodo para encontrar el producto que se ha vendido mas
         {
 
-            string consulta = @"select substring_index(idProductos, ',', 1) as ids, sum(v.montoTotal) from ventas v
-                                group by ids order by sum(v.montoTotal) desc limit 1";
+            string consulta = $@"select substring_index(idProductos, ',', 1) as ids, sum(v.montoTotal), fechaVenta from ventas v {FiltrarFecha(cb)}
+                                group by ids order by sum(v.montoTotal) desc limit 1 ";
             string productoMasVendido = ExtraerDato(consulta, "ids");
             
             consulta = $@"Select inv.idProducto, concat_ws(' ',ctg.nombreCategoria, ctg.marca, mdl.nombreModelo) as producto, inv.descripcion, inv.tipoCalzado, inv.talla, inv.color,inv.cantidad, concat('$', FORMAT(inv.precioVenta, 2, 'de_DE')) as precioVenta
@@ -140,7 +140,47 @@ namespace Zapateria.Clases
             return productoMasVendido;
 
         }
+        public string BuscarVentaMasAlta(string cb)
+        {
+            string consulta = @"SELECT concat_ws('-',idFactura,FORMAT(montoTotal, 2)) as factura,fechaVenta,ciCliente , MAX(montoTotal) AS alto
+                                FROM ventas
+                                GROUP BY ciCliente
+                                ORDER BY MAX(montoTotal) DESC" + FiltrarFecha(cb);
+            string ventaMasAlta = ExtraerDato(consulta, "factura");
+      
+            return ventaMasAlta;
+        }
+        public string FiltrarFecha(string cb)
+        {
+            string where = "";
+            switch (cb)
+            {
+                case "Esta semana":
+                    where = "WHERE  YEARWEEK(`fechaVenta`, 1) = YEARWEEK(CURDATE(), 1)";
+                    return where;
+                   
+                case "Hoy":
+                    where = $" WHERE DATE(`fechaVenta`) = CURDATE()";
+                    return where;
 
+                    
+                case "Este mes":
+                    where = $" WHERE  MONTH(`fechaVenta`) = MONTH(CURDATE())";
+                    return where;
+
+                    
+                case "Este año":
+                    where = $"WHERE  YEAR(`fechaVenta`) = YEAR(CURDATE())";
+                    return where;
+
+                case "Todos":
+                    return "";
+
+                   
+                default:
+                    return "";
+            }
+        }
 
 
         //Métodos para actualizar el inventario
